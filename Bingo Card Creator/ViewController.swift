@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("view loaded")
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
     }
@@ -30,15 +29,6 @@ class ViewController: UIViewController {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
-        
-    }
-
-    
-    // CAGradientLayer vs DrawLinearGradient() -> make gradient diagonal pls
-
-    @IBAction func addPopover(_ sender: Any) {
-        
-        
         
     }
     

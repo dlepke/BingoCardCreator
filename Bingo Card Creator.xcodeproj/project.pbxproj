@@ -22,7 +22,6 @@
 		691A685B21E5892D0036062E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		691A685E21E5892D0036062E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		691A686021E5892D0036062E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6921100121E6D280002B5939 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = "/Users/deannalepke/Desktop/BingoCardCreator/Bingo Card Creator/Bingo Card Creator/Podfile"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +54,6 @@
 		691A685321E5892B0036062E /* Bingo Card Creator */ = {
 			isa = PBXGroup;
 			children = (
-				6921100121E6D280002B5939 /* Podfile */,
 				691A685421E5892B0036062E /* AppDelegate.swift */,
 				691A685621E5892B0036062E /* ViewController.swift */,
 				691A685821E5892B0036062E /* Main.storyboard */,
