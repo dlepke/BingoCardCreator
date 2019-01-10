@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class MyCardsViewController: UIViewController {
+class MyCardsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,17 +17,32 @@ class MyCardsViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
-        let sampleCardListArray: [String] = ["My First Card", "My Second Card", "My Third Card"]
         
-        CardListTable.beginUpdates()
-        CardListTable.insertRows(at: [IndexPath(row: sampleCardListArray.count - 1, section: 0)], with: .automatic)
-        CardListTable.endUpdates()
         
+//        CardList.beginUpdates()
+//        CardList.insertRows(at: [IndexPath(row: sampleCardListArray.count - 1, section: 0)], with: .automatic)
+//        CardList.endUpdates()
+
     }
     
-    @IBOutlet weak var CardListTable: UITableView!
+    let sampleCardListArray: [String] = ["My First Card", "My Second Card", "My Third Card"]
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sampleCardListArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Bingo Card Table Cell", for: indexPath)
+        
+        cell.textLabel?.text = sampleCardListArray[indexPath.row]
+        
+        return cell
+        
+    }
     
     
 }

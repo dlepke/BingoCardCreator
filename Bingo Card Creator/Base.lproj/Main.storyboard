@@ -10,6 +10,50 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--My Cards-->
+        <scene sceneID="ouz-En-uQ8">
+            <objects>
+                <tableViewController title="My Cards" id="x9l-lS-k8H" customClass="MyCardsViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K0B-JT-ijc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="0.80179794520547942" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Bingo Card Table Cell" rowHeight="122" id="Kr9-Za-WSu">
+                                <rect key="frame" x="0.0" y="28" width="375" height="122"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kr9-Za-WSu" id="vbT-br-XkJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="121.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="0.7966609589041096" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="yXM-Bh-lbl" kind="show" id="MYu-AT-U2m"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="delegate" destination="x9l-lS-k8H" id="4Ia-u7-49W"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Cards" id="Q1R-8Z-sv1">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Fkv-pM-V7W">
+                            <connections>
+                                <segue destination="MVC-aR-Be7" kind="show" id="YEp-fT-Ccn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="1ER-q9-yTz">
+                            <connections>
+                                <segue destination="IGf-9O-wny" kind="show" id="y1O-y0-TPD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wcz-BP-VzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-314.39999999999998" y="-116.49175412293854"/>
+        </scene>
         <!--Import Card-->
         <scene sceneID="auG-c2-kg2">
             <objects>
@@ -34,72 +78,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jLq-ao-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="-880"/>
-        </scene>
-        <!--My Cards-->
-        <scene sceneID="8BG-Dw-6Ue">
-            <objects>
-                <viewController id="aH1-Yv-omt" customClass="MyCardsViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d2q-t7-6jw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xwH-2w-XDw">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="0.5039597602739726" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Bingo Card Table Cell" textLabel="KyO-NE-Fhx" style="IBUITableViewCellStyleDefault" id="Pfh-wM-mln">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pfh-wM-mln" id="UWc-lo-Ppl">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="My First Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KyO-NE-Fhx">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="yXM-Bh-lbl" kind="show" id="gw6-Fl-dPL"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="xwH-2w-XDw" firstAttribute="top" secondItem="cv0-g1-zGC" secondAttribute="top" id="0Uz-gY-r59"/>
-                            <constraint firstItem="xwH-2w-XDw" firstAttribute="bottom" secondItem="cv0-g1-zGC" secondAttribute="bottom" id="fF0-cw-KjO"/>
-                            <constraint firstItem="xwH-2w-XDw" firstAttribute="leading" secondItem="d2q-t7-6jw" secondAttribute="leading" id="hlc-A0-hVZ"/>
-                            <constraint firstAttribute="trailing" secondItem="xwH-2w-XDw" secondAttribute="trailing" id="miK-4p-zNb"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="cv0-g1-zGC"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="My Cards" id="SgP-tf-J4H">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="dg7-x3-zgw">
-                            <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="MVC-aR-Be7" kind="show" id="WDq-Li-cHP"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="bSr-ue-Er2">
-                            <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="IGf-9O-wny" kind="show" id="fIj-XT-RIZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="CardListTable" destination="xwH-2w-XDw" id="nxA-vv-Vmp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P7M-1A-bXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-343.19999999999999" y="-116.49175412293854"/>
         </scene>
         <!--Card Details-->
         <scene sceneID="jMZ-jx-yXf">
@@ -173,7 +151,7 @@
                         <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="aH1-Yv-omt" kind="relationship" relationship="rootViewController" id="0tr-eH-26o"/>
+                        <segue destination="x9l-lS-k8H" kind="relationship" relationship="rootViewController" id="yVZ-fp-R39"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1l-Nh-SBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -182,6 +160,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wpc-M1-yc7"/>
+        <segue reference="MYu-AT-U2m"/>
     </inferredMetricsTieBreakers>
 </document>
