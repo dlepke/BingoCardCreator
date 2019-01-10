@@ -13,7 +13,7 @@
         <!--Import Card-->
         <scene sceneID="auG-c2-kg2">
             <objects>
-                <viewController title="Import Card" id="MVC-aR-Be7" customClass="ViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Import Card" id="MVC-aR-Be7" customClass="ImportViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dYO-yr-q1j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,14 +38,13 @@
         <!--My Cards-->
         <scene sceneID="8BG-Dw-6Ue">
             <objects>
-                <viewController id="aH1-Yv-omt" customClass="ViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aH1-Yv-omt" customClass="MyCardsViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d2q-t7-6jw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xwH-2w-XDw">
-                                <rect key="frame" x="0.0" y="64" width="375" height="277"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xwH-2w-XDw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="0.5039597602739726" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Bingo Card Table Cell" textLabel="KyO-NE-Fhx" style="IBUITableViewCellStyleDefault" id="Pfh-wM-mln">
@@ -72,6 +71,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xwH-2w-XDw" firstAttribute="top" secondItem="cv0-g1-zGC" secondAttribute="top" id="0Uz-gY-r59"/>
+                            <constraint firstItem="xwH-2w-XDw" firstAttribute="bottom" secondItem="cv0-g1-zGC" secondAttribute="bottom" id="fF0-cw-KjO"/>
+                            <constraint firstItem="xwH-2w-XDw" firstAttribute="leading" secondItem="d2q-t7-6jw" secondAttribute="leading" id="hlc-A0-hVZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xwH-2w-XDw" secondAttribute="trailing" id="miK-4p-zNb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cv0-g1-zGC"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Cards" id="SgP-tf-J4H">
@@ -88,6 +93,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="CardListTable" destination="xwH-2w-XDw" id="nxA-vv-Vmp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7M-1A-bXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,7 +104,7 @@
         <!--Card Details-->
         <scene sceneID="jMZ-jx-yXf">
             <objects>
-                <viewController title="Card Details" id="IGf-9O-wny" customClass="ViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Card Details" id="IGf-9O-wny" customClass="CardDetailsViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="83k-MD-UWo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,7 +127,7 @@
         <!--Add Boxes-->
         <scene sceneID="IOq-JO-KsP">
             <objects>
-                <viewController title="Add Boxes" id="FsG-zO-mUi" customClass="ViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Boxes" id="FsG-zO-mUi" customClass="AddBoxesViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JtJ-jY-nfj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,7 +150,7 @@
         <!--My Game Card-->
         <scene sceneID="MHk-ag-Sj6">
             <objects>
-                <viewController title="My Game Card" id="yXM-Bh-lbl" customClass="ViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Game Card" id="yXM-Bh-lbl" customClass="PlayGameViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Azp-TU-VIi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
