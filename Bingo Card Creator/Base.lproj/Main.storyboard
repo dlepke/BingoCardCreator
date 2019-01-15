@@ -167,14 +167,229 @@
                     <view key="view" contentMode="scaleToFill" id="Azp-TU-VIi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VM2-1N-eGu">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <subviews>
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HDQ-bb-ltm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                                        <subviews>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="OLn-jo-HVS">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 1"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="UnT-ds-Y16">
+                                                <rect key="frame" x="75" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 2"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kgc-pb-epM">
+                                                <rect key="frame" x="150" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 3"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rld-Zl-wiN">
+                                                <rect key="frame" x="225" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 4"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fhh-ko-8sv">
+                                                <rect key="frame" x="300" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 5"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nBE-SC-W06">
+                                        <rect key="frame" x="0.0" y="112" width="375" height="111.5"/>
+                                        <subviews>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Gf6-5c-xMY" userLabel="Bingo Box 6">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 6"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Oc0-ed-L0N" userLabel="Bingo Box 7">
+                                                <rect key="frame" x="75" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 7"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-Qq-mef" userLabel="Bingo Box 8">
+                                                <rect key="frame" x="150" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 8"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SdC-YY-h40" userLabel="Bingo Box 9">
+                                                <rect key="frame" x="225" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="klrauehglkbingobox9hejbakuy"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HfD-jI-7hA">
+                                                <rect key="frame" x="300" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 10"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mOy-t1-ECy">
+                                        <rect key="frame" x="0.0" y="223.5" width="375" height="112"/>
+                                        <subviews>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="51K-Yg-a8K">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 11"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1bb-5O-afZ">
+                                                <rect key="frame" x="75" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 12"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Bzq-tB-yc6">
+                                                <rect key="frame" x="150" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Centre"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7LW-IL-9MR">
+                                                <rect key="frame" x="225" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 14"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="s94-A8-4n5">
+                                                <rect key="frame" x="300" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 15"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="InO-HP-es7">
+                                        <rect key="frame" x="0.0" y="335.5" width="375" height="111.5"/>
+                                        <subviews>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CQP-UR-YyV">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 16"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-hg-06W">
+                                                <rect key="frame" x="75" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 17"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8Us-4i-vbz">
+                                                <rect key="frame" x="150" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 18"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4jG-53-mZK">
+                                                <rect key="frame" x="225" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 19"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0bC-7n-ubb">
+                                                <rect key="frame" x="300" y="0.0" width="75" height="111.5"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 20"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iz7-Eg-1ls">
+                                        <rect key="frame" x="0.0" y="447" width="375" height="112"/>
+                                        <subviews>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zTk-JA-zdh">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 21"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Q3C-dx-2bb">
+                                                <rect key="frame" x="75" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 22"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-hY-seb">
+                                                <rect key="frame" x="150" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 23"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="G3G-2p-LOb">
+                                                <rect key="frame" x="225" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 24"/>
+                                            </button>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EPn-kB-Sza">
+                                                <rect key="frame" x="300" y="0.0" width="75" height="112"/>
+                                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Bingo Box 25"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VM2-1N-eGu" firstAttribute="top" secondItem="fZK-V0-DqF" secondAttribute="top" id="MVc-Jk-jpZ"/>
+                            <constraint firstAttribute="trailing" secondItem="VM2-1N-eGu" secondAttribute="trailing" id="fo3-In-7d9"/>
+                            <constraint firstItem="VM2-1N-eGu" firstAttribute="leading" secondItem="fZK-V0-DqF" secondAttribute="leading" id="pdB-jc-dyB"/>
+                            <constraint firstItem="fZK-V0-DqF" firstAttribute="bottom" secondItem="VM2-1N-eGu" secondAttribute="bottom" id="v5b-5U-j6o"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fZK-V0-DqF"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Game Card" id="e4M-8A-wp9"/>
+                    <connections>
+                        <outletCollection property="BingoCardButtons" destination="UnT-ds-Y16" collectionClass="NSMutableArray" id="6oy-lW-wpJ"/>
+                        <outletCollection property="BingoCardButtons" destination="fhh-ko-8sv" collectionClass="NSMutableArray" id="r89-75-N0m"/>
+                        <outletCollection property="BingoCardButtons" destination="OLn-jo-HVS" collectionClass="NSMutableArray" id="x2m-s2-qix"/>
+                        <outletCollection property="BingoCardButtons" destination="kgc-pb-epM" collectionClass="NSMutableArray" id="1fR-3i-Apc"/>
+                        <outletCollection property="BingoCardButtons" destination="rld-Zl-wiN" collectionClass="NSMutableArray" id="YMz-dV-bed"/>
+                        <outletCollection property="BingoCardButtons" destination="FE5-Qq-mef" collectionClass="NSMutableArray" id="VHU-Qc-cLj"/>
+                        <outletCollection property="BingoCardButtons" destination="HfD-jI-7hA" collectionClass="NSMutableArray" id="Ys7-Ck-ZP3"/>
+                        <outletCollection property="BingoCardButtons" destination="Oc0-ed-L0N" collectionClass="NSMutableArray" id="Ise-gH-rUd"/>
+                        <outletCollection property="BingoCardButtons" destination="SdC-YY-h40" collectionClass="NSMutableArray" id="Xel-kC-aAr"/>
+                        <outletCollection property="BingoCardButtons" destination="Gf6-5c-xMY" collectionClass="NSMutableArray" id="R81-7L-L7B"/>
+                        <outletCollection property="BingoCardButtons" destination="51K-Yg-a8K" collectionClass="NSMutableArray" id="MxS-6b-Epw"/>
+                        <outletCollection property="BingoCardButtons" destination="s94-A8-4n5" collectionClass="NSMutableArray" id="mwj-0q-E6v"/>
+                        <outletCollection property="BingoCardButtons" destination="7LW-IL-9MR" collectionClass="NSMutableArray" id="vQW-RE-BGi"/>
+                        <outletCollection property="BingoCardButtons" destination="1bb-5O-afZ" collectionClass="NSMutableArray" id="bCp-Cx-5eD"/>
+                        <outletCollection property="BingoCardButtons" destination="Bzq-tB-yc6" collectionClass="NSMutableArray" id="Gzt-5M-QhA"/>
+                        <outletCollection property="BingoCardButtons" destination="0bC-7n-ubb" collectionClass="NSMutableArray" id="dlJ-LQ-GEV"/>
+                        <outletCollection property="BingoCardButtons" destination="4jG-53-mZK" collectionClass="NSMutableArray" id="bse-mA-K2E"/>
+                        <outletCollection property="BingoCardButtons" destination="8Us-4i-vbz" collectionClass="NSMutableArray" id="xTs-Wb-AZQ"/>
+                        <outletCollection property="BingoCardButtons" destination="CQP-UR-YyV" collectionClass="NSMutableArray" id="gSs-yr-Rk1"/>
+                        <outletCollection property="BingoCardButtons" destination="qIs-hg-06W" collectionClass="NSMutableArray" id="8XY-FL-kOp"/>
+                        <outletCollection property="BingoCardButtons" destination="EPn-kB-Sza" collectionClass="NSMutableArray" id="d4S-fC-BWv"/>
+                        <outletCollection property="BingoCardButtons" destination="G3G-2p-LOb" collectionClass="NSMutableArray" id="Sc5-3R-Dyk"/>
+                        <outletCollection property="BingoCardButtons" destination="zTk-JA-zdh" collectionClass="NSMutableArray" id="f2P-2S-ouX"/>
+                        <outletCollection property="BingoCardButtons" destination="Obj-hY-seb" collectionClass="NSMutableArray" id="GZ5-Ad-jYM"/>
+                        <outletCollection property="BingoCardButtons" destination="Q3C-dx-2bb" collectionClass="NSMutableArray" id="xex-q8-kyV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zO7-iV-BeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1398" y="-116"/>
+            <point key="canvasLocation" x="1397.5999999999999" y="-116.49175412293854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DgM-Ma-cyX">
