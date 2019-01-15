@@ -61,7 +61,38 @@
                     <view key="view" contentMode="scaleToFill" id="dYO-yr-q1j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="File name here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gKF-7m-R48">
+                                <rect key="frame" x="16" y="308.5" width="343" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="P5I-Ji-B4B"/>
+                                    <constraint firstAttribute="height" constant="50" id="lX7-kl-Ask"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0w0-X3-BtW">
+                                <rect key="frame" x="16" y="208.5" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Boj-mG-QC3"/>
+                                    <constraint firstAttribute="width" constant="343" id="mR7-qB-DNF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Select a File">
+                                    <color key="titleColor" red="0.50196078430000002" green="0.67450980390000004" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gKF-7m-R48" firstAttribute="top" secondItem="0w0-X3-BtW" secondAttribute="bottom" constant="50" id="Fds-dq-osW" userLabel="Select File Button.bottom = Selected File Text Field.top  + 50"/>
+                            <constraint firstItem="gKF-7m-R48" firstAttribute="centerX" secondItem="dYO-yr-q1j" secondAttribute="centerX" id="Xai-g0-Niw"/>
+                            <constraint firstItem="gKF-7m-R48" firstAttribute="centerY" secondItem="dYO-yr-q1j" secondAttribute="centerY" id="cku-kd-8Td"/>
+                            <constraint firstItem="0w0-X3-BtW" firstAttribute="centerX" secondItem="dYO-yr-q1j" secondAttribute="centerX" id="qZq-gd-ef0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aMZ-F6-PTC"/>
                     </view>
                     <toolbarItems/>
@@ -74,10 +105,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="SelectFileButton" destination="0w0-X3-BtW" id="Ge1-kr-rTT"/>
+                        <outlet property="SelectedFileTextField" destination="gKF-7m-R48" id="Zjk-UU-PXy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jLq-ao-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="-880"/>
+            <point key="canvasLocation" x="856.79999999999995" y="-880.20989505247383"/>
         </scene>
         <!--Card Details-->
         <scene sceneID="jMZ-jx-yXf">
@@ -160,6 +195,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MYu-AT-U2m"/>
+        <segue reference="wpc-M1-yc7"/>
     </inferredMetricsTieBreakers>
 </document>
