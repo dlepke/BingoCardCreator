@@ -27,5 +27,14 @@ class PlayGameViewController: UIViewController {
         }
         
     }
+    
+    
+    
+    @IBAction func bingoClick(_ sender: UIButton) {
+        sender.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 0.5)
+        print(sender.currentTitle!)
+    }
+    
+    
     @IBOutlet var BingoCardButtons: [UIButton]!
 }

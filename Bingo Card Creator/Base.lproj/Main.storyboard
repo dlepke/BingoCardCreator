@@ -63,10 +63,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="File name here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gKF-7m-R48">
-                                <rect key="frame" x="16" y="308.5" width="343" height="50"/>
+                                <rect key="frame" x="40" y="308.5" width="295" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="P5I-Ji-B4B"/>
                                     <constraint firstAttribute="height" constant="50" id="lX7-kl-Ask"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -74,11 +73,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0w0-X3-BtW">
-                                <rect key="frame" x="16" y="208.5" width="343" height="50"/>
+                                <rect key="frame" x="40" y="208.5" width="295" height="50"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Boj-mG-QC3"/>
-                                    <constraint firstAttribute="width" constant="343" id="mR7-qB-DNF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Select a File">
@@ -88,10 +86,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0w0-X3-BtW" firstAttribute="leading" secondItem="aMZ-F6-PTC" secondAttribute="leading" constant="40" id="9qY-gr-a9W"/>
+                            <constraint firstItem="aMZ-F6-PTC" firstAttribute="trailing" secondItem="0w0-X3-BtW" secondAttribute="trailing" constant="40" id="9zw-si-RfS"/>
                             <constraint firstItem="gKF-7m-R48" firstAttribute="top" secondItem="0w0-X3-BtW" secondAttribute="bottom" constant="50" id="Fds-dq-osW" userLabel="Select File Button.bottom = Selected File Text Field.top  + 50"/>
-                            <constraint firstItem="gKF-7m-R48" firstAttribute="centerX" secondItem="dYO-yr-q1j" secondAttribute="centerX" id="Xai-g0-Niw"/>
+                            <constraint firstItem="aMZ-F6-PTC" firstAttribute="trailing" secondItem="gKF-7m-R48" secondAttribute="trailing" constant="40" id="bGZ-Cf-1ox"/>
                             <constraint firstItem="gKF-7m-R48" firstAttribute="centerY" secondItem="dYO-yr-q1j" secondAttribute="centerY" id="cku-kd-8Td"/>
-                            <constraint firstItem="0w0-X3-BtW" firstAttribute="centerX" secondItem="dYO-yr-q1j" secondAttribute="centerX" id="qZq-gd-ef0"/>
+                            <constraint firstItem="gKF-7m-R48" firstAttribute="leading" secondItem="aMZ-F6-PTC" secondAttribute="leading" constant="40" id="dPJ-hj-Kuu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aMZ-F6-PTC"/>
                     </view>
@@ -179,30 +179,45 @@
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 1"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="48S-fx-tTn"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="UnT-ds-Y16">
                                                 <rect key="frame" x="75" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 2"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="VF2-Vf-fSr"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kgc-pb-epM">
                                                 <rect key="frame" x="150" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 3"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="HOM-cQ-Umc"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rld-Zl-wiN">
                                                 <rect key="frame" x="225" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 4"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="5Xo-Wh-OyD"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fhh-ko-8sv">
                                                 <rect key="frame" x="300" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 5"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="rZd-R2-iPg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -214,30 +229,45 @@
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 6"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="oZ0-8M-UXg"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Oc0-ed-L0N" userLabel="Bingo Box 7">
                                                 <rect key="frame" x="75" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 7"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="VWV-71-qPu"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-Qq-mef" userLabel="Bingo Box 8">
                                                 <rect key="frame" x="150" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 8"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="eaF-AK-QP7"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="SdC-YY-h40" userLabel="Bingo Box 9">
                                                 <rect key="frame" x="225" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="klrauehglkbingobox9hejbakuy"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="ZmN-gc-nvB"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HfD-jI-7hA">
                                                 <rect key="frame" x="300" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 10"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="KLi-nC-uzh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -249,30 +279,45 @@
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 11"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="jik-W2-lE4"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1bb-5O-afZ">
                                                 <rect key="frame" x="75" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 12"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="UVX-ny-Tqe"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Bzq-tB-yc6">
                                                 <rect key="frame" x="150" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Centre"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="ETv-da-LXm"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7LW-IL-9MR">
                                                 <rect key="frame" x="225" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 14"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="TXc-NU-mIJ"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="s94-A8-4n5">
                                                 <rect key="frame" x="300" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 15"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="o3G-f0-EG3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -284,30 +329,45 @@
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 16"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="TQl-wU-HYS"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-hg-06W">
                                                 <rect key="frame" x="75" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 17"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="wVk-af-tS4"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8Us-4i-vbz">
                                                 <rect key="frame" x="150" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 18"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="C8z-QW-bNq"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4jG-53-mZK">
                                                 <rect key="frame" x="225" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 19"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="yGZ-dS-Onn"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0bC-7n-ubb">
                                                 <rect key="frame" x="300" y="0.0" width="75" height="111.5"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 20"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="uHd-uc-YO9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -319,30 +379,45 @@
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 21"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="o1Y-X8-NvL"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Q3C-dx-2bb">
                                                 <rect key="frame" x="75" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 22"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="vF1-fo-88F"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-hY-seb">
                                                 <rect key="frame" x="150" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 23"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="nOi-mS-WJ5"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="G3G-2p-LOb">
                                                 <rect key="frame" x="225" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 24"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="coP-bz-0TC"/>
+                                                </connections>
                                             </button>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EPn-kB-Sza">
                                                 <rect key="frame" x="300" y="0.0" width="75" height="112"/>
                                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Bingo Box 25"/>
+                                                <connections>
+                                                    <action selector="bingoClick:" destination="yXM-Bh-lbl" eventType="touchUpInside" id="GyJ-NA-eRd"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -358,7 +433,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fZK-V0-DqF"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Game Card" id="e4M-8A-wp9"/>
+                    <navigationItem key="navigationItem" title="My Game Card" id="e4M-8A-wp9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="m56-VW-6IW"/>
+                    </navigationItem>
                     <connections>
                         <outletCollection property="BingoCardButtons" destination="UnT-ds-Y16" collectionClass="NSMutableArray" id="6oy-lW-wpJ"/>
                         <outletCollection property="BingoCardButtons" destination="fhh-ko-8sv" collectionClass="NSMutableArray" id="r89-75-N0m"/>
