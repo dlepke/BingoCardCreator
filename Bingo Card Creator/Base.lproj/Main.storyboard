@@ -168,10 +168,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-1j-S3K">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-1j-S3K">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="caw-gl-t2G">
                                     <size key="itemSize" width="151" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -201,6 +200,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottomMargin" secondItem="h4z-74-PQK" secondAttribute="bottom" constant="5" id="Ctv-na-f8t"/>
                                             <constraint firstAttribute="trailing" secondItem="Jko-vR-n1q" secondAttribute="trailing" constant="5" id="CzG-wf-7nT"/>
@@ -219,6 +219,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="C2G-1j-S3K" firstAttribute="trailing" secondItem="fZK-V0-DqF" secondAttribute="trailing" id="PAF-XQ-B0H"/>
+                            <constraint firstItem="C2G-1j-S3K" firstAttribute="leading" secondItem="fZK-V0-DqF" secondAttribute="leading" id="blo-Uv-Xzd"/>
+                            <constraint firstItem="C2G-1j-S3K" firstAttribute="top" secondItem="fZK-V0-DqF" secondAttribute="top" id="krk-ld-bcL"/>
+                            <constraint firstItem="fZK-V0-DqF" firstAttribute="bottom" secondItem="C2G-1j-S3K" secondAttribute="bottom" id="uIY-Dh-Y7y"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fZK-V0-DqF"/>
                     </view>
                     <toolbarItems/>
