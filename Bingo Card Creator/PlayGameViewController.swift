@@ -9,151 +9,84 @@
 import Foundation
 import UIKit
 
-class PlayGameViewController: UIViewController {
+class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var bingoCardCollectionView: UICollectionView!
+    @IBOutlet weak var bingoCardFlow: UICollectionViewFlowLayout!
     
+    let currentBingoCard = sampleCard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = currentBingoCard.title
+        
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
-        popUpView.layer.cornerRadius = 5
+        bingoCardCollectionView.dataSource = self
+        bingoCardCollectionView.delegate = self
         
-        for button in BingoCardButtons {
-            button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-            button.titleLabel?.textAlignment = .center
-            button.layer.borderColor = UIColor.white.cgColor
-            button.layer.borderWidth = 1
-            
-        }
+        bingoCardFlow.minimumLineSpacing = 0
+        bingoCardFlow.minimumInteritemSpacing = 0
+        bingoCardFlow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let totalWidth = bingoCardCollectionView.bounds.size.width
+        let totalHeight = bingoCardCollectionView.bounds.size.height
+        let sizeOfGrid = 5
+        let widthOfCell = CGFloat(Int(totalWidth) / sizeOfGrid)
+        let heightOfCell = CGFloat(Int(totalHeight) / sizeOfGrid)
+        bingoCardFlow.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
         
     }
     
-    // today, working on logic to parse and display a user-made bingo card (using sample data)
-    
-    // first, receive card info
-    
-    // second, apply card title to nav bar
-    
-    // third, apply free square if free square
-    
-    // fourth, populate (shuffled?) bingo boxes text
-    
-    // fifth, apply proof requirements to each box according to setting & fill popup menu
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    @IBAction func bingoClick(_ sender: UIButton) {
-        sender.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 0.5)
-        print(sender.currentTitle!)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // here goes the popup menu
-        animateIn(senderButton: sender)
+        let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath)!
+        
+        selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 1)
+        selectedCell.alpha = 0.5
+        selectedCell.tintColor = #colorLiteral(red: 0.2156862745, green: 0.2, blue: 0.1921568627, alpha: 1)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath)!
+        
+        cellToDeselect.alpha = 1
+        cellToDeselect.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+        
     }
     
     
-    @IBOutlet var BingoCardButtons: [UIButton]!
     
-    @IBOutlet var mainView: UIView!
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return currentBingoCard.contents.count
+    }
     
-    @IBOutlet var popUpView: UIView!
-    
-    func animateIn(senderButton: UIButton) {
-        self.view.addSubview(popUpView)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        print("animating in")
+        let currentBingoBox = currentBingoCard.contents[indexPath.row]
         
+        let cell = bingoCardCollectionView.dequeueReusableCell(withReuseIdentifier: "BingoBox", for: indexPath as IndexPath) as! BingoBox
+        let cellColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+        cell.backgroundColor = cellColor
+        cell.bingoBoxTitle.text = currentBingoBox.boxTitle
+        cell.bingoBoxTitle.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.bingoBoxTitle.textAlignment = .center
         
-        let popUpViewWidth = popUpView.frame.maxX - popUpView.frame.minX
-        let popUpViewHeight = popUpView.frame.maxY - popUpView.frame.minY
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        print(mainView.frame.maxY)
-        print(senderButton.center)
-        
-        
-        if popUpViewWidth > mainView.frame.maxX - senderButton.frame.midX
-            && popUpViewHeight > mainView.frame.maxY - senderButton.frame.midY {
-            //for bottom right corner
-            popUpView.frame.origin.x = senderButton.center.x - popUpViewWidth
-            popUpView.frame.origin.y = senderButton.center.y - popUpViewHeight
-            
-            
-            print("bottom right corner")
-            
-            
-            
-            
-            
-        } else if popUpViewHeight > mainView.frame.maxY - senderButton.frame.midY {
-        //for bottom row
-                popUpView.frame.origin.x = senderButton.center.x
-                popUpView.frame.origin.y = senderButton.center.y - popUpViewHeight
-            
-            
-            print("bottom row")
-            
-            
-            
-            
-            
-        } else if popUpViewWidth > mainView.frame.maxX - senderButton.frame.midX {
-        //for rightmost column
-                popUpView.frame.origin.x = senderButton.center.x - popUpViewWidth
-                popUpView.frame.origin.y = senderButton.center.y
-            
-            
-            print("rightmost column")
-    
-            
-            
-            
-            
+        if currentBingoBox.proofRequired == "camera" {
+            cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
+        } else if currentBingoBox.proofRequired == "signature" {
+            cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_Compose")
         } else {
-            popUpView.frame.origin.x = senderButton.center.x
-            popUpView.frame.origin.y = senderButton.center.y
-            
-            
-            print("one!")
+            cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_Confirmation")
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        popUpView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        popUpView.alpha = 0
-        
-        
-        UIView.animate(withDuration: 0.4) {
-            self.popUpView.alpha = 1
-            self.popUpView.transform = CGAffineTransform.identity
-        }
-        
+        return cell
     }
     
-    
-    func animateOut () {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.popUpView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.popUpView.alpha = 0
-            
-        }) { (success:Bool) in
-            self.popUpView.removeFromSuperview()
-        }
-    }
+  
 }

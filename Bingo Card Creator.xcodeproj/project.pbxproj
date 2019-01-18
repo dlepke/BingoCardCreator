@@ -17,7 +17,7 @@
 		6937497A21E6F6C5000924C9 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */; };
 		6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */; };
 		6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */; };
-		69FF501521ED693F001B375A /* BingoCardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FF501421ED693F001B375A /* BingoCardInfo.swift */; };
+		69B78FC321F14CCF00797AB6 /* BingoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B78FC221F14CCF00797AB6 /* BingoBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBoxesViewController.swift; sourceTree = "<group>"; };
 		6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameViewController.swift; sourceTree = "<group>"; };
-		69FF501421ED693F001B375A /* BingoCardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCardInfo.swift; sourceTree = "<group>"; };
+		69B78FC221F14CCF00797AB6 /* BingoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 			children = (
 				691A685421E5892B0036062E /* AppDelegate.swift */,
 				6937497521E6F4C7000924C9 /* GradientMaker.swift */,
-				69FF501421ED693F001B375A /* BingoCardInfo.swift */,
+				69B78FC221F14CCF00797AB6 /* BingoBox.swift */,
 				691A685821E5892B0036062E /* Main.storyboard */,
 				691A685621E5892B0036062E /* MyCardsViewController.swift */,
 				6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */,
@@ -156,10 +156,10 @@
 				6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */,
 				6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */,
 				691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */,
-				69FF501521ED693F001B375A /* BingoCardInfo.swift in Sources */,
 				6937497A21E6F6C5000924C9 /* CardDetailsViewController.swift in Sources */,
 				6937497621E6F4C7000924C9 /* GradientMaker.swift in Sources */,
 				691A685521E5892B0036062E /* AppDelegate.swift in Sources */,
+				69B78FC321F14CCF00797AB6 /* BingoBox.swift in Sources */,
 				6937497821E6F6B6000924C9 /* ImportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
