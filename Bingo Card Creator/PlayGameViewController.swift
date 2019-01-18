@@ -14,7 +14,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet weak var bingoCardCollectionView: UICollectionView!
     @IBOutlet weak var bingoCardFlow: UICollectionViewFlowLayout!
     
-    let currentBingoCard = sampleCard
+    var currentBingoCard = sampleCard
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +44,33 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath)!
+        let selectedBingoBox = currentBingoCard.contents[indexPath.row]
         
-        selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 1)
-        selectedCell.alpha = 0.5
-        selectedCell.tintColor = #colorLiteral(red: 0.2156862745, green: 0.2, blue: 0.1921568627, alpha: 1)
+        if selectedBingoBox.complete == true {
+            selectedCell.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+            selectedCell.alpha = 1
+            selectedCell.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            currentBingoCard.contents[indexPath.row].complete = false
+        } else {
+            selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 1)
+            selectedCell.alpha = 0.5
+            selectedCell.tintColor = #colorLiteral(red: 0.2156862745, green: 0.2, blue: 0.1921568627, alpha: 1)
+            currentBingoCard.contents[indexPath.row].complete = true
+        }
+        print(currentBingoCard.contents[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath)!
+        let deselectedBingoBox = currentBingoCard.contents[indexPath.row]
         
-        cellToDeselect.alpha = 1
-        cellToDeselect.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
-        
+        if deselectedBingoBox.complete != true {
+            cellToDeselect.alpha = 1
+            cellToDeselect.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+            cellToDeselect.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        }
+
     }
     
     
