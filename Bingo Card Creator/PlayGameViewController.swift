@@ -17,7 +17,6 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     var currentBingoCard = sampleCard
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,11 +29,14 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         
         bingoCardFlow.minimumLineSpacing = 0
         bingoCardFlow.minimumInteritemSpacing = 0
-//        bingoCardFlow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                bingoCardFlow.sectionInsetReference = .fromSafeArea
+        bingoCardFlow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let totalWidth = view.frame.width
-        let totalHeight = view.frame.height - self.navigationController!.navigationBar.frame.height - 10
+        
+        let window = UIApplication.shared.keyWindow
+        let topPadding = window?.safeAreaInsets.top
+        let bottomPadding = window?.safeAreaInsets.bottom
+        let totalHeight = view.frame.height - topPadding! - bottomPadding! - (self.navigationController?.navigationBar.frame.height)!
         let sizeOfGrid = 5
         let widthOfCell = CGFloat(Int(totalWidth) / sizeOfGrid)
         let heightOfCell = CGFloat(Int(totalHeight) / sizeOfGrid)
@@ -45,18 +47,14 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath)!
+        let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
         let selectedBingoBox = currentBingoCard.contents[indexPath.row]
         
         if selectedBingoBox.complete == true {
             selectedCell.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
-//            selectedCell.alpha = 1
-            selectedCell.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             currentBingoCard.contents[indexPath.row].complete = false
         } else {
             selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 0.2504548373)
-//            selectedCell.alpha = 0.5
-            selectedCell.tintColor = #colorLiteral(red: 0.2156862745, green: 0.2, blue: 0.1921568627, alpha: 1)
             currentBingoCard.contents[indexPath.row].complete = true
         }
         print(currentBingoCard.contents[indexPath.row])
@@ -64,13 +62,11 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath)!
+        let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
         let deselectedBingoBox = currentBingoCard.contents[indexPath.row]
         
         if deselectedBingoBox.complete != true {
-//            cellToDeselect.alpha = 1
             cellToDeselect.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
-            cellToDeselect.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         }
 
     }
