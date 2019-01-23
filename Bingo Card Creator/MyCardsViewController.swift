@@ -11,8 +11,7 @@ import Foundation
 
 class MyCardsViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
-    let popUpMenuItems = ["Create New", "Import"]
-    let popUpMenuImages = [#imageLiteral(resourceName: "QuickActions_Compose"), #imageLiteral(resourceName: "QuickActions_Invitation")]
+
     
     let sampleCardListArray: [String] = ["My First Card", "My Second Card", "My Third Card"]
 
@@ -22,7 +21,6 @@ class MyCardsViewController: UITableViewController, UIPopoverPresentationControl
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
 
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -31,40 +29,29 @@ class MyCardsViewController: UITableViewController, UIPopoverPresentationControl
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-            return sampleCardListArray.count
-
+        return sampleCardListArray.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Bingo Card Table Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Bingo Card Table Cell", for: indexPath)
+        
+        cell.textLabel?.text = sampleCardListArray[indexPath.row]
             
-            cell.textLabel?.text = sampleCardListArray[indexPath.row]
-            
-            return cell
+        return cell
         
     }
-    
-    @IBAction func plusButton(_ sender: Any) {
-        showPopoverMenu(sender)
-    }
-    
-    func showPopoverMenu(_ sender: Any) {
-        let menuTableView = UITableView()
-        menuTableView.beginUpdates()
-        
-        menuTableView.endUpdates()
-        
-        let vc = UIViewController()
-        vc.preferredContentSize = CGSize(width: 200, height: 200)
-        vc.modalPresentationStyle = .popover
-        
-        let ppc = vc.popoverPresentationController
-        ppc?.permittedArrowDirections = .any
-        ppc?.delegate = self
-        ppc?.barButtonItem = navigationItem.rightBarButtonItem
-        ppc?.sourceView = sender as? UIView
-        
-        present(vc, animated: true, completion: nil)
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popoverView" {
+            let vc = segue.destination
+
+            let ppc = vc.popoverPresentationController
+            ppc?.permittedArrowDirections = .any
+            ppc?.delegate = self
+            ppc?.barButtonItem = navigationItem.rightBarButtonItem
+            ppc?.sourceView = sender as? UIView
+        }
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {

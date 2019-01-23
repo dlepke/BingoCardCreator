@@ -40,7 +40,9 @@
                     <navigationItem key="navigationItem" title="My Cards" id="Q1R-8Z-sv1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1ER-q9-yTz">
                             <connections>
-                                <action selector="plusButton:" destination="x9l-lS-k8H" id="RMS-x9-m51"/>
+                                <segue destination="50j-jh-OnR" kind="popoverPresentation" identifier="popoverView" popoverAnchorBarButtonItem="1ER-q9-yTz" id="ZFm-CJ-9ux">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -48,6 +50,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wcz-BP-VzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-314.39999999999998" y="-116.49175412293854"/>
+        </scene>
+        <!--Home Page Menu Popover View Controller-->
+        <scene sceneID="PCY-X1-hgn">
+            <objects>
+                <tableViewController modalPresentationStyle="currentContext" id="50j-jh-OnR" customClass="HomePageMenuPopoverViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NtM-58-8fP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="zNX-iy-qAh">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Geu-Ij-7ye" imageView="WtJ-25-iKO" style="IBUITableViewCellStyleDefault" id="Znb-ZB-MVh">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Znb-ZB-MVh" id="ips-Q6-zyM">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Create New" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Geu-Ij-7ye">
+                                                    <rect key="frame" x="58" y="0.0" width="336" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="QuickActions_Compose" id="WtJ-25-iKO">
+                                                    <rect key="frame" x="20" y="10" width="23" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="IGf-9O-wny" kind="show" id="ixR-8p-oXR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="eZg-3k-Ozd" imageView="e4s-JT-VWn" style="IBUITableViewCellStyleDefault" id="hcm-8c-kYR">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hcm-8c-kYR" id="UD6-ZC-R2Y">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Import" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eZg-3k-Ozd">
+                                                    <rect key="frame" x="57" y="0.0" width="337" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="QuickActions_Invitation" id="e4s-JT-VWn">
+                                                    <rect key="frame" x="20" y="10" width="22" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MVC-aR-Be7" kind="show" id="Tgo-b1-fkT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="50j-jh-OnR" id="RoW-xM-tbX"/>
+                            <outlet property="delegate" destination="50j-jh-OnR" id="dbu-Yp-bte"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="menuTableView" destination="NtM-58-8fP" id="LVw-Ob-ZGU"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Noo-KA-xcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="488" y="354"/>
         </scene>
         <!--Import Card-->
         <scene sceneID="auG-c2-kg2">
@@ -107,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jLq-ao-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856.79999999999995" y="-880.20989505247383"/>
+            <point key="canvasLocation" x="1601" y="-78"/>
         </scene>
         <!--Card Details-->
         <scene sceneID="jMZ-jx-yXf">
@@ -130,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4u-UV-ABH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="569"/>
+            <point key="canvasLocation" x="1783" y="648"/>
         </scene>
         <!--Add Boxes-->
         <scene sceneID="IOq-JO-KsP">
@@ -153,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPH-Hz-xFX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801" y="569"/>
+            <point key="canvasLocation" x="2545" y="648"/>
         </scene>
         <!--My Game Card-->
         <scene sceneID="MHk-ag-Sj6">
@@ -234,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zO7-iV-BeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397.1014492753625" y="-116.51785714285714"/>
+            <point key="canvasLocation" x="3306" y="-841"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DgM-Ma-cyX">
@@ -254,7 +331,11 @@
             <point key="canvasLocation" x="-1274" y="-116"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="QuickActions_Compose" width="23" height="23"/>
+        <image name="QuickActions_Invitation" width="22" height="22"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MYu-AT-U2m"/>
+        <segue reference="wpc-M1-yc7"/>
     </inferredMetricsTieBreakers>
 </document>
