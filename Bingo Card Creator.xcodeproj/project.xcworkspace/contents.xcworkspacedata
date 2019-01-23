@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/deannalepke/Desktop/BingoCardCreator/Bingo Card Creator/Bingo Card Creator/Podfile">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

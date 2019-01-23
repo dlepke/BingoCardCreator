@@ -38,14 +38,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Cards" id="Q1R-8Z-sv1">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Fkv-pM-V7W">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1ER-q9-yTz">
                             <connections>
-                                <segue destination="MVC-aR-Be7" kind="show" id="YEp-fT-Ccn"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="1ER-q9-yTz">
-                            <connections>
-                                <segue destination="IGf-9O-wny" kind="show" id="y1O-y0-TPD"/>
+                                <action selector="plusButton:" destination="x9l-lS-k8H" id="RMS-x9-m51"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -260,6 +255,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wpc-M1-yc7"/>
+        <segue reference="MYu-AT-U2m"/>
     </inferredMetricsTieBreakers>
 </document>
