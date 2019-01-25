@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class MyCardsViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class MyCardsViewController: UITableViewController {
     
 
     
@@ -40,26 +40,6 @@ class MyCardsViewController: UITableViewController, UIPopoverPresentationControl
             
         return cell
         
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "popoverView" {
-            let vc = segue.destination
-
-            let ppc = vc.popoverPresentationController
-            ppc?.permittedArrowDirections = .any
-            ppc?.delegate = self
-            ppc?.barButtonItem = navigationItem.rightBarButtonItem
-            ppc?.sourceView = sender as? UIView
-        }
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
     }
 }
 

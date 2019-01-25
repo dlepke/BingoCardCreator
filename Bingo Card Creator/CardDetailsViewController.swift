@@ -10,11 +10,74 @@ import Foundation
 import UIKit
 
 
-class CardDetailsViewController: UIViewController {
+class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
+        
+        cardDetailsTableView.delegate = self
+        cardDetailsTableView.dataSource = self
+        
+        cardDetailsTableView.tableFooterView = UIView()
+
+        
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellPrototypes = ["plainTableCell", "textFieldTableCell", "segmentedControlTableCell", "segmentedControlTableCell2"]
+        
+        let cell = cardDetailsTableView.dequeueReusableCell(withIdentifier: cellPrototypes[indexPath.section], for: indexPath)
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        switch section {
+        case 1:
+            return "Card Title".uppercased()
+        case 2:
+            return "Free Square".uppercased()
+        case 3:
+            return "Winning Condition".uppercased()
+        default:
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        
+        if section == 0 {
+            headerView.frame.size = CGSize(width: 0, height: 0)
+            return headerView
+        }
+        
+        return nil
+    }
+
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        print(section)
+        
+        if section > 0 {
+            return 30
+        } else {
+            return 1
+        }
+    }
+    
+    @IBOutlet weak var cardDetailsTableView: UITableView!
 }
