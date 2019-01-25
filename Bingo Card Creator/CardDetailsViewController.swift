@@ -70,7 +70,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
 
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        print(section)
         
         if section > 0 {
             return 30
