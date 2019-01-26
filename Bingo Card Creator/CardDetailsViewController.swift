@@ -22,8 +22,12 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         cardDetailsTableView.tableFooterView = UIView()
 
+        cardDetailsTableViewHeightConstraint.constant = cardDetailsTableView.contentSize.height
+        cardDetailsTableView.needsUpdateConstraints()
         
     }
+    
+    @IBOutlet weak var cardDetailsTableViewHeightConstraint: NSLayoutConstraint!
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
@@ -76,6 +80,12 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             return 1
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 1
+        
     }
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
