@@ -24,13 +24,22 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         addBoxesTableView.tableFooterView = UIView()
         
-//        addBoxesTableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: addBoxesTableView.contentSize.height)
         
-//        addBoxesTableView.sizeToFit()
         
         self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height
         self.addBoxesTableView.needsUpdateConstraints()
+        
+        self.contentViewWidthConstraint.constant = self.view.frame.width
+        self.contentViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
+        
+        self.contentView.needsUpdateConstraints()
+        
     }
+    
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    
     
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
@@ -39,6 +48,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBOutlet weak var addBoxesTableView: UITableView!
+    
+    @IBOutlet weak var previewBingoCard: UICollectionView!
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4

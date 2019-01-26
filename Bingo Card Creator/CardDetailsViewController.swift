@@ -29,6 +29,8 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var cardDetailsTableViewHeightConstraint: NSLayoutConstraint!
     
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
