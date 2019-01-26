@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +19,11 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         addBoxToCardButton.layer.cornerRadius = 10
         addBoxToCardButton.layer.applySketchShadow()
         
+        //tableview stuff
         addBoxesTableView.delegate = self
         addBoxesTableView.dataSource = self
         
         addBoxesTableView.tableFooterView = UIView()
-        
-        
         
         self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height
         self.addBoxesTableView.needsUpdateConstraints()
@@ -34,23 +33,53 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.contentView.needsUpdateConstraints()
         
+        //collectionview stuff
+        previewBingoCard.delegate = self
+        previewBingoCard.dataSource = self
+        
+        previewBingoCardFlowLayout.minimumLineSpacing = 0
+        previewBingoCardFlowLayout.minimumInteritemSpacing = 0
+        previewBingoCardFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let totalWidth = view.frame.width
+
+        let sizeOfGrid = 5
+        let widthOfCell = CGFloat(Int(totalWidth) / sizeOfGrid)
+        let heightOfCell = CGFloat(Int(totalWidth) / sizeOfGrid)
+        previewBingoCardFlowLayout.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
+        
     }
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
-    
+    @IBOutlet weak var addBoxesTableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-    
     
     @IBOutlet weak var addBoxToCardButton: UIButton!
     
-    
-    @IBOutlet weak var addBoxesTableView: UITableView!
-    
     @IBOutlet weak var previewBingoCard: UICollectionView!
+    @IBOutlet weak var previewBingoCardFlowLayout: UICollectionViewFlowLayout!
     
+    
+    // begin collectionview stuff
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 25
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = previewBingoCard.dequeueReusableCell(withReuseIdentifier: "previewBingoBox", for: indexPath)
+        
+        cell.layer.borderColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 0.5)
+        cell.layer.borderWidth = 1
+        
+        return cell
+    }
+    
+    
+    // begin tableview stuff
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4

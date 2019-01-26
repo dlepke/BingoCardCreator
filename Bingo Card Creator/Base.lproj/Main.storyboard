@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bBZ-tg-ke0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="345"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="4Xl-am-E2E"/>
@@ -211,12 +211,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="3WL-Rt-AK1">
                                         <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xVD-Rj-WmM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="MRI-Uh-vng"/>
                                                     </constraints>
@@ -228,6 +228,7 @@
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="xVD-Rj-WmM" secondAttribute="bottom" id="9Wq-Yc-Thm"/>
                                                 <constraint firstAttribute="trailing" secondItem="xVD-Rj-WmM" secondAttribute="trailing" id="i7f-7a-7W0"/>
                                                 <constraint firstItem="xVD-Rj-WmM" firstAttribute="leading" secondItem="A9q-dJ-vbc" secondAttribute="leading" id="qSI-GR-O89"/>
                                                 <constraint firstItem="xVD-Rj-WmM" firstAttribute="top" secondItem="A9q-dJ-vbc" secondAttribute="top" id="xK4-56-mMq"/>
@@ -295,6 +296,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </view>
+                                                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -472,6 +474,7 @@
                         <outlet property="contentViewHeightConstraint" destination="aOw-bD-sCD" id="mmm-SK-MI2"/>
                         <outlet property="contentViewWidthConstraint" destination="MaH-lv-ELC" id="yBa-r9-L7R"/>
                         <outlet property="previewBingoCard" destination="6lG-4U-yXC" id="ew0-XQ-VOi"/>
+                        <outlet property="previewBingoCardFlowLayout" destination="V9J-GY-EGa" id="Env-5s-5J4"/>
                         <outlet property="tableViewHeightConstraint" destination="Jqr-Rm-NZ9" id="jjs-SR-i8W"/>
                     </connections>
                 </viewController>
