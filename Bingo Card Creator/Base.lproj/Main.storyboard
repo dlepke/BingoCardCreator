@@ -155,7 +155,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="0.70408818493150682" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="textFieldTableCell" id="zQ3-bO-ItM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="textFieldTableCell" id="zQ3-bO-ItM" customClass="TextInputTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ3-bO-ItM" id="nJg-7S-Ayr">
@@ -180,6 +180,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="0.50196078430000002" green="0.67450980390000004" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="textField" destination="Nn0-wJ-bKV" id="5jp-xJ-395"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="37S-iG-j5g">
                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
@@ -249,7 +252,7 @@
                     <navigationItem key="navigationItem" title="New Card" id="Hmr-9w-dna">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="XVb-qx-hGd">
                             <connections>
-                                <segue destination="FsG-zO-mUi" kind="show" id="tMp-jx-MjS"/>
+                                <segue destination="FsG-zO-mUi" kind="show" identifier="toAddBoxesPage" id="tMp-jx-MjS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

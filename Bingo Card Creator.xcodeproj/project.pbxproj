@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		690EF4332202702E005222CB /* SampleCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF4322202702E005222CB /* SampleCards.swift */; };
+		690EF43522027A30005222CB /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43422027A30005222CB /* TextInputTableViewCell.swift */; };
 		691A685521E5892B0036062E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691A685421E5892B0036062E /* AppDelegate.swift */; };
 		691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691A685621E5892B0036062E /* MyCardsViewController.swift */; };
 		691A685A21E5892B0036062E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 691A685821E5892B0036062E /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		690EF4322202702E005222CB /* SampleCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCards.swift; sourceTree = "<group>"; };
+		690EF43422027A30005222CB /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		691A685121E5892B0036062E /* Bingo Card Creator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bingo Card Creator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		691A685421E5892B0036062E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		691A685621E5892B0036062E /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +72,9 @@
 			children = (
 				691A685421E5892B0036062E /* AppDelegate.swift */,
 				6937497521E6F4C7000924C9 /* GradientMaker.swift */,
+				690EF43422027A30005222CB /* TextInputTableViewCell.swift */,
 				69B78FC221F14CCF00797AB6 /* BingoBox.swift */,
+				690EF4322202702E005222CB /* SampleCards.swift */,
 				691A685821E5892B0036062E /* Main.storyboard */,
 				691A685621E5892B0036062E /* MyCardsViewController.swift */,
 				6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */,
@@ -154,9 +160,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */,
+				690EF4332202702E005222CB /* SampleCards.swift in Sources */,
 				6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */,
 				691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */,
 				6937497A21E6F6C5000924C9 /* CardDetailsViewController.swift in Sources */,
+				690EF43522027A30005222CB /* TextInputTableViewCell.swift in Sources */,
 				6937497621E6F4C7000924C9 /* GradientMaker.swift in Sources */,
 				691A685521E5892B0036062E /* AppDelegate.swift in Sources */,
 				69B78FC321F14CCF00797AB6 /* BingoBox.swift in Sources */,

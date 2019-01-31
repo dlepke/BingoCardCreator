@@ -43,9 +43,17 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let cellPrototypes = ["plainTableCell", "textFieldTableCell", "segmentedControlTableCell", "segmentedControlTableCell2"]
         
-        let cell = cardDetailsTableView.dequeueReusableCell(withIdentifier: cellPrototypes[indexPath.section], for: indexPath)
         
-        return cell
+        
+        if indexPath == [1, 0] {
+            let cell: TextInputTableViewCell = cardDetailsTableView.dequeueReusableCell(withIdentifier: cellPrototypes[indexPath.section], for: indexPath) as! TextInputTableViewCell
+            return cell
+        } else {
+            let cell = cardDetailsTableView.dequeueReusableCell(withIdentifier: cellPrototypes[indexPath.section], for: indexPath)
+            return cell
+        }
+        
+        
         
     }
     
@@ -91,4 +99,18 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddBoxesPage" {
+            
+            let textFieldCell = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
+            
+            let cardTitle = textFieldCell.sendText()
+            print(cardTitle)
+            
+            
+        }
+    }
 }
