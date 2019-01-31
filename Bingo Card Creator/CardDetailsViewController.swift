@@ -110,7 +110,24 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             let cardTitle = textFieldCell.sendText()
             print(cardTitle)
             
+            let segmentedControlCell1 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! SegmentedControlTableViewCell
             
+            let selection1 = segmentedControlCell1.selection1
+            print(selection1)
+            
+            let segmentedControlCell2 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! SegmentedControlTableViewCell
+            
+            let selection2 = segmentedControlCell2.selection2
+            print(selection2)
+            
+            let freeSquare = [true, false]
+            let completionPoint = ["Single Line", "Whole Card"]
+            
+            
+            let newCard = BingoCard(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2], contents: [])
+        
+            let destinationVC = segue.destination as! AddBoxesViewController
+            destinationVC.newCard = newCard
         }
     }
 }

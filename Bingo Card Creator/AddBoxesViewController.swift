@@ -11,9 +11,14 @@ import UIKit
 
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var newCard: BingoCard?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(newCard!)
+        
+        self.title = newCard?.title
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
         addBoxToCardButton.layer.cornerRadius = 10
