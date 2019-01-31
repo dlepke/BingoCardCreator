@@ -20,5 +20,4 @@ class SegmentedControlTableViewCell: UITableViewCell {
     @IBAction func selection2Changed(_ sender: UISegmentedControl) {
         selection2 = sender.selectedSegmentIndex
     }
-    
 }

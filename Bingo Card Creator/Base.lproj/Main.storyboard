@@ -298,14 +298,31 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F" customClass="PreviewCardBingoBoxCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
+                                                                    <rect key="frame" x="8" y="52" width="34" height="0.0"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                         </view>
                                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="GgG-oA-2p9" firstAttribute="leading" secondItem="9cG-cM-c2F" secondAttribute="leadingMargin" id="TQW-pn-sJX"/>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="GgG-oA-2p9" secondAttribute="trailing" id="nmu-WC-H2A"/>
+                                                            <constraint firstAttribute="bottomMargin" secondItem="GgG-oA-2p9" secondAttribute="bottom" id="tH8-X1-sDS"/>
+                                                            <constraint firstItem="GgG-oA-2p9" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="topMargin" id="u4S-ov-dgh"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="previewCardBingoBoxLabel" destination="GgG-oA-2p9" id="QUw-5f-X9L"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -342,7 +359,7 @@
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" white="1" alpha="0.70061001710000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO" customClass="BingoBoxTextFieldTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5Y-G8-YTO" id="WXm-Rv-NoX">
@@ -367,8 +384,11 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <color key="tintColor" red="0.50196078430000002" green="0.67450980390000004" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <outlet property="titleTextField" destination="P2y-NQ-Pk8" id="b1A-lB-omb"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailsTableCell" id="hvL-Ip-8UL">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailsTableCell" id="hvL-Ip-8UL" customClass="BingoBoxTextFieldTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hvL-Ip-8UL" id="cTx-Ek-ory">
@@ -393,8 +413,11 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <color key="tintColor" red="0.50196078430000002" green="0.67450980390000004" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <outlet property="detailsTextField" destination="uQA-ms-Yll" id="sVt-HY-S3W"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="proofRequiredTableCell" id="RSG-Vh-v8c">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="proofRequiredTableCell" id="RSG-Vh-v8c" customClass="CompletionPointSegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSG-Vh-v8c" id="HWU-On-fLx">
@@ -412,6 +435,10 @@
                                                                         <segment title="Signature"/>
                                                                     </segments>
                                                                     <color key="tintColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <connections>
+                                                                        <action selector="completionPointChanged:" destination="RSG-Vh-v8c" eventType="valueChanged" id="g3s-Y8-NMP"/>
+                                                                        <action selector="selection3Changed:" destination="lBM-CK-m2z" eventType="valueChanged" id="kU9-RY-34v"/>
+                                                                    </connections>
                                                                 </segmentedControl>
                                                             </subviews>
                                                             <constraints>
@@ -421,6 +448,9 @@
                                                                 <constraint firstItem="l4y-qY-SbA" firstAttribute="top" secondItem="HWU-On-fLx" secondAttribute="top" id="dvH-Gf-eK1"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="proofRequiredSegmentedControl" destination="l4y-qY-SbA" id="QPV-Pw-amv"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -433,6 +463,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Add to Card"/>
+                                                <connections>
+                                                    <action selector="addBoxToCard:" destination="FsG-zO-mUi" eventType="touchUpInside" id="qcG-jB-Ml8"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -469,10 +502,10 @@
                         <viewLayoutGuide key="safeArea" id="K0d-84-bZ7"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Card" id="G61-zr-AX8">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Ixh-oy-0Vj">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="Ixh-oy-0Vj">
                             <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="yXM-Bh-lbl" kind="show" id="i3G-q8-JtZ"/>
+                                <segue destination="yXM-Bh-lbl" kind="show" identifier="createCardToGamePage" id="i3G-q8-JtZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -482,12 +515,14 @@
                         <outlet property="contentView" destination="8UY-FH-cT7" id="NF9-Lf-9DS"/>
                         <outlet property="contentViewHeightConstraint" destination="aOw-bD-sCD" id="mmm-SK-MI2"/>
                         <outlet property="contentViewWidthConstraint" destination="MaH-lv-ELC" id="yBa-r9-L7R"/>
+                        <outlet property="navbarSaveButton" destination="Ixh-oy-0Vj" id="CEE-Uz-bnf"/>
                         <outlet property="previewBingoCard" destination="6lG-4U-yXC" id="ew0-XQ-VOi"/>
                         <outlet property="previewBingoCardFlowLayout" destination="V9J-GY-EGa" id="Env-5s-5J4"/>
                         <outlet property="tableViewHeightConstraint" destination="Jqr-Rm-NZ9" id="jjs-SR-i8W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPH-Hz-xFX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lBM-CK-m2z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1230.4347826086957" y="608.70535714285711"/>
         </scene>

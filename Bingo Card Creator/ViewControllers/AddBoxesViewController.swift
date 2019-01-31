@@ -63,22 +63,54 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var addBoxToCardButton: UIButton!
+    @IBAction func addBoxToCard(_ sender: Any) {
+        
+        let boxTitleCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! BingoBoxTextFieldTableViewCell
+        let boxDetailsCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! BingoBoxTextFieldTableViewCell
+        let proofRequiredCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! CompletionPointSegmentedControlTableViewCell
+        
+        let boxTitle = boxTitleCell.titleTextField.text!
+        let boxDetails = boxDetailsCell.detailsTextField.text!
+        let proofRequired = proofRequiredCell.selection
+        
+        let newBox = BoxContents(boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        
+        newCard?.contents.append(newBox)
+        
+        boxTitleCell.titleTextField.text = ""
+        boxDetailsCell.detailsTextField.text = ""
+        proofRequiredCell.resetSelection()
+        
+        previewBingoCard.reloadData()
+        
+        checkIfCardIsDone()
+        
+    }
     
+    @IBOutlet weak var navbarSaveButton: UIBarButtonItem!
+    
+    func checkIfCardIsDone() {
+        if newCard?.contents.count == 25 {
+            navbarSaveButton.isEnabled = true
+            addBoxToCardButton.isEnabled = false
+        }
+    }
+    
+    // begin collectionview stuff
     @IBOutlet weak var previewBingoCard: UICollectionView!
     @IBOutlet weak var previewBingoCardFlowLayout: UICollectionViewFlowLayout!
     
-    
-    // begin collectionview stuff
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 25
+        return newCard?.contents.count ?? 25
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = previewBingoCard.dequeueReusableCell(withReuseIdentifier: "previewBingoBox", for: indexPath)
+        let cell = previewBingoCard.dequeueReusableCell(withReuseIdentifier: "previewBingoBox", for: indexPath) as! PreviewCardBingoBoxCell
         
         cell.layer.borderColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 0.5)
         cell.layer.borderWidth = 1
+        
+        cell.previewCardBingoBoxLabel.text = newCard?.contents[indexPath.row].boxTitle
         
         return cell
     }
@@ -143,5 +175,13 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         return 1
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createCardToGamePage" {
+            let destinationVC = segue.destination as! PlayGameViewController
+            
+            destinationVC.currentBingoCard = newCard!
+        }
     }
 }
