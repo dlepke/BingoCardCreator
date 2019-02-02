@@ -17,8 +17,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(newCard!)
-        
         self.title = newCard?.title
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
@@ -180,15 +178,13 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "createCardToHomePage" {
-            let destinationVC = segue.destination as! PlayGameViewController
+            print("sending card from addboxes: ", newCard! as Any)
             
-            destinationVC.currentBingoCard = newCard!
             
-            let titleOfNewCard = newCard?.title
-            
-            UserDefaults.standard.set(newCard, forKey: titleOfNewCard!)
+            newCard?.saveCard()
         }
     }
+
     
     
 }
