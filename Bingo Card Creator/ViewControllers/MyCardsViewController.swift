@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import os.log
 
 class MyCardsViewController: UITableViewController {
     
@@ -21,6 +22,7 @@ class MyCardsViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
 
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,6 +43,7 @@ class MyCardsViewController: UITableViewController {
         return cell
         
     }
+
 }
 
 

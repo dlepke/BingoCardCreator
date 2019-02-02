@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import os.log
 
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -178,10 +179,16 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createCardToGamePage" {
+        if segue.identifier == "createCardToHomePage" {
             let destinationVC = segue.destination as! PlayGameViewController
             
             destinationVC.currentBingoCard = newCard!
+            
+            let titleOfNewCard = newCard?.title
+            
+            UserDefaults.standard.set(newCard, forKey: titleOfNewCard!)
         }
     }
+    
+    
 }

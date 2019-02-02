@@ -7,14 +7,7 @@
 //
 
 import UIKit
-
-
-struct BingoCard {
-    var title: String
-    var freeSquare: Bool
-    var completionPoint: String
-    var contents: [BoxContents]
-}
+import os.log
 
 struct BoxContents {
     var boxTitle: String
@@ -22,4 +15,11 @@ struct BoxContents {
     var proofRequired: String
     var complete: Bool
     var proof: UIImage?
+}
+
+struct BingoCard {
+    var title: String = ""
+    var freeSquare: Bool = true
+    var completionPoint: String = ""
+    var contents: [BoxContents] = []
 }

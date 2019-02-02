@@ -57,7 +57,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
             selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 0.2504548373)
             currentBingoCard?.contents[indexPath.row].complete = true
         }
-        print(currentBingoCard?.contents[indexPath.row])
+        print(currentBingoCard?.contents[indexPath.row] as Any)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -79,21 +79,21 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let currentBingoBox = currentBingoCard?.contents[indexPath.row]
+        let currentBingoBox = currentBingoCard?.contents[indexPath.row] ?? sampleCard.contents[indexPath.row]
         
         let cell = bingoCardCollectionView.dequeueReusableCell(withReuseIdentifier: "BingoBox", for: indexPath as IndexPath) as! BingoBox
         let cellColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
         cell.backgroundColor = cellColor
-        cell.bingoBoxTitle.text = currentBingoBox?.boxTitle
+        cell.bingoBoxTitle.text = currentBingoBox.boxTitle
         cell.bingoBoxTitle.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         cell.bingoBoxTitle.textAlignment = .center
         
         cell.layer.borderWidth = 1
         cell.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        if currentBingoBox?.proofRequired == "camera" {
+        if currentBingoBox.proofRequired == "camera" {
             cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
-        } else if currentBingoBox?.proofRequired == "signature" {
+        } else if currentBingoBox.proofRequired == "signature" {
             cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_Compose")
         } else {
             cell.bingoBoxActionIcon.image = nil
