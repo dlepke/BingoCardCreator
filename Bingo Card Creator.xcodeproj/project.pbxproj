@@ -82,12 +82,12 @@
 				69A65FDE220BC98A008FD9EB /* Storage.swift */,
 				690EF43E2202A38E005222CB /* BingoCard.swift */,
 				69A65FE0220BD25C008FD9EB /* BoxContents.swift */,
-				69B78FC221F14CCF00797AB6 /* BingoBox.swift */,
 				690EF43422027A30005222CB /* TextInputTableViewCell.swift */,
 				6921A5C02202ADA700B3824F /* PreviewCardBingoBoxCell.swift */,
 				690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */,
 				690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */,
 				690EF43A22029E5C005222CB /* BingoBoxTextFieldTableViewCell.swift */,
+				69B78FC221F14CCF00797AB6 /* BingoBox.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";

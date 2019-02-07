@@ -35,8 +35,8 @@ class Storage {
     }
     
     static func store<T: Encodable>(_ object: T, to directory: Directory, as fileName: String) {
-        let url = getURL(for: directory).appendingPathComponent("BingoCards/" + fileName, isDirectory: false)
-        
+        let url = getURL(for: directory).appendingPathComponent(fileName, isDirectory: false)
+//        print("running store func")
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(object)
@@ -54,21 +54,22 @@ class Storage {
         
         if !FileManager.default.fileExists(atPath: url.path) {
 //            fatalError("File at path \(url.path) does not exist!")
+            print("file doesn't exist")
         }
         
         if let data = FileManager.default.contents(atPath: url.path) {
             let decoder = JSONDecoder()
             do {
                 let model = try decoder.decode(type, from: data)
-                print(model)
+//                print(model)
                 return model
             } catch {
 //                fatalError(error.localizedDescription)
-//                print("no data to present")
+                print("no data to present")
                 return nil
             }
         } else {
-//            print("no contents in bingocards folder")
+            print("no contents in bingocards folder")
             return nil
         }
     }
@@ -76,32 +77,35 @@ class Storage {
     static func retrieveAll<T: Decodable>(_ directoryName: String, from directory: Directory, as type: T.Type) -> [BingoCard] {
         var bingoCardArray: [BingoCard] = []
         
-        let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("BingoCards")
+        let testDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("BingoCards")
+        
+//        print("removing: ", testDirectory.path)
+        try? FileManager.default.removeItem(at: testDirectory)
+        
+        let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        print(directoryURL)
+        
         
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil, options: [])
+//            print("directory contents: ", directoryContents)
             for bingoCard in directoryContents {
 //                print("bingocard lastpathcomponent: ", bingoCard.lastPathComponent)
-                let bingoCardFile = Storage.retrieve("BingoCards/" + bingoCard.lastPathComponent, from: .documents, as: BingoCard.self)
+                let bingoCardFile = Storage.retrieve(bingoCard.lastPathComponent, from: .documents, as: BingoCard.self)
+//                print("bingoFile: ", bingoCardFile as Any)
                 if bingoCardFile != nil {
 //                    print("appending: ", bingoCardFile as Any)
                     bingoCardArray.append(bingoCardFile!)
 //                    print("retrieving bingocard: ", bingoCardFile!.title)
                 } else {
-//                    print("bingoCardFile was nil")
+                    print("bingoCardFile was nil")
                     return bingoCardArray
                 }
             }
         } catch {
-//            fatalError(error.localizedDescription)
-//            print("no bingocards directory yet")
-            do {
-                try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
-            } catch {
-//                print("couldn't make directory")
-            }
+            fatalError(error.localizedDescription)
         }
-        
+//        print("retrieved these cards: ", bingoCardArray)
         return bingoCardArray
     }
     

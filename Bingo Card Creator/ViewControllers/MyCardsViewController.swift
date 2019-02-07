@@ -24,6 +24,7 @@ class MyCardsViewController: UITableViewController {
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
         cardsInStorage = Storage.retrieveAll("BingoCards", from: .documents, as: [BingoCard].self)
+        
         tableView.reloadData()
     }
     

@@ -180,7 +180,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "createCardToHomePage" {
 //            print("sending card from addboxes: ", newCard!.title as Any)
             
-            
+            print(newCard!.title)
             newCard?.saveCard()
         }
     }
