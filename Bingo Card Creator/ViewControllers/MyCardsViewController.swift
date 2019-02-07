@@ -14,7 +14,8 @@ class MyCardsViewController: UITableViewController {
 
     
     let sampleCardListArray: [String] = ["My First Card", "My Second Card", "My Third Card"]
-    var myCards: [BingoCard?] = []
+    
+    var cardsInStorage = Storage.retrieveAll("BingoCards", from: .documents, as: [BingoCard].self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class MyCardsViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
+        cardsInStorage = Storage.retrieveAll("BingoCards", from: .documents, as: [BingoCard].self)
         tableView.reloadData()
     }
     
@@ -31,7 +33,7 @@ class MyCardsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return myCards.count
+        return cardsInStorage.count
 
         
     }
@@ -39,12 +41,26 @@ class MyCardsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Bingo Card Table Cell", for: indexPath)
         
-        print("my cards: ", myCards)
-        
-        cell.textLabel?.text = myCards[indexPath.row]!.title
+        cell.textLabel?.text = cardsInStorage[indexPath.row].title
             
         return cell
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HomeToCardView" {
+            let sender = sender as! UITableViewCell
+            
+            let destinationVC = segue.destination as? PlayGameViewController
+            
+            let selectedCard = sender.textLabel!.text
+            
+            if let found = cardsInStorage.index(where: { $0.title == selectedCard}) {
+                let cardToShow = cardsInStorage[found]
+                
+                destinationVC!.currentBingoCard = cardToShow
+            }
+        }
     }
 
 }

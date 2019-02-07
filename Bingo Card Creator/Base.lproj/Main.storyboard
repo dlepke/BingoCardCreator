@@ -29,7 +29,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="0.7966609589041096" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="yXM-Bh-lbl" kind="show" id="MYu-AT-U2m"/>
+                                    <segue destination="yXM-Bh-lbl" kind="show" identifier="HomeToCardView" id="MYu-AT-U2m"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

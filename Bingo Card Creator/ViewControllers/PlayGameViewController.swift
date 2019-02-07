@@ -57,7 +57,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
             selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 0.2504548373)
             currentBingoCard?.contents[indexPath.row].complete = true
         }
-        print(currentBingoCard?.contents[indexPath.row] as Any)
+//        print(currentBingoCard?.contents[indexPath.row] as Any)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
