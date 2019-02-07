@@ -22,7 +22,10 @@ class MyCardsViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //print("reloading cards list")
         cardsInStorage = Storage.retrieveAll("BingoCards", from: .documents, as: [BingoCard].self)
         
         tableView.reloadData()
@@ -62,6 +65,10 @@ class MyCardsViewController: UITableViewController {
                 destinationVC!.currentBingoCard = cardToShow
             }
         }
+    }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
     }
 
 }

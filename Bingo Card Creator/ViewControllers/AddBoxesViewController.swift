@@ -175,16 +175,15 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         return 1
         
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createCardToHomePage" {
-//            print("sending card from addboxes: ", newCard!.title as Any)
-            
-            print(newCard!.title)
-            newCard?.saveCard()
-        }
-    }
 
+    @IBAction func saveCardBarButton(_ sender: Any) {
+        
+        print(newCard!.title)
+        newCard?.saveCard()
+        
+        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
+        
+    }
     
     
 }
