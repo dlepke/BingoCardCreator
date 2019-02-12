@@ -9,15 +9,19 @@
 import Foundation
 import UIKit
 import os.log
+import CoreData
 
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var newCard: BingoCard?
+    var newCard = NSManagedObject()
+    var arrayOfPendingBoxes: [BoxContents] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = newCard?.title
+        print("received: ", newCard)
+        
+        self.title = newCard.value(forKey: "title") as? String
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
         addBoxToCardButton.layer.cornerRadius = 10
@@ -72,13 +76,11 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let boxDetails = boxDetailsCell.detailsTextField.text!
         let proofRequired = proofRequiredCell.selection
         
-        let newBox = BoxContents(boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        self.save(ownerCard: newCard, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
         
-        newCard?.contents.append(newBox)
         
         boxTitleCell.titleTextField.text = ""
         boxDetailsCell.detailsTextField.text = ""
-        proofRequiredCell.resetSelection()
         
         previewBingoCard.reloadData()
         
@@ -86,10 +88,45 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    func save(ownerCard: NSManagedObject, boxTitle: String, boxDetails: String, proofRequired: String, complete: Bool, proof: UIImage?) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "BoxContents", in: managedContext)!
+        
+        let boxContents = BoxContents(entity: entity, insertInto: managedContext)
+        
+        boxContents.setValue(boxTitle, forKeyPath: "boxTitle")
+        boxContents.setValue(boxDetails, forKeyPath: "boxDetails")
+        boxContents.setValue(proofRequired, forKeyPath: "proofRequired")
+        boxContents.setValue(complete, forKey: "complete")
+        boxContents.setValue(proof, forKey: "proof")
+        boxContents.setValue(ownerCard, forKey: "ownerCard")
+        
+        arrayOfPendingBoxes.append(boxContents)
+        
+        do {
+            try managedContext.save()
+            print(arrayOfPendingBoxes)
+            print(newCard.value(forKey: "contents")! as Any)
+            
+            
+            //
+            
+        } catch let error as NSError {
+            print("Could not save BoxContents. \(error)")
+        }
+        
+    }
+    
     @IBOutlet weak var navbarSaveButton: UIBarButtonItem!
     
     func checkIfCardIsDone() {
-        if newCard?.contents.count == 25 {
+        if arrayOfPendingBoxes.count == 25 {
             navbarSaveButton.isEnabled = true
             addBoxToCardButton.isEnabled = false
         }
@@ -100,7 +137,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var previewBingoCardFlowLayout: UICollectionViewFlowLayout!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newCard?.contents.count ?? 25
+        let cardArray = arrayOfPendingBoxes
+        return cardArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,7 +147,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.layer.borderColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 0.5)
         cell.layer.borderWidth = 1
         
-        cell.previewCardBingoBoxLabel.text = newCard?.contents[indexPath.row].boxTitle
+        let cardArray = arrayOfPendingBoxes
+        cell.previewCardBingoBoxLabel.text = cardArray[indexPath.row].boxTitle
         
         return cell
     }
@@ -178,8 +217,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        print(newCard!.title)
-        newCard?.saveCard()
+        print(newCard.value(forKey: "title") as Any)
+//        newCard?.saveCard()
         
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
         

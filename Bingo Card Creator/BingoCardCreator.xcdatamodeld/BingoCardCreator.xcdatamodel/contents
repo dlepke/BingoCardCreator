@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BingoCard" representedClassName="BingoCard" syncable="YES" codeGenerationType="class">
+        <attribute name="completionPoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="freeSquare" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contents" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BoxContents" inverseName="ownerCard" inverseEntity="BoxContents" syncable="YES"/>
+    </entity>
+    <entity name="BoxContents" representedClassName="BoxContents" syncable="YES" codeGenerationType="class">
+        <attribute name="boxDetails" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="boxTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="complete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="proof" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="proofRequired" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ownerCard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BingoCard" inverseName="contents" inverseEntity="BingoCard" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BingoCard" positionX="-45" positionY="0" width="128" height="105"/>
+        <element name="BoxContents" positionX="-18" positionY="27" width="128" height="135"/>
+    </elements>
+</model>

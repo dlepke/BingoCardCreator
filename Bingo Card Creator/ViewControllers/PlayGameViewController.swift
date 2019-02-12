@@ -8,19 +8,21 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var bingoCardCollectionView: UICollectionView!
     @IBOutlet weak var bingoCardFlow: UICollectionViewFlowLayout!
     
-    var currentBingoCard: BingoCard?
+    var currentBingoCard = NSManagedObject()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = currentBingoCard?.title
+        self.title = currentBingoCard.value(forKey: "title") as? String
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
@@ -47,23 +49,27 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
+        
         let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
-        let selectedBingoBox = currentBingoCard?.contents[indexPath.row]
+        let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
         
         if selectedBingoBox?.complete == true {
             selectedCell.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
-            currentBingoCard?.contents[indexPath.row].complete = false
+            contentsOfCurrentCard?[indexPath.row].complete = false
         } else {
             selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 0.2504548373)
-            currentBingoCard?.contents[indexPath.row].complete = true
+            contentsOfCurrentCard?[indexPath.row].complete = true
         }
 //        print(currentBingoCard?.contents[indexPath.row] as Any)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
+        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
+        
         let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
-        let deselectedBingoBox = currentBingoCard?.contents[indexPath.row]
+        let deselectedBingoBox = contentsOfCurrentCard?[indexPath.row]
         
         if deselectedBingoBox?.complete != true {
             cellToDeselect.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
@@ -74,12 +80,19 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentBingoCard?.contents.count ?? 25
+        
+        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
+        
+        return contentsOfCurrentCard?.count ?? 25
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let currentBingoBox = currentBingoCard?.contents[indexPath.row] ?? sampleCard.contents[indexPath.row]
+        let titleOfCurrentCard = currentBingoCard.value(forKey: "title") as? String
+        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
+        print(titleOfCurrentCard as Any, contentsOfCurrentCard as Any)
+        
+        let currentBingoBox = contentsOfCurrentCard![indexPath.row]
         
         let cell = bingoCardCollectionView.dequeueReusableCell(withReuseIdentifier: "BingoBox", for: indexPath as IndexPath) as! BingoBox
         let cellColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
@@ -91,9 +104,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         cell.layer.borderWidth = 1
         cell.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        if currentBingoBox.proofRequired == "camera" {
+        if currentBingoBox.value(forKeyPath: "proofRequired") as? String == "camera" {
             cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
-        } else if currentBingoBox.proofRequired == "signature" {
+        } else if currentBingoBox.value(forKeyPath: "proofRequired") as? String == "signature" {
             cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_Compose")
         } else {
             cell.bingoBoxActionIcon.image = nil

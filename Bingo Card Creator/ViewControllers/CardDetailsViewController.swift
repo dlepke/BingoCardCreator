@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -100,7 +101,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
     
-    
+    var newCard: NSManagedObject = BingoCard(context: ((UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext)!)
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddBoxesPage" {
@@ -121,10 +122,36 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             let completionPoint = ["Single Line", "Whole Card"]
             
             
-            let newCard = BingoCard(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2], contents: [])
+            self.save(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2])
         
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard
+            print("sent: ", destinationVC.newCard)
+        }
+    }
+    
+    func save(title: String, freeSquare: Bool, completionPoint: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "BingoCard", in: managedContext)!
+        
+        newCard = BingoCard(entity: entity, insertInto: managedContext)
+        
+        newCard.setValue(title, forKey: "title")
+        newCard.setValue(freeSquare, forKey: "freeSquare")
+        newCard.setValue(completionPoint, forKey: "completionPoint")
+//        newCard.setValue(contents, forKey: "contents")
+        
+        do {
+            try managedContext.save()
+            print("Saved empty card: ", newCard)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
 }
