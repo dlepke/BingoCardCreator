@@ -13,6 +13,8 @@ import CoreData
 
 class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var newCard: NSManagedObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +35,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
@@ -42,7 +44,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellPrototypes = ["plainTableCell", "textFieldTableCell", "segmentedControlTableCell", "segmentedControlTableCell2"]
+        let cellPrototypes = ["plainTableCell", "textFieldTableCell", "segmentedControlTableCell", "segmentedControlTableCell2", "segmentedControlTableCell3"]
         
         
         
@@ -67,6 +69,8 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             return "Free Square".uppercased()
         case 3:
             return "Winning Condition".uppercased()
+        case 4:
+            return "Card Size".uppercased()
         default:
             return ""
         }
@@ -101,8 +105,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
     
-    var newCard: NSManagedObject?
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddBoxesPage" {
             
@@ -118,11 +120,16 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             
             let selection2 = segmentedControlCell2.selection2
             
+            let segmentedControlCell3 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 4)) as! SegmentedControlTableViewCell
+            
+            let selection3 = segmentedControlCell3.selection3
+            
             let freeSquare = [true, false]
             let completionPoint = ["Single Line", "Whole Card"]
+            let cardSize = [3, 4, 5]
             
             
-            self.save(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2])
+            self.save(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2], cardSize: cardSize[selection3])
         
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard!
@@ -130,7 +137,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func save(title: String, freeSquare: Bool, completionPoint: String) {
+    func save(title: String, freeSquare: Bool, completionPoint: String, cardSize: Int) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -145,7 +152,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         newCard!.setValue(title, forKey: "title")
         newCard!.setValue(freeSquare, forKey: "freeSquare")
         newCard!.setValue(completionPoint, forKey: "completionPoint")
-//        newCard.setValue(contents, forKey: "contents")
+        newCard!.setValue(cardSize, forKey: "cardSize")
         
         do {
             try managedContext.save()

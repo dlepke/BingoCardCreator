@@ -15,6 +15,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var newCard: NSManagedObject?
     var arrayOfPendingBoxes: [BoxContents] = []
+    var sizeOfGrid: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +52,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         let totalWidth = view.frame.width
 
-        let sizeOfGrid = 5
-        let widthOfCell = CGFloat(Int(totalWidth) / sizeOfGrid)
-        let heightOfCell = CGFloat(Int(totalWidth) / sizeOfGrid)
+        sizeOfGrid = newCard!.value(forKey: "cardSize") as? Int
+        let widthOfCell = CGFloat(Int(totalWidth) / sizeOfGrid!)
+        let heightOfCell = CGFloat(Int(totalWidth) / sizeOfGrid!)
         previewBingoCardFlowLayout.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
         
     }
@@ -123,7 +124,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var navbarSaveButton: UIBarButtonItem!
     
     func checkIfCardIsDone() {
-        if arrayOfPendingBoxes.count == 25 {
+        if arrayOfPendingBoxes.count == sizeOfGrid! * sizeOfGrid! {
             navbarSaveButton.isEnabled = true
             addBoxToCardButton.isEnabled = false
         }

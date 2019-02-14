@@ -179,6 +179,38 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell3" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="231.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbj-he-Zrb" id="Es7-Yt-uDq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V64-MY-2GC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="zh8-hJ-XJ0"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="3x3"/>
+                                                        <segment title="4x4"/>
+                                                        <segment title="5x5"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="selection2Changed:" destination="dbj-he-Zrb" eventType="valueChanged" id="MPy-9L-7Lc"/>
+                                                        <action selector="selection3Changed:" destination="dbj-he-Zrb" eventType="valueChanged" id="t34-x1-ha6"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="V64-MY-2GC" firstAttribute="leading" secondItem="Es7-Yt-uDq" secondAttribute="leading" id="Tre-ic-4G0"/>
+                                                <constraint firstAttribute="bottom" secondItem="V64-MY-2GC" secondAttribute="bottom" id="Uzb-Xn-41V"/>
+                                                <constraint firstItem="V64-MY-2GC" firstAttribute="top" secondItem="Es7-Yt-uDq" secondAttribute="top" id="Zgr-gN-gQd"/>
+                                                <constraint firstAttribute="trailing" secondItem="V64-MY-2GC" secondAttribute="trailing" id="uNP-op-y4z"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
