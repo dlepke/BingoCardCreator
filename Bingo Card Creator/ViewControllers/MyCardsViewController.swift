@@ -62,6 +62,36 @@ class MyCardsViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            print("deleting me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+//        }
+//        if editingStyle == .edit {
+//            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+//        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            //handle delete
+            print("deleting me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+        }
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            //handle edit
+            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+        }
+        
+        editAction.backgroundColor = .lightGray
+        
+        return [deleteAction, editAction]
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToCardView" {
             let sender = sender as! UITableViewCell
