@@ -25,21 +25,8 @@ class MyCardsViewController: UITableViewController {
         
         super.viewWillAppear(animated)
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
-        
-        do {
-            cardsInStorage = try managedContext.fetch(fetchRequest)
-        } catch {
-            print("Could not fetch. \(error)")
-        }
-        
-        tableView.reloadData()
+        updateTableViewFromStorage()
+        print(cardsInStorage)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,19 +54,47 @@ class MyCardsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            print("deleting me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
-//        }
-//        if editingStyle == .edit {
-//            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
-//        }
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             //handle delete
-            print("deleting me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+            
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let titleToDelete = self.cardsInStorage[indexPath.row].value(forKey: "title")!
+            
+            do {
+                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+                
+                let boxesToDelete = try context.fetch(fetchRequest)
+                
+                for box in boxesToDelete {
+                    context.delete(box)
+                }
+            } catch {
+                print("Could not delete card contents.", error.localizedDescription)
+            }
+            
+            do {
+                let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
+                
+                let cardToDelete = try context.fetch(fetchRequest)
+                
+                context.delete(cardToDelete[0])
+            } catch {
+                print("Could not delete card.", error.localizedDescription)
+            }
+            
+            do {
+                try context.save()
+            } catch {
+                print("Failed to save after deletion.")
+            }
+            
+            self.updateTableViewFromStorage()
         }
         
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
@@ -90,6 +105,19 @@ class MyCardsViewController: UITableViewController {
         editAction.backgroundColor = .lightGray
         
         return [deleteAction, editAction]
+    }
+    
+    func updateTableViewFromStorage() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
+            self.cardsInStorage = try context.fetch(fetchRequest)
+        } catch {
+            print("Could not fetch. \(error)")
+        }
+        
+        self.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

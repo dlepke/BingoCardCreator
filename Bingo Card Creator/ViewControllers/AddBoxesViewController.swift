@@ -253,6 +253,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         } catch {
             print("Could not delete card.", error.localizedDescription)
         }
+        
+        do {
+            try context.save()
+        } catch {
+            print("Could not save context on cancel.")
+        }
      
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
     }
