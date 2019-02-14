@@ -17,12 +17,12 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     var currentBingoCard = NSManagedObject()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = currentBingoCard.value(forKey: "title") as? String
+        print(currentBingoCard)
+        
+        //self.title = currentBingoCard.value(forKey: "title") as? String
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
@@ -89,8 +89,24 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let titleOfCurrentCard = currentBingoCard.value(forKey: "title") as? String
-        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
-        print(titleOfCurrentCard as Any, contentsOfCurrentCard as Any)
+        //let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
+
+        var contentsOfCurrentCard: [BoxContents]? = []
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleOfCurrentCard!)
+        
+        do {
+            contentsOfCurrentCard = try context.fetch(fetchRequest) as [BoxContents]
+        } catch {
+            print("Could not fetch card contents.")
+        }
+        
+        
+
+        print("current card is: ", titleOfCurrentCard! as Any, contentsOfCurrentCard! as Any)
         
         let currentBingoBox = contentsOfCurrentCard![indexPath.row]
         

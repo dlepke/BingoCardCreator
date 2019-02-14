@@ -19,7 +19,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("received: ", newCard)
+//        print("received: ", newCard)
         
         self.title = newCard.value(forKey: "title") as? String
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
@@ -113,9 +113,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             try managedContext.save()
             print(arrayOfPendingBoxes)
             print(newCard.value(forKey: "contents")! as Any)
-            
-            
-            //
             
         } catch let error as NSError {
             print("Could not save BoxContents. \(error)")
@@ -217,7 +214,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        print(newCard.value(forKey: "title") as Any)
+        print(newCard.value(forKey: "title")! as Any)
 //        newCard?.saveCard()
         
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)

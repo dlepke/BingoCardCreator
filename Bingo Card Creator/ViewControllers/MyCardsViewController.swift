@@ -26,8 +26,6 @@ class MyCardsViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //print("reloading cards list")
-//        cardsInStorage = Storage.retrieveAll("BingoCards", from: .documents, as: [BingoCard].self)
         
         super.viewWillAppear(animated)
         
@@ -61,8 +59,6 @@ class MyCardsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Bingo Card Table Cell", for: indexPath)
-        
-//        cell.textLabel?.text = cardsInStorage[indexPath.row].title
 
         cell.textLabel?.text = cardsInStorage[indexPath.row].value(forKeyPath: "title") as? String
         
@@ -78,15 +74,12 @@ class MyCardsViewController: UITableViewController {
             
             let selectedCard = sender.textLabel!.text
             
-//            if let found = cardsInStorage.index(where: { $0.title == selectedCard}) {
-//                let cardToShow = cardsInStorage[found]
-//
-//                destinationVC!.currentBingoCard = cardToShow
-//            }
-            if let found = cardsInStorage.index(where: { _ in value(forKeyPath: "title") as? String == selectedCard }) {
-                let cardToShow = cardsInStorage[found]
-                
-                destinationVC!.currentBingoCard = cardToShow
+            for card in cardsInStorage {
+                if card.value(forKeyPath: "title") as? String == selectedCard {
+                    //print("found this: ", card)
+                    
+                    destinationVC!.currentBingoCard = card
+                }
             }
         }
     }

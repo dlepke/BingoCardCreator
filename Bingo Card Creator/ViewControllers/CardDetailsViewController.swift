@@ -101,7 +101,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
     
-    var newCard: NSManagedObject = BingoCard(context: ((UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext)!)
+    var newCard = NSManagedObject()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddBoxesPage" {
@@ -126,7 +126,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard
-            print("sent: ", destinationVC.newCard)
+//            print("sent: ", destinationVC.newCard)
         }
     }
     

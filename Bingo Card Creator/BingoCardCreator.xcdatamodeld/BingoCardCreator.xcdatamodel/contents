@@ -4,7 +4,7 @@
         <attribute name="completionPoint" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="freeSquare" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="contents" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BoxContents" inverseName="ownerCard" inverseEntity="BoxContents" syncable="YES"/>
+        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BoxContents" inverseName="ownerCard" inverseEntity="BoxContents" syncable="YES"/>
     </entity>
     <entity name="BoxContents" representedClassName="BoxContents" syncable="YES" codeGenerationType="class">
         <attribute name="boxDetails" optional="YES" attributeType="String" syncable="YES"/>
