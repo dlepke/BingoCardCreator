@@ -112,9 +112,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         do {
             try managedContext.save()
-            //print(arrayOfPendingBoxes)
-            //print(newCard.value(forKey: "contents")! as Any)
-            
         } catch let error as NSError {
             print("Could not save BoxContents. \(error)")
         }
@@ -215,11 +212,49 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        //print(newCard.value(forKey: "title")! as Any)
-//        newCard?.saveCard()
         
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
         
+    }
+    
+    @IBAction func cancelCardBarButton(_ sender: Any) {
+        
+        let titleToDelete = newCard?.value(forKey: "title")
+        
+        var boxesToDelete: [BoxContents]?
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        // delete boxes belonging to card
+        do {
+            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+            
+            boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
+            
+            for box in boxesToDelete! {
+                context.delete(box)
+            }
+        } catch {
+            print("Could not delete card contents.", error.localizedDescription)
+        }
+        
+        // delete actual card
+        
+        do {
+            let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
+            
+            let cardToDelete = try context.fetch(fetchRequest) as [BingoCard]
+            
+            print("deleting: ", cardToDelete)
+            
+            context.delete(cardToDelete[0])
+        } catch {
+            print("Could not delete card.", error.localizedDescription)
+        }
+     
+        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
     }
     
     

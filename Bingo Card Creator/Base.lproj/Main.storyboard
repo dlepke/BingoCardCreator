@@ -222,21 +222,30 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VFo-Zn-apJ"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="New Card" id="Hmr-9w-dna">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="k3d-th-2sG">
+                            <connections>
+                                <action selector="cancelCardFromDetailsPage:" destination="zS5-V9-TCL" id="E1J-IC-f77"/>
+                                <segue destination="FOA-JG-OaJ" kind="unwind" identifier="createCardToHomePage" unwindAction="prepareForUnwindWithSegue:" id="jSN-LP-g0w"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="XVb-qx-hGd">
                             <connections>
                                 <segue destination="FsG-zO-mUi" kind="show" identifier="toAddBoxesPage" id="tMp-jx-MjS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cardDetailsTableView" destination="bBZ-tg-ke0" id="Fio-tq-KJG"/>
                         <outlet property="cardDetailsTableViewHeightConstraint" destination="4Xl-am-E2E" id="UUk-DX-3Jl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4r-oD-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FOA-JG-OaJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-777" y="609"/>
+            <point key="canvasLocation" x="-804" y="609"/>
         </scene>
         <!--Add Boxes-->
         <scene sceneID="IOq-JO-KsP">
@@ -469,6 +478,11 @@
                         <viewLayoutGuide key="safeArea" id="K0d-84-bZ7"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Card" id="G61-zr-AX8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JxZ-Ij-zJf">
+                            <connections>
+                                <action selector="cancelCardBarButton:" destination="FsG-zO-mUi" id="uCJ-gn-pCx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="Ixh-oy-0Vj">
                             <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>

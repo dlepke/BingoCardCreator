@@ -12,10 +12,6 @@ import CoreData
 
 class MyCardsViewController: UITableViewController {
     
-
-    
-    let sampleCardListArray: [String] = ["My First Card", "My Second Card", "My Third Card"]
-    
     var cardsInStorage: [NSManagedObject] = []
 
     override func viewDidLoad() {
@@ -85,7 +81,7 @@ class MyCardsViewController: UITableViewController {
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        
+        print(cardsInStorage)
     }
 
 }

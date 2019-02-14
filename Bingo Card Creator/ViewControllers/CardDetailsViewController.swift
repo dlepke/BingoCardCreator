@@ -105,6 +105,42 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "toAddBoxesPage" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return false
+            }
+            
+            let textFieldCell = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
+            
+            let cardTitle = textFieldCell.sendText()
+            
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
+            
+            do {
+                let cardsInStorage = try managedContext.fetch(fetchRequest)
+                
+                if cardTitle == "" {
+                    print("title is empty")
+                    return false
+                }
+                
+                for card in cardsInStorage {
+                    if cardTitle == card.value(forKeyPath: "title") as? String {
+                        print("title already exists")
+                        return false
+                    }
+                }
+            } catch {
+                print("\(error)")
+            }
+        }
+        // all checks passed?
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddBoxesPage" {
             
@@ -128,9 +164,8 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             let completionPoint = ["Single Line", "Whole Card"]
             let cardSize = [3, 4, 5]
             
-            
             self.save(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2], cardSize: cardSize[selection3])
-        
+
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard!
 //            print("sent: ", destinationVC.newCard)
@@ -161,4 +196,11 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+    @IBAction func cancelCardFromDetailsPage(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
+        
+    }
+    
 }
