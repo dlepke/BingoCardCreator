@@ -101,7 +101,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var cardDetailsTableView: UITableView!
     
-    var newCard = NSManagedObject()
+    var newCard: NSManagedObject?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddBoxesPage" {
@@ -125,7 +125,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             self.save(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2])
         
             let destinationVC = segue.destination as! AddBoxesViewController
-            destinationVC.newCard = newCard
+            destinationVC.newCard = newCard!
 //            print("sent: ", destinationVC.newCard)
         }
     }
@@ -142,14 +142,14 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         newCard = BingoCard(entity: entity, insertInto: managedContext)
         
-        newCard.setValue(title, forKey: "title")
-        newCard.setValue(freeSquare, forKey: "freeSquare")
-        newCard.setValue(completionPoint, forKey: "completionPoint")
+        newCard!.setValue(title, forKey: "title")
+        newCard!.setValue(freeSquare, forKey: "freeSquare")
+        newCard!.setValue(completionPoint, forKey: "completionPoint")
 //        newCard.setValue(contents, forKey: "contents")
         
         do {
             try managedContext.save()
-            print("Saved empty card: ", newCard)
+            print("Saved empty card: ", newCard as Any)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

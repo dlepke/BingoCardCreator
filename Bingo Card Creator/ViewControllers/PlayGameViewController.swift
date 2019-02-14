@@ -15,14 +15,15 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet weak var bingoCardCollectionView: UICollectionView!
     @IBOutlet weak var bingoCardFlow: UICollectionViewFlowLayout!
     
-    var currentBingoCard = NSManagedObject()
+    var currentBingoCard: NSManagedObject?
+    var contentsOfCurrentCard: [BoxContents]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(currentBingoCard)
+        //print(currentBingoCard)
         
-        //self.title = currentBingoCard.value(forKey: "title") as? String
+        self.title = currentBingoCard!.value(forKey: "title") as? String
         
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
@@ -45,11 +46,23 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         bingoCardFlow.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
 
         
+        // fetching card contents
+        
+        let titleOfCurrentCard = currentBingoCard!.value(forKey: "title") as? String
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleOfCurrentCard!)
+        
+        do {
+            contentsOfCurrentCard = try context.fetch(fetchRequest) as [BoxContents]
+        } catch {
+            print("Could not fetch card contents.", error.localizedDescription)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
         
         let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
         let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
@@ -61,12 +74,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
             selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 0.2504548373)
             contentsOfCurrentCard?[indexPath.row].complete = true
         }
-//        print(currentBingoCard?.contents[indexPath.row] as Any)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
         
         let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
         let deselectedBingoBox = contentsOfCurrentCard?[indexPath.row]
@@ -80,33 +90,10 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
-        
         return contentsOfCurrentCard?.count ?? 25
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let titleOfCurrentCard = currentBingoCard.value(forKey: "title") as? String
-        //let contentsOfCurrentCard = currentBingoCard.value(forKey: "contents") as? [BoxContents]
-
-        var contentsOfCurrentCard: [BoxContents]? = []
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleOfCurrentCard!)
-        
-        do {
-            contentsOfCurrentCard = try context.fetch(fetchRequest) as [BoxContents]
-        } catch {
-            print("Could not fetch card contents.")
-        }
-        
-        
-
-        print("current card is: ", titleOfCurrentCard! as Any, contentsOfCurrentCard! as Any)
         
         let currentBingoBox = contentsOfCurrentCard![indexPath.row]
         

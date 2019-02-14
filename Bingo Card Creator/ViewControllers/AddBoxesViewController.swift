@@ -13,7 +13,7 @@ import CoreData
 
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var newCard = NSManagedObject()
+    var newCard: NSManagedObject?
     var arrayOfPendingBoxes: [BoxContents] = []
     
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
 //        print("received: ", newCard)
         
-        self.title = newCard.value(forKey: "title") as? String
+        self.title = newCard!.value(forKey: "title") as? String
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
         addBoxToCardButton.layer.cornerRadius = 10
@@ -76,7 +76,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let boxDetails = boxDetailsCell.detailsTextField.text!
         let proofRequired = proofRequiredCell.selection
         
-        self.save(ownerCard: newCard, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
         
         
         boxTitleCell.titleTextField.text = ""
@@ -111,8 +111,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         do {
             try managedContext.save()
-            print(arrayOfPendingBoxes)
-            print(newCard.value(forKey: "contents")! as Any)
+            //print(arrayOfPendingBoxes)
+            //print(newCard.value(forKey: "contents")! as Any)
             
         } catch let error as NSError {
             print("Could not save BoxContents. \(error)")
@@ -214,7 +214,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        print(newCard.value(forKey: "title")! as Any)
+        //print(newCard.value(forKey: "title")! as Any)
 //        newCard?.saveCard()
         
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
