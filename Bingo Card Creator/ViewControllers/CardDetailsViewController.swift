@@ -191,7 +191,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         do {
             try managedContext.save()
-            print("Saved empty card: ", newCard as Any)
+            print("Saved empty card: ", newCard! as Any)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

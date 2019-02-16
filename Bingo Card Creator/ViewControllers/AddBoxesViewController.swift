@@ -20,8 +20,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print("received: ", newCard)
-        
         self.title = newCard!.value(forKey: "title") as? String
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
@@ -58,6 +56,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         previewBingoCardFlowLayout.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
         
     }
+    
+    
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
@@ -118,6 +118,36 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    @objc func deleteBox(_ sender: UIButton) {
+        
+        var boxToDelete: [BoxContents]?
+        let titleOfBoxToDelete: String? = sender.layer.value(forKey: "boxTitle") as? String
+        let indexPath: IndexPath = (sender.layer.value(forKey: "indexPath") as? IndexPath)!
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        print("going to delete: ", titleOfBoxToDelete!)
+        
+         // delete boxes belonging to card
+            do {
+                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "boxTitle == %@", titleOfBoxToDelete! as CVarArg)
+    
+                boxToDelete = try context.fetch(fetchRequest) as [BoxContents]
+                print(boxToDelete!)
+    
+                for box in boxToDelete! {
+                    context.delete(box)
+                }
+            } catch {
+                print("Could not delete card contents.", error.localizedDescription)
+            }
+        
+        arrayOfPendingBoxes.remove(at: indexPath.row)
+        previewBingoCard.deleteItems(at: [indexPath])
+        
+    }
+    
     @IBOutlet weak var navbarSaveButton: UIBarButtonItem!
     
     func checkIfCardIsDone() {
@@ -143,7 +173,15 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.layer.borderWidth = 1
         
         let cardArray = arrayOfPendingBoxes
-        cell.previewCardBingoBoxLabel.text = cardArray[indexPath.row].boxTitle
+        
+        let boxTitle = cardArray[indexPath.row].boxTitle
+        
+        cell.previewCardBingoBoxLabel.text = boxTitle
+        cell.previewCardDeleteBoxButton.layer.cornerRadius = 7.5
+        
+        cell.previewCardDeleteBoxButton?.layer.setValue(indexPath, forKey: "indexPath")
+        cell.previewCardDeleteBoxButton?.layer.setValue(cardArray[indexPath.row].boxTitle, forKey: "boxTitle")
+        cell.previewCardDeleteBoxButton?.addTarget(self, action: #selector(deleteBox), for: .touchUpInside)
         
         return cell
     }

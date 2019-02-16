@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		690EF4332202702E005222CB /* SampleCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF4322202702E005222CB /* SampleCards.swift */; };
 		690EF43522027A30005222CB /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43422027A30005222CB /* TextInputTableViewCell.swift */; };
 		690EF43722028EA8005222CB /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */; };
 		690EF43922029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */; };
@@ -28,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		690EF4322202702E005222CB /* SampleCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCards.swift; sourceTree = "<group>"; };
 		690EF43422027A30005222CB /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionPointSegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				690EF43C2202A258005222CB /* ViewControllers */,
 				690EF43D2202A281005222CB /* CustomClasses */,
 				69EE7159220517410049DFD8 /* Display */,
-				690EF4322202702E005222CB /* SampleCards.swift */,
 				691A685421E5892B0036062E /* AppDelegate.swift */,
 				69BECCD7221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld */,
 				691A685B21E5892D0036062E /* Assets.xcassets */,
@@ -200,7 +197,6 @@
 			files = (
 				6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */,
 				690EF43722028EA8005222CB /* SegmentedControlTableViewCell.swift in Sources */,
-				690EF4332202702E005222CB /* SampleCards.swift in Sources */,
 				6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */,
 				691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */,
 				69EE71582205171A0049DFD8 /* SketchShadow.swift in Sources */,
