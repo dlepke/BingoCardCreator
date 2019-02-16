@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import os.log
 import CoreData
 
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -16,6 +15,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     var newCard: NSManagedObject?
     var arrayOfPendingBoxes: [BoxContents] = []
     var sizeOfGrid: Int?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var longPressGesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +58,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let heightOfCell = CGFloat(Int(totalWidth) / sizeOfGrid!)
         previewBingoCardFlowLayout.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
         
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+        previewBingoCard.addGestureRecognizer(longPressGesture)
+        
     }
     
     
@@ -91,15 +97,15 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func save(ownerCard: NSManagedObject, boxTitle: String, boxDetails: String, proofRequired: String, complete: Bool, proof: UIImage?) {
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//
+//        let managedContext = appDelegate.persistentContainer.viewContext
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "BoxContents", in: context)!
         
-        let entity = NSEntityDescription.entity(forEntityName: "BoxContents", in: managedContext)!
-        
-        let boxContents = BoxContents(entity: entity, insertInto: managedContext)
+        let boxContents = BoxContents(entity: entity, insertInto: context)
         
         boxContents.setValue(boxTitle, forKeyPath: "boxTitle")
         boxContents.setValue(boxDetails, forKeyPath: "boxDetails")
@@ -111,7 +117,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         arrayOfPendingBoxes.append(boxContents)
         
         do {
-            try managedContext.save()
+            try context.save()
         } catch let error as NSError {
             print("Could not save BoxContents. \(error)")
         }
@@ -124,7 +130,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let titleOfBoxToDelete: String? = sender.layer.value(forKey: "boxTitle") as? String
         let indexPath: IndexPath = (sender.layer.value(forKey: "indexPath") as? IndexPath)!
         
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         print("going to delete: ", titleOfBoxToDelete!)
         
@@ -184,6 +190,96 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.previewCardDeleteBoxButton?.addTarget(self, action: #selector(deleteBox), for: .touchUpInside)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("moving from ", sourceIndexPath.row, " to ", destinationIndexPath.row)
+        let temp = arrayOfPendingBoxes.remove(at: sourceIndexPath.item)
+        
+        arrayOfPendingBoxes.insert(temp, at: destinationIndexPath.item)
+        
+        let titleOfCardToReorder = newCard?.value(forKey: "title")
+//        var orderedBoxesToRearrange: NSMutableOrderedSet?
+    
+
+        let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", (titleOfCardToReorder! as? CVarArg)!)
+        
+        do {
+            let cardToRearrange = try context.fetch(fetchRequest)
+//            orderedBoxesToRearrange = cardToRearrange[0].value(forKey: "contents") as? NSMutableOrderedSet
+            
+            for card in cardToRearrange {
+                //let orderedBoxesToRearrange = card.value(forKey: "contents") as? NSMutableOrderedSet
+                
+                //orderedBoxesToRearrange?.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
+                
+                let mutableBoxes = card.mutableOrderedSetValue(forKey: "contents")
+                
+                mutableBoxes.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
+                
+                print()
+                
+                do {
+                    try context.save()
+                    print("saved context(inner)")
+                } catch {
+                    print("Could not save moved item's new location.")
+                }
+            }
+        } catch {
+            print("Unable to fetch card to rearrange.")
+        }
+        
+        
+        
+        //print(orderedBoxesToRearrange as Any)
+
+//
+//        let orderedBoxes: NSOrderedSet = boxesToReorder as NSOrderedSet
+//        print("orderedBoxes: ", orderedBoxes)
+//
+//        var mutableBoxContentsItems: NSMutableOrderedSet {
+//            return mutableOrderedSetValue(forKey: "orderedBoxes")
+//        }
+//
+//        func moveObject(item: BoxContents, indexes: IndexSet, toIndex: Int) {
+//            mutableBoxContentsItems.moveObjects(at: indexes, to: toIndex)
+//        }
+        
+        
+        do {
+            try context.save()
+            
+            //let reorderedCard = try context.fetch(fetchRequest)
+            //let reorderedBoxes = reorderedCard[0].value(forKey: "contents")
+            //print(reorderedBoxes as Any)
+        } catch {
+            print("Could not save moved item's new location.")
+        }
+        
+        
+    }
+    
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch(gesture.state) {
+            
+        case .began:
+            guard let selectedIndexPath = previewBingoCard.indexPathForItem(at: gesture.location(in: previewBingoCard)) else {
+                break
+            }
+            previewBingoCard.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            previewBingoCard.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            previewBingoCard.endInteractiveMovement()
+        default:
+            previewBingoCard.cancelInteractiveMovement()
+        }
     }
     
     
@@ -250,7 +346,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        
+        print(newCard?.value(forKey: "contents"))
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
         
     }

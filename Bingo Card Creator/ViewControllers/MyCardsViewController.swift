@@ -26,7 +26,7 @@ class MyCardsViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         updateTableViewFromStorage()
-        print(cardsInStorage)
+        //print(cardsInStorage)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -139,7 +139,7 @@ class MyCardsViewController: UITableViewController {
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        print(cardsInStorage)
+        //print(cardsInStorage)
     }
 
 }
