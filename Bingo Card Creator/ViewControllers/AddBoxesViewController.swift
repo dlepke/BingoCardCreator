@@ -222,7 +222,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 mutableBoxes.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
                 
-                print()
+                //print()
                 
                 do {
                     try context.save()
@@ -254,6 +254,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         do {
             try context.save()
+            print("saved context(outer)")
             
             //let reorderedCard = try context.fetch(fetchRequest)
             //let reorderedBoxes = reorderedCard[0].value(forKey: "contents")
@@ -346,55 +347,42 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        print(newCard?.value(forKey: "contents"))
+        //print(newCard!.value(forKey: "contents")!)
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
         
     }
     
     @IBAction func cancelCardBarButton(_ sender: Any) {
-        
-        let titleToDelete = newCard?.value(forKey: "title")
-        
-        var boxesToDelete: [BoxContents]?
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        // delete boxes belonging to card
-        do {
-            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+        self.performSegue(withIdentifier: "addBoxesPageToCardDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addBoxesPageToCardDetails" {
             
-            boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
+            let titleToDelete = newCard?.value(forKey: "title")
+            print("removing contents of ", titleToDelete!)
             
-            for box in boxesToDelete! {
-                context.delete(box)
+            var boxesToDelete: [BoxContents]?
+            
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            // delete boxes belonging to card
+            do {
+                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+                
+                boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
+                
+                for box in boxesToDelete! {
+                    context.delete(box)
+                }
+            } catch {
+                print("Could not delete card contents.", error.localizedDescription)
             }
-        } catch {
-            print("Could not delete card contents.", error.localizedDescription)
-        }
-        
-        // delete actual card
-        
-        do {
-            let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
             
-            let cardToDelete = try context.fetch(fetchRequest) as [BingoCard]
-            
-            print("deleting: ", cardToDelete)
-            
-            context.delete(cardToDelete[0])
-        } catch {
-            print("Could not delete card.", error.localizedDescription)
+            let destinationVC = segue.destination as! CardDetailsViewController
+            destinationVC.newCard = newCard!
         }
-        
-        do {
-            try context.save()
-        } catch {
-            print("Could not save context on cancel.")
-        }
-     
-        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
     }
     
     

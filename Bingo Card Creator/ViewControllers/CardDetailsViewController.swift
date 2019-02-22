@@ -35,7 +35,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
@@ -44,7 +44,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellPrototypes = ["plainTableCell", "textFieldTableCell", "segmentedControlTableCell", "segmentedControlTableCell2", "segmentedControlTableCell3"]
+        let cellPrototypes = ["plainTableCell", "textFieldTableCell", "segmentedControlTableCell", "segmentedControlTableCell2"]
         
         
         
@@ -66,10 +66,8 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         case 1:
             return "Card Title".uppercased()
         case 2:
-            return "Free Square".uppercased()
-        case 3:
             return "Winning Condition".uppercased()
-        case 4:
+        case 3:
             return "Card Size".uppercased()
         default:
             return ""
@@ -156,23 +154,45 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             
             let selection2 = segmentedControlCell2.selection2
             
-            let segmentedControlCell3 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 4)) as! SegmentedControlTableViewCell
-            
-            let selection3 = segmentedControlCell3.selection3
-            
-            let freeSquare = [true, false]
             let completionPoint = ["Single Line", "Whole Card"]
             let cardSize = [3, 4, 5]
             
-            self.save(title: cardTitle, freeSquare: freeSquare[selection1], completionPoint: completionPoint[selection2], cardSize: cardSize[selection3])
+            self.save(title: cardTitle, completionPoint: completionPoint[selection1], cardSize: cardSize[selection2])
 
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard!
 //            print("sent: ", destinationVC.newCard)
+        } else if segue.identifier == "createCardToHomePage" && newCard != nil {
+            let titleToDelete = newCard?.value(forKey: "title")
+//            print("deleting ", titleToDelete!)
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            do {
+                let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
+                
+                let cardToDelete = try context.fetch(fetchRequest)
+                
+//                print("deleting: ", cardToDelete)
+                
+                context.delete(cardToDelete[0])
+            } catch {
+                print("Could not delete card.", error.localizedDescription)
+            }
+            
+            do {
+                try context.save()
+            } catch {
+                print("Could not save context on cancel.")
+            }
         }
     }
     
-    func save(title: String, freeSquare: Bool, completionPoint: String, cardSize: Int) {
+    func save(title: String, completionPoint: String, cardSize: Int) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -185,7 +205,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         newCard = BingoCard(entity: entity, insertInto: managedContext)
         
         newCard!.setValue(title, forKey: "title")
-        newCard!.setValue(freeSquare, forKey: "freeSquare")
         newCard!.setValue(completionPoint, forKey: "completionPoint")
         newCard!.setValue(cardSize, forKey: "cardSize")
         
@@ -197,10 +216,13 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @IBAction func cancelCardFromDetailsPage(_ sender: Any) {
-        
+    @IBAction func cancelCardFromDetailsPage(_ sender: Any) {        
         self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
         
+    }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        //print(cardsInStorage)
     }
     
 }
