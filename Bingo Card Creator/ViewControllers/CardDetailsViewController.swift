@@ -118,6 +118,12 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
             
             do {
+                
+                //this checks if card is in edit mode, basically
+                if newCard != nil {
+                    return true
+                }
+                
                 let cardsInStorage = try managedContext.fetch(fetchRequest)
                 
                 if cardTitle == "" {
@@ -157,11 +163,14 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             let completionPoint = ["Single Line", "Whole Card"]
             let cardSize = [3, 4, 5]
             
+            
             self.save(title: cardTitle, completionPoint: completionPoint[selection1], cardSize: cardSize[selection2])
 
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard!
 //            print("sent: ", destinationVC.newCard)
+            
+            
         } else if segue.identifier == "createCardToHomePage" && newCard != nil {
             let titleToDelete = newCard?.value(forKey: "title")
 //            print("deleting ", titleToDelete!)
@@ -200,9 +209,10 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "BingoCard", in: managedContext)!
-        
-        newCard = BingoCard(entity: entity, insertInto: managedContext)
+        if newCard == nil {
+            let entity = NSEntityDescription.entity(forEntityName: "BingoCard", in: managedContext)!
+            newCard = BingoCard(entity: entity, insertInto: managedContext)
+        }
         
         newCard!.setValue(title, forKey: "title")
         newCard!.setValue(completionPoint, forKey: "completionPoint")
