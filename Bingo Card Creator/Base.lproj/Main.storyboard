@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bBZ-tg-ke0">
-                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="4Xl-am-E2E"/>
@@ -226,7 +226,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="MXY-1S-tM0">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8UY-FH-cT7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -476,14 +476,14 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="JxZ-Ij-zJf">
                             <connections>
                                 <action selector="cancelCardBarButton:" destination="FsG-zO-mUi" id="uCJ-gn-pCx"/>
-                                <segue destination="lBM-CK-m2z" kind="unwind" identifier="addBoxesPageToCardDetails" unwindAction="prepareForUnwindWithSegue:" id="ELL-bu-cTS"/>
+                                <segue destination="lBM-CK-m2z" kind="unwind" identifier="addBoxesPageToCardDetails" unwindAction="unwindToCardDetailsWithSegue:" id="ELL-bu-cTS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="Ixh-oy-0Vj">
                             <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveCardBarButton:" destination="FsG-zO-mUi" id="Kvq-nK-nzo"/>
-                                <segue destination="x9l-lS-k8H" kind="show" identifier="AddBoxesToHomePage" id="Kvd-xw-PL1"/>
+                                <segue destination="lBM-CK-m2z" kind="unwind" identifier="AddBoxesToHomePage" unwindAction="unwindToMyCardsWithSegue:" id="e9A-pO-m7F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -513,7 +513,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-1j-S3K">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="caw-gl-t2G">
                                     <size key="itemSize" width="151" height="128"/>
@@ -603,7 +603,4 @@
             <point key="canvasLocation" x="-1278" y="-117"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Kvd-xw-PL1"/>
-    </inferredMetricsTieBreakers>
 </document>

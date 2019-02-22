@@ -83,6 +83,13 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let boxDetails = boxDetailsCell.detailsTextField.text!
         let proofRequired = proofRequiredCell.selection
         
+        for box in arrayOfPendingBoxes {
+            if boxTitle == box.boxTitle {
+                print("Please give box a unique name.")
+                return
+            }
+        }
+        
         if boxTitle != "" {
             self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
         } else {
@@ -132,12 +139,20 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         var boxToDelete: [BoxContents]?
         let titleOfBoxToDelete: String? = sender.layer.value(forKey: "boxTitle") as? String
-        let indexPath: IndexPath = (sender.layer.value(forKey: "indexPath") as? IndexPath)!
-        print(indexPath as Any)
+        //let indexPath: IndexPath = (sender.layer.value(forKey: "indexPath") as? IndexPath)!
+        //print(indexPath as Any)
         
 //        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         print("going to delete: ", titleOfBoxToDelete!)
+        
+        let boxToRemoveFromArray = arrayOfPendingBoxes.filter { $0.boxTitle == titleOfBoxToDelete! }
+        print("boxToRemoveFromArray: ", boxToRemoveFromArray)
+        let indexOfBoxToDelete = arrayOfPendingBoxes.firstIndex(of: boxToRemoveFromArray[0])
+        
+        
+        let indexPath: IndexPath = [0, indexOfBoxToDelete!]
+        print(indexPath)
         
          // delete boxes belonging to card
             do {
@@ -212,7 +227,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.previewCardDeleteBoxButton.layer.cornerRadius = 7.5
         
-        cell.previewCardDeleteBoxButton?.layer.setValue(indexPath, forKey: "indexPath")
+//        cell.previewCardDeleteBoxButton?.layer.setValue(indexPath, forKey: "indexPath")
         cell.previewCardDeleteBoxButton?.layer.setValue(cardArray[indexPath.row].boxTitle, forKey: "boxTitle")
         cell.previewCardDeleteBoxButton?.addTarget(self, action: #selector(deleteBox), for: .touchUpInside)
         

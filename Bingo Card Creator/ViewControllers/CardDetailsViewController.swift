@@ -231,7 +231,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func unwindToCardDetails(segue: UIStoryboardSegue) {
         //print(cardsInStorage)
     }
     

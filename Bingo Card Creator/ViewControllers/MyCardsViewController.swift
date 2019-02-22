@@ -151,7 +151,7 @@ class MyCardsViewController: UITableViewController {
         }
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func unwindToMyCards(segue: UIStoryboardSegue) {
         //print(cardsInStorage)
     }
 
