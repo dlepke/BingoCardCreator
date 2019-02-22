@@ -15,6 +15,10 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     var newCard: NSManagedObject?
     
+    
+    let completionPoint = ["Single Line", "Whole Card"]
+    let cardSize = [3, 4, 5]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +31,22 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
 
         cardDetailsTableViewHeightConstraint.constant = cardDetailsTableView.contentSize.height
         cardDetailsTableView.needsUpdateConstraints()
+        
+        
+        // if editing card, prefills table with existing values (not currently working)
+        if newCard != nil {
+            let textFieldCell = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
+            
+            textFieldCell.textField.text = newCard?.value(forKey: "title") as? String
+            
+            let segmentedControlCell1 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! SegmentedControlTableViewCell
+            
+            segmentedControlCell1.segmentedControl1.selectedSegmentIndex = completionPoint.firstIndex(of: newCard?.value(forKey: "completionPoint") as! String)!
+            
+            let segmentedControlCell2 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! SegmentedControlTableViewCell
+            
+            segmentedControlCell2.segmentedControl2.selectedSegmentIndex = cardSize.firstIndex(of: newCard?.value(forKey: "cardSize") as! Int)!
+        }
         
     }
     
@@ -160,20 +180,14 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             
             let selection2 = segmentedControlCell2.selection2
             
-            let completionPoint = ["Single Line", "Whole Card"]
-            let cardSize = [3, 4, 5]
-            
             
             self.save(title: cardTitle, completionPoint: completionPoint[selection1], cardSize: cardSize[selection2])
 
             let destinationVC = segue.destination as! AddBoxesViewController
             destinationVC.newCard = newCard!
-//            print("sent: ", destinationVC.newCard)
-            
             
         } else if segue.identifier == "createCardToHomePage" && newCard != nil {
             let titleToDelete = newCard?.value(forKey: "title")
-//            print("deleting ", titleToDelete!)
             
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -185,8 +199,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
                 
                 let cardToDelete = try context.fetch(fetchRequest)
-                
-//                print("deleting: ", cardToDelete)
                 
                 context.delete(cardToDelete[0])
             } catch {
@@ -220,7 +232,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         do {
             try managedContext.save()
-            //print("Saved empty card: ", newCard! as Any)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

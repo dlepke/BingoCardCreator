@@ -16,8 +16,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     var arrayOfPendingBoxes: [BoxContents] = []
     var sizeOfGrid: Int?
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     var longPressGesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
@@ -61,9 +59,31 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
         previewBingoCard.addGestureRecognizer(longPressGesture)
         
+        if newCard != nil {
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", newCard?.value(forKey: "title") as! CVarArg)
+            
+            do {
+                let boxesToLoad = try context.fetch(fetchRequest)
+                
+                for box in boxesToLoad {
+                    arrayOfPendingBoxes.append(box)
+                }
+            } catch {
+                print("Could not load pre-existing boxes.")
+            }
+            print(arrayOfPendingBoxes)
+            previewBingoCard.reloadData()
+            checkIfCardIsDone()
+        }
+        
     }
-    
-    
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
@@ -139,10 +159,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         var boxToDelete: [BoxContents]?
         let titleOfBoxToDelete: String? = sender.layer.value(forKey: "boxTitle") as? String
-        //let indexPath: IndexPath = (sender.layer.value(forKey: "indexPath") as? IndexPath)!
-        //print(indexPath as Any)
-        
-//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         print("going to delete: ", titleOfBoxToDelete!)
         
@@ -154,26 +170,23 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let indexPath: IndexPath = [0, indexOfBoxToDelete!]
         print(indexPath)
         
-         // delete boxes belonging to card
-            do {
-                
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                    return
-                }
-                let context = appDelegate.persistentContainer.viewContext
-                
-                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "boxTitle == %@", titleOfBoxToDelete! as CVarArg)
-    
-                boxToDelete = try context.fetch(fetchRequest) as [BoxContents]
-                print(boxToDelete!)
-    
-                for box in boxToDelete! {
-                    context.delete(box)
-                }
-            } catch {
-                print("Could not delete card contents.", error.localizedDescription)
+        do {
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
             }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "boxTitle == %@", titleOfBoxToDelete! as CVarArg)
+            boxToDelete = try context.fetch(fetchRequest) as [BoxContents]
+            print(boxToDelete!)
+            for box in boxToDelete! {
+                context.delete(box)
+            }
+        } catch {
+            print("Could not delete box.", error.localizedDescription)
+        }
         
         arrayOfPendingBoxes.remove(at: indexPath.row)
         previewBingoCard.deleteItems(at: [indexPath])
@@ -226,8 +239,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         cell.previewCardDeleteBoxButton.layer.cornerRadius = 7.5
-        
-//        cell.previewCardDeleteBoxButton?.layer.setValue(indexPath, forKey: "indexPath")
         cell.previewCardDeleteBoxButton?.layer.setValue(cardArray[indexPath.row].boxTitle, forKey: "boxTitle")
         cell.previewCardDeleteBoxButton?.addTarget(self, action: #selector(deleteBox), for: .touchUpInside)
         
@@ -387,23 +398,23 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             let titleToDelete = newCard?.value(forKey: "title")
             print("removing contents of ", titleToDelete!)
             
-            var boxesToDelete: [BoxContents]?
-            
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//            var boxesToDelete: [BoxContents]?
+//
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             
             // delete boxes belonging to card
-            do {
-                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
-                
-                boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
-                
-                for box in boxesToDelete! {
-                    context.delete(box)
-                }
-            } catch {
-                print("Could not delete card contents.", error.localizedDescription)
-            }
+//            do {
+//                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+//                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+//
+//                boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
+//
+//                for box in boxesToDelete! {
+//                    context.delete(box)
+//                }
+//            } catch {
+//                print("Could not delete card contents.", error.localizedDescription)
+//            }
             
             let destinationVC = segue.destination as! CardDetailsViewController
             destinationVC.newCard = newCard!

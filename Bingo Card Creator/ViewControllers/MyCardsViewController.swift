@@ -67,31 +67,12 @@ class MyCardsViewController: UITableViewController {
             let context = appDelegate.persistentContainer.viewContext
             
             let titleToDelete = self.cardsInStorage[indexPath.row].value(forKey: "title")!
-//            print(titleToDelete)
-            
-//            do {
-//                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-//                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
-//
-//                let boxesToDelete = try context.fetch(fetchRequest)
-//
-//                for box in boxesToDelete {
-//                    context.delete(box)
-//                }
-//            } catch {
-//                print("Could not delete card contents.", error.localizedDescription)
-//            }
             
             do {
                 let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
                 fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
                 
                 let cardToDelete = try context.fetch(fetchRequest)
-//                print(cardToDelete)
-//                if cardToDelete == [] {
-//                    print("did not find card")
-//                    return
-//                }
                 
                 context.delete(cardToDelete[0])
             } catch {
@@ -110,6 +91,7 @@ class MyCardsViewController: UITableViewController {
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
             //handle edit
             print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+            self.performSegue(withIdentifier: "HomePageToCardDetails", sender: self)
         }
         
         editAction.backgroundColor = .lightGray
@@ -146,6 +128,16 @@ class MyCardsViewController: UITableViewController {
                     //print("found this: ", card)
                     
                     destinationVC!.currentBingoCard = card
+                }
+            }
+        } else if segue.identifier == "HomePageToCardDetails" {
+            if let sender = sender as? UITableViewCell {
+                let destinationVC = segue.destination as? CardDetailsViewController
+                let selectedCard = sender.textLabel!.text
+                for card in cardsInStorage {
+                    if card.value(forKeyPath: "title") as? String == selectedCard {
+                        destinationVC!.newCard = card
+                    }
                 }
             }
         }

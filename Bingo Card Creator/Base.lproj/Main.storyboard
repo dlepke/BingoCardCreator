@@ -40,7 +40,7 @@
                     <navigationItem key="navigationItem" title="My Cards" id="Q1R-8Z-sv1">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="1ER-q9-yTz">
                             <connections>
-                                <segue destination="zS5-V9-TCL" kind="show" id="M5x-23-2rJ"/>
+                                <segue destination="zS5-V9-TCL" kind="show" identifier="HomePageToCardDetails" id="M5x-23-2rJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -148,6 +148,9 @@
                                                 <constraint firstItem="xVD-Rj-WmM" firstAttribute="top" secondItem="A9q-dJ-vbc" secondAttribute="top" id="xK4-56-mMq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl1" destination="xVD-Rj-WmM" id="0P6-tg-pHW"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
@@ -180,6 +183,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="V64-MY-2GC" secondAttribute="trailing" id="uNP-op-y4z"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl2" destination="V64-MY-2GC" id="msR-2h-3ci"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -197,7 +203,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="k3d-th-2sG">
                             <connections>
                                 <action selector="cancelCardFromDetailsPage:" destination="zS5-V9-TCL" id="E1J-IC-f77"/>
-                                <segue destination="FOA-JG-OaJ" kind="unwind" identifier="createCardToHomePage" unwindAction="prepareForUnwindWithSegue:" id="jSN-LP-g0w"/>
+                                <segue destination="FOA-JG-OaJ" kind="unwind" identifier="createCardToHomePage" unwindAction="unwindToMyCardsWithSegue:" id="jSN-LP-g0w"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="XVb-qx-hGd">
