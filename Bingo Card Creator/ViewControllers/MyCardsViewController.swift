@@ -61,27 +61,37 @@ class MyCardsViewController: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             //handle delete
             
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            let titleToDelete = self.cardsInStorage[indexPath.row].value(forKey: "title")!
-            
-            do {
-                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
-                
-                let boxesToDelete = try context.fetch(fetchRequest)
-                
-                for box in boxesToDelete {
-                    context.delete(box)
-                }
-            } catch {
-                print("Could not delete card contents.", error.localizedDescription)
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
             }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let titleToDelete = self.cardsInStorage[indexPath.row].value(forKey: "title")!
+//            print(titleToDelete)
+            
+//            do {
+//                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+//                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+//
+//                let boxesToDelete = try context.fetch(fetchRequest)
+//
+//                for box in boxesToDelete {
+//                    context.delete(box)
+//                }
+//            } catch {
+//                print("Could not delete card contents.", error.localizedDescription)
+//            }
             
             do {
                 let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
                 fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
                 
                 let cardToDelete = try context.fetch(fetchRequest)
+//                print(cardToDelete)
+//                if cardToDelete == [] {
+//                    print("did not find card")
+//                    return
+//                }
                 
                 context.delete(cardToDelete[0])
             } catch {
@@ -108,7 +118,10 @@ class MyCardsViewController: UITableViewController {
     }
     
     func updateTableViewFromStorage() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
         
         do {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")

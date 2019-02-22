@@ -16,7 +16,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     var arrayOfPendingBoxes: [BoxContents] = []
     var sizeOfGrid: Int?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var longPressGesture: UILongPressGestureRecognizer!
     
@@ -83,7 +83,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let boxDetails = boxDetailsCell.detailsTextField.text!
         let proofRequired = proofRequiredCell.selection
         
-        self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        if boxTitle != "" {
+            self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        } else {
+            print("Please enter a title for this box.")
+            return
+        }
         
         
         boxTitleCell.titleTextField.text = ""
@@ -97,11 +102,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func save(ownerCard: NSManagedObject, boxTitle: String, boxDetails: String, proofRequired: String, complete: Bool, proof: UIImage?) {
         
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//
-//        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "BoxContents", in: context)!
         
@@ -129,6 +133,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         var boxToDelete: [BoxContents]?
         let titleOfBoxToDelete: String? = sender.layer.value(forKey: "boxTitle") as? String
         let indexPath: IndexPath = (sender.layer.value(forKey: "indexPath") as? IndexPath)!
+        print(indexPath as Any)
         
 //        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -136,6 +141,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
          // delete boxes belonging to card
             do {
+                
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                let context = appDelegate.persistentContainer.viewContext
+                
                 let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
                 fetchRequest.predicate = NSPredicate(format: "boxTitle == %@", titleOfBoxToDelete! as CVarArg)
     
@@ -152,6 +163,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         arrayOfPendingBoxes.remove(at: indexPath.row)
         previewBingoCard.deleteItems(at: [indexPath])
         
+        checkIfCardIsDone()
+        
     }
     
     @IBOutlet weak var navbarSaveButton: UIBarButtonItem!
@@ -160,6 +173,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         if arrayOfPendingBoxes.count == sizeOfGrid! * sizeOfGrid! {
             navbarSaveButton.isEnabled = true
             addBoxToCardButton.isEnabled = false
+        } else {
+            navbarSaveButton.isEnabled = false
+            addBoxToCardButton.isEnabled = true
         }
     }
     
@@ -182,7 +198,18 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         let boxTitle = cardArray[indexPath.row].boxTitle
         
+        let proofForm = cardArray[indexPath.row].proofRequired
+        
         cell.previewCardBingoBoxLabel.text = boxTitle
+        
+        if proofForm == "signature" {
+            cell.previewCardProofImageView.image = #imageLiteral(resourceName: "QuickActions_Compose")
+        } else if proofForm == "camera" {
+            cell.previewCardProofImageView.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
+        } else {
+            cell.previewCardProofImageView.image = nil
+        }
+        
         cell.previewCardDeleteBoxButton.layer.cornerRadius = 7.5
         
         cell.previewCardDeleteBoxButton?.layer.setValue(indexPath, forKey: "indexPath")
@@ -197,6 +224,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        
         print("moving from ", sourceIndexPath.row, " to ", destinationIndexPath.row)
         let temp = arrayOfPendingBoxes.remove(at: sourceIndexPath.item)
         
@@ -211,18 +244,14 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         do {
             let cardToRearrange = try context.fetch(fetchRequest)
-//            orderedBoxesToRearrange = cardToRearrange[0].value(forKey: "contents") as? NSMutableOrderedSet
             
             for card in cardToRearrange {
-                //let orderedBoxesToRearrange = card.value(forKey: "contents") as? NSMutableOrderedSet
-                
-                //orderedBoxesToRearrange?.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
                 
                 let mutableBoxes = card.mutableOrderedSetValue(forKey: "contents")
                 
                 mutableBoxes.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
                 
-                //print()
+                print(newCard!)
                 
                 do {
                     try context.save()
@@ -236,29 +265,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         
-        
-        //print(orderedBoxesToRearrange as Any)
-
-//
-//        let orderedBoxes: NSOrderedSet = boxesToReorder as NSOrderedSet
-//        print("orderedBoxes: ", orderedBoxes)
-//
-//        var mutableBoxContentsItems: NSMutableOrderedSet {
-//            return mutableOrderedSetValue(forKey: "orderedBoxes")
-//        }
-//
-//        func moveObject(item: BoxContents, indexes: IndexSet, toIndex: Int) {
-//            mutableBoxContentsItems.moveObjects(at: indexes, to: toIndex)
-//        }
-        
-        
         do {
             try context.save()
             print("saved context(outer)")
             
-            //let reorderedCard = try context.fetch(fetchRequest)
-            //let reorderedBoxes = reorderedCard[0].value(forKey: "contents")
-            //print(reorderedBoxes as Any)
         } catch {
             print("Could not save moved item's new location.")
         }
@@ -348,7 +358,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func saveCardBarButton(_ sender: Any) {
         
         //print(newCard!.value(forKey: "contents")!)
-        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
+        self.performSegue(withIdentifier: "AddBoxesToHomePage", sender: self)
         
     }
     
@@ -382,6 +392,17 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             
             let destinationVC = segue.destination as! CardDetailsViewController
             destinationVC.newCard = newCard!
+        } else if segue.identifier == "AddBoxesToHomePage" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            do {
+                try context.save()
+            } catch {
+                print("Failed to save context while preparing for save segue.")
+            }
         }
     }
     

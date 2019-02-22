@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bBZ-tg-ke0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="4Xl-am-E2E"/>
@@ -226,7 +226,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="MXY-1S-tM0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8UY-FH-cT7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -269,12 +269,21 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
+                                                                <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-f7-z16">
+                                                                    <rect key="frame" x="63" y="68" width="20" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="74l-Zr-488"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="GOf-bP-rgQ"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                             </subviews>
                                                         </view>
                                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
+                                                            <constraint firstItem="g4y-f7-z16" firstAttribute="centerX" secondItem="9cG-cM-c2F" secondAttribute="centerX" id="3tC-lN-o4u"/>
                                                             <constraint firstAttribute="bottom" secondItem="GgG-oA-2p9" secondAttribute="bottom" id="DrA-Jp-P9Q"/>
                                                             <constraint firstItem="GgG-oA-2p9" firstAttribute="leading" secondItem="9cG-cM-c2F" secondAttribute="leading" id="HYl-nX-avw"/>
+                                                            <constraint firstAttribute="bottom" secondItem="g4y-f7-z16" secondAttribute="bottom" constant="5" id="UgF-er-LcJ"/>
                                                             <constraint firstAttribute="trailing" secondItem="GgG-oA-2p9" secondAttribute="trailing" id="bvs-g8-SJO"/>
                                                             <constraint firstItem="GgG-oA-2p9" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" id="r3o-mC-kgQ"/>
                                                             <constraint firstAttribute="trailing" secondItem="zeT-Yv-mcW" secondAttribute="trailing" constant="5" id="tuS-cE-48F"/>
@@ -283,6 +292,7 @@
                                                         <connections>
                                                             <outlet property="previewCardBingoBoxLabel" destination="GgG-oA-2p9" id="QUw-5f-X9L"/>
                                                             <outlet property="previewCardDeleteBoxButton" destination="zeT-Yv-mcW" id="9eZ-bV-r1W"/>
+                                                            <outlet property="previewCardProofImageView" destination="g4y-f7-z16" id="JKF-ig-o1T"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -473,6 +483,7 @@
                             <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveCardBarButton:" destination="FsG-zO-mUi" id="Kvq-nK-nzo"/>
+                                <segue destination="x9l-lS-k8H" kind="show" identifier="AddBoxesToHomePage" id="Kvd-xw-PL1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -502,7 +513,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-1j-S3K">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="caw-gl-t2G">
                                     <size key="itemSize" width="151" height="128"/>
@@ -592,4 +603,7 @@
             <point key="canvasLocation" x="-1278" y="-117"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Kvd-xw-PL1"/>
+    </inferredMetricsTieBreakers>
 </document>
