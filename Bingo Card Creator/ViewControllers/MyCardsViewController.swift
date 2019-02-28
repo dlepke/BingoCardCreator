@@ -85,21 +85,22 @@ class MyCardsViewController: UITableViewController {
                 print("Failed to save after deletion.")
             }
             
-            self.updateTableViewFromStorage()
+            self.updateTableViewFromStorage(indexPath: indexPath)
         }
         
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-            //handle edit
-            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
-            self.performSegue(withIdentifier: "HomePageToCardDetails", sender: self)
-        }
+//        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+//            //handle edit
+//            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+//            self.performSegue(withIdentifier: "HomePageToCardDetails", sender: self)
+//        }
+//
+//        editAction.backgroundColor = .lightGray
         
-        editAction.backgroundColor = .lightGray
-        
-        return [deleteAction, editAction]
+//        return [deleteAction, editAction]
+        return [deleteAction]
     }
     
-    func updateTableViewFromStorage() {
+    func updateTableViewFromStorage(indexPath: IndexPath? = nil) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -112,7 +113,13 @@ class MyCardsViewController: UITableViewController {
             print("Could not fetch. \(error)")
         }
         
-        self.tableView.reloadData()
+        if indexPath != nil {
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.endUpdates()
+        } else {
+            self.tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
