@@ -344,9 +344,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch section {
         case 1:
-            return "Box Title".uppercased()
+            return "Box Title*".uppercased()
         case 2:
-            return "Box Details".uppercased() + " (optional)"
+            return "Box Details".uppercased()
         case 3:
             return "Proof of Completion".uppercased()
         default:

@@ -44,6 +44,7 @@ class MyCardsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Bingo Card Table Cell", for: indexPath)
 
         cell.textLabel?.text = cardsInStorage[indexPath.row].value(forKeyPath: "title") as? String
+        cell.textLabel?.textColor = UIColor.white
         
         return cell
         

@@ -84,7 +84,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
 
         switch section {
         case 1:
-            return "Card Title".uppercased()
+            return "Card Title*".uppercased()
         case 2:
             return "Winning Condition".uppercased()
         case 3:
@@ -115,8 +115,30 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if section == 1 {
+            let footerView = UIView()
+            let footerViewLabel = UILabel()
+        
+            footerViewLabel.text = "Please add a title."
+            footerViewLabel.textColor = UIColor.red
+        
+
+            footerView.addSubview(footerViewLabel)
+            
+            print("returning footer view")
+            
+            return footerView
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
+        if section == 1 {
+            return 30
+        }
         return 1
         
     }
