@@ -22,14 +22,14 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
+        //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
         cardDetailsTableView.delegate = self
         cardDetailsTableView.dataSource = self
         
         cardDetailsTableView.tableFooterView = UIView()
 
-        cardDetailsTableViewHeightConstraint.constant = cardDetailsTableView.contentSize.height
+        cardDetailsTableViewHeightConstraint.constant = cardDetailsTableView.contentSize.height + 5
         cardDetailsTableView.needsUpdateConstraints()
         
         

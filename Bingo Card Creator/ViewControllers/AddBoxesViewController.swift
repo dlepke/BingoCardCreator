@@ -22,10 +22,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         self.title = newCard!.value(forKey: "title") as? String
-        self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
+        //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
-        addBoxToCardButton.layer.cornerRadius = 10
-        addBoxToCardButton.layer.applySketchShadow()
+//        addBoxToCardButton.layer.cornerRadius = 10
+//        addBoxToCardButton.layer.applySketchShadow()
         
         //tableview stuff
         addBoxesTableView.delegate = self
@@ -33,7 +33,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         addBoxesTableView.tableFooterView = UIView()
         
-        self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height
+        self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height + 5
         self.addBoxesTableView.needsUpdateConstraints()
         
         self.contentViewWidthConstraint.constant = self.view.frame.width
@@ -346,7 +346,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         case 1:
             return "Box Title".uppercased()
         case 2:
-            return "Box Details".uppercased()
+            return "Box Details".uppercased() + " (optional)"
         case 3:
             return "Proof of Completion".uppercased()
         default:

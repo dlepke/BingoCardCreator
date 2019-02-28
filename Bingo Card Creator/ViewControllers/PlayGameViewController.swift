@@ -18,13 +18,18 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     var currentBingoCard: NSManagedObject?
     var contentsOfCurrentCard: [BoxContents]? = []
     
+    let boxCompleteColor = #colorLiteral(red: 0.2784313725, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
+    let boxCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6000000238)
+    let boxNotCompleteColor = #colorLiteral(red: 0.3254901961, green: 0.4784313725, blue: 0.3529411765, alpha: 1)
+    let boxNotCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = currentBingoCard!.value(forKey: "title") as? String
         
-        self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
+        //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         
         bingoCardCollectionView.dataSource = self
         bingoCardCollectionView.delegate = self
@@ -67,10 +72,12 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
         
         if selectedBingoBox?.complete == true {
-            selectedCell.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+            selectedCell.backgroundColor = boxNotCompleteColor
+            selectedCell.bingoBoxTitle.tintColor = boxNotCompleteFontColor
             contentsOfCurrentCard?[indexPath.row].complete = false
         } else {
-            selectedCell.backgroundColor = #colorLiteral(red: 0.5019607843, green: 0.6745098039, blue: 0.4823529412, alpha: 0.2504548373)
+            selectedCell.backgroundColor = boxCompleteColor
+            selectedCell.bingoBoxTitle.tintColor = boxCompleteFontColor
             contentsOfCurrentCard?[indexPath.row].complete = true
         }
     }
@@ -81,7 +88,8 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         let deselectedBingoBox = contentsOfCurrentCard?[indexPath.row]
         
         if deselectedBingoBox?.complete != true {
-            cellToDeselect.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+            cellToDeselect.backgroundColor = boxNotCompleteColor
+            cellToDeselect.bingoBoxTitle.tintColor = boxNotCompleteFontColor
         }
 
     }
@@ -97,14 +105,14 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         let currentBingoBox = contentsOfCurrentCard![indexPath.row]
         
         let cell = bingoCardCollectionView.dequeueReusableCell(withReuseIdentifier: "BingoBox", for: indexPath as IndexPath) as! BingoBox
-        let cellColor = #colorLiteral(red: 0.3764705882, green: 0.3529411765, blue: 0.337254902, alpha: 1)
+        let cellColor = boxNotCompleteColor
         cell.backgroundColor = cellColor
         cell.bingoBoxTitle.text = currentBingoBox.boxTitle
-        cell.bingoBoxTitle.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.bingoBoxTitle.tintColor = boxNotCompleteFontColor
         cell.bingoBoxTitle.textAlignment = .center
         
         cell.layer.borderWidth = 1
-        cell.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.layer.borderColor = #colorLiteral(red: 0.6039215686, green: 0.8823529412, blue: 0.6156862745, alpha: 1)
         
         if currentBingoBox.value(forKeyPath: "proofRequired") as? String == "camera" {
             cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")

@@ -18,7 +18,7 @@ class MyCardsViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
+        //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
     }
     
     override func viewWillAppear(_ animated: Bool) {
