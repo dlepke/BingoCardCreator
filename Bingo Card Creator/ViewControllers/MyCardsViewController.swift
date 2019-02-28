@@ -26,7 +26,7 @@ class MyCardsViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         updateTableViewFromStorage()
-        print(cardsInStorage)
+        //print(cardsInStorage)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,21 +61,12 @@ class MyCardsViewController: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             //handle delete
             
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            let titleToDelete = self.cardsInStorage[indexPath.row].value(forKey: "title")!
-            
-            do {
-                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
-                
-                let boxesToDelete = try context.fetch(fetchRequest)
-                
-                for box in boxesToDelete {
-                    context.delete(box)
-                }
-            } catch {
-                print("Could not delete card contents.", error.localizedDescription)
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
             }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let titleToDelete = self.cardsInStorage[indexPath.row].value(forKey: "title")!
             
             do {
                 let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
@@ -94,21 +85,26 @@ class MyCardsViewController: UITableViewController {
                 print("Failed to save after deletion.")
             }
             
-            self.updateTableViewFromStorage()
+            self.updateTableViewFromStorage(indexPath: indexPath)
         }
         
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-            //handle edit
-            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
-        }
+//        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+//            //handle edit
+//            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
+//            self.performSegue(withIdentifier: "HomePageToCardDetails", sender: self)
+//        }
+//
+//        editAction.backgroundColor = .lightGray
         
-        editAction.backgroundColor = .lightGray
-        
-        return [deleteAction, editAction]
+//        return [deleteAction, editAction]
+        return [deleteAction]
     }
     
-    func updateTableViewFromStorage() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    func updateTableViewFromStorage(indexPath: IndexPath? = nil) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
         
         do {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
@@ -117,7 +113,13 @@ class MyCardsViewController: UITableViewController {
             print("Could not fetch. \(error)")
         }
         
-        self.tableView.reloadData()
+        if indexPath != nil {
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.endUpdates()
+        } else {
+            self.tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,11 +137,21 @@ class MyCardsViewController: UITableViewController {
                     destinationVC!.currentBingoCard = card
                 }
             }
+        } else if segue.identifier == "HomePageToCardDetails" {
+            if let sender = sender as? UITableViewCell {
+                let destinationVC = segue.destination as? CardDetailsViewController
+                let selectedCard = sender.textLabel!.text
+                for card in cardsInStorage {
+                    if card.value(forKeyPath: "title") as? String == selectedCard {
+                        destinationVC!.newCard = card
+                    }
+                }
+            }
         }
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        print(cardsInStorage)
+    @IBAction func unwindToMyCards(segue: UIStoryboardSegue) {
+        //print(cardsInStorage)
     }
 
 }

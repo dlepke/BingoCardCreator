@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class PreviewCardBingoBoxCell: UICollectionViewCell {
     
     @IBOutlet weak var previewCardBingoBoxLabel: UILabel!
+    @IBOutlet weak var previewCardDeleteBoxButton: UIButton!
+    @IBOutlet weak var previewCardProofImageView: UIImageView!
     
-
 }

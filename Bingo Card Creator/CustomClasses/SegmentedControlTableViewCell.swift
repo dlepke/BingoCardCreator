@@ -12,7 +12,10 @@ class SegmentedControlTableViewCell: UITableViewCell {
 
     var selection1 = 0
     var selection2 = 0
-    var selection3 = 0
+    
+    @IBOutlet weak var segmentedControl1: UISegmentedControl!
+    @IBOutlet weak var segmentedControl2: UISegmentedControl!
+    
     
     @IBAction func selection1Changed(_ sender: UISegmentedControl) {
         selection1 = sender.selectedSegmentIndex
@@ -20,9 +23,5 @@ class SegmentedControlTableViewCell: UITableViewCell {
     
     @IBAction func selection2Changed(_ sender: UISegmentedControl) {
         selection2 = sender.selectedSegmentIndex
-    }
-    
-    @IBAction func selection3Changed(_ sender: UISegmentedControl) {
-        selection3 = sender.selectedSegmentIndex
     }
 }

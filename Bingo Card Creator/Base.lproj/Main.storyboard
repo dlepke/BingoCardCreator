@@ -40,7 +40,7 @@
                     <navigationItem key="navigationItem" title="My Cards" id="Q1R-8Z-sv1">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="1ER-q9-yTz">
                             <connections>
-                                <segue destination="zS5-V9-TCL" kind="show" id="M5x-23-2rJ"/>
+                                <segue destination="zS5-V9-TCL" kind="show" identifier="HomePageToCardDetails" id="M5x-23-2rJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -97,7 +97,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="362" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nn0-wJ-bKV">
+                                                <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nn0-wJ-bKV">
                                                     <rect key="frame" x="20" y="0.0" width="342" height="44.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="If9-SK-AHl"/>
@@ -119,38 +119,8 @@
                                             <outlet property="textField" destination="Nn0-wJ-bKV" id="5jp-xJ-395"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="37S-iG-j5g" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="37S-iG-j5g" id="vgK-i6-QCo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WR8-yl-MGU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="tHi-fy-mCl"/>
-                                                    </constraints>
-                                                    <segments>
-                                                        <segment title="Yes"/>
-                                                        <segment title="No"/>
-                                                    </segments>
-                                                    <color key="tintColor" red="0.2156862745" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <connections>
-                                                        <action selector="selection1Changed:" destination="37S-iG-j5g" eventType="valueChanged" id="jwb-WA-Vuw"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="WR8-yl-MGU" secondAttribute="bottom" id="LgV-57-oCd"/>
-                                                <constraint firstAttribute="trailing" secondItem="WR8-yl-MGU" secondAttribute="trailing" id="NeX-uy-7ct"/>
-                                                <constraint firstItem="WR8-yl-MGU" firstAttribute="leading" secondItem="vgK-i6-QCo" secondAttribute="leading" id="d8l-js-nOU"/>
-                                                <constraint firstItem="WR8-yl-MGU" firstAttribute="top" secondItem="vgK-i6-QCo" secondAttribute="top" id="dmX-SU-4IL"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -178,9 +148,12 @@
                                                 <constraint firstItem="xVD-Rj-WmM" firstAttribute="top" secondItem="A9q-dJ-vbc" secondAttribute="top" id="xK4-56-mMq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl1" destination="xVD-Rj-WmM" id="0P6-tg-pHW"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell3" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="231.5" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbj-he-Zrb" id="Es7-Yt-uDq">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -210,6 +183,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="V64-MY-2GC" secondAttribute="trailing" id="uNP-op-y4z"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl2" destination="V64-MY-2GC" id="msR-2h-3ci"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -227,7 +203,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="k3d-th-2sG">
                             <connections>
                                 <action selector="cancelCardFromDetailsPage:" destination="zS5-V9-TCL" id="E1J-IC-f77"/>
-                                <segue destination="FOA-JG-OaJ" kind="unwind" identifier="createCardToHomePage" unwindAction="prepareForUnwindWithSegue:" id="jSN-LP-g0w"/>
+                                <segue destination="FOA-JG-OaJ" kind="unwind" identifier="createCardToHomePage" unwindAction="unwindToMyCardsWithSegue:" id="jSN-LP-g0w"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="XVb-qx-hGd">
@@ -261,43 +237,68 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8UY-FH-cT7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6lG-4U-yXC">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lG-4U-yXC">
                                                 <rect key="frame" x="0.0" y="400" width="414" height="414"/>
                                                 <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="6lG-4U-yXC" secondAttribute="height" multiplier="1:1" id="yeA-Iy-2ik"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V9J-GY-EGa">
-                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="itemSize" width="146" height="93"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F" customClass="PreviewCardBingoBoxCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="146" height="93"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="146" height="93"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="146" height="93"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="tailTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeT-Yv-mcW">
+                                                                    <rect key="frame" x="126" y="5" width="15" height="15"/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="15" id="3dO-2F-QoY"/>
+                                                                        <constraint firstAttribute="height" constant="15" id="Y8S-jj-IHu"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                                    <state key="normal" title="✗">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                </button>
+                                                                <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-f7-z16">
+                                                                    <rect key="frame" x="63" y="68" width="20" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="74l-Zr-488"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="GOf-bP-rgQ"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                             </subviews>
                                                         </view>
                                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
+                                                            <constraint firstItem="g4y-f7-z16" firstAttribute="centerX" secondItem="9cG-cM-c2F" secondAttribute="centerX" id="3tC-lN-o4u"/>
                                                             <constraint firstAttribute="bottom" secondItem="GgG-oA-2p9" secondAttribute="bottom" id="DrA-Jp-P9Q"/>
                                                             <constraint firstItem="GgG-oA-2p9" firstAttribute="leading" secondItem="9cG-cM-c2F" secondAttribute="leading" id="HYl-nX-avw"/>
+                                                            <constraint firstAttribute="bottom" secondItem="g4y-f7-z16" secondAttribute="bottom" constant="5" id="UgF-er-LcJ"/>
                                                             <constraint firstAttribute="trailing" secondItem="GgG-oA-2p9" secondAttribute="trailing" id="bvs-g8-SJO"/>
                                                             <constraint firstItem="GgG-oA-2p9" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" id="r3o-mC-kgQ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="zeT-Yv-mcW" secondAttribute="trailing" constant="5" id="tuS-cE-48F"/>
+                                                            <constraint firstItem="zeT-Yv-mcW" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" constant="5" id="y0U-Bp-Vl2"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="previewCardBingoBoxLabel" destination="GgG-oA-2p9" id="QUw-5f-X9L"/>
+                                                            <outlet property="previewCardDeleteBoxButton" destination="zeT-Yv-mcW" id="9eZ-bV-r1W"/>
+                                                            <outlet property="previewCardProofImageView" destination="g4y-f7-z16" id="JKF-ig-o1T"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -478,15 +479,17 @@
                         <viewLayoutGuide key="safeArea" id="K0d-84-bZ7"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Card" id="G61-zr-AX8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JxZ-Ij-zJf">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="JxZ-Ij-zJf">
                             <connections>
                                 <action selector="cancelCardBarButton:" destination="FsG-zO-mUi" id="uCJ-gn-pCx"/>
+                                <segue destination="lBM-CK-m2z" kind="unwind" identifier="addBoxesPageToCardDetails" unwindAction="unwindToCardDetailsWithSegue:" id="ELL-bu-cTS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="Ixh-oy-0Vj">
                             <color key="tintColor" red="0.91013807059999996" green="0.91784000399999999" blue="0.6302188635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveCardBarButton:" destination="FsG-zO-mUi" id="Kvq-nK-nzo"/>
+                                <segue destination="lBM-CK-m2z" kind="unwind" identifier="AddBoxesToHomePage" unwindAction="unwindToMyCardsWithSegue:" id="e9A-pO-m7F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -500,13 +503,12 @@
                         <outlet property="previewBingoCard" destination="6lG-4U-yXC" id="ew0-XQ-VOi"/>
                         <outlet property="previewBingoCardFlowLayout" destination="V9J-GY-EGa" id="Env-5s-5J4"/>
                         <outlet property="tableViewHeightConstraint" destination="Jqr-Rm-NZ9" id="jjs-SR-i8W"/>
-                        <segue destination="lBM-CK-m2z" kind="unwind" identifier="createCardToHomePage" unwindAction="prepareForUnwindWithSegue:" id="NPM-LM-uub"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPH-Hz-xFX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lBM-CK-m2z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="132" y="609"/>
+            <point key="canvasLocation" x="131.8840579710145" y="608.70535714285711"/>
         </scene>
         <!--My Game Card-->
         <scene sceneID="MHk-ag-Sj6">
@@ -604,7 +606,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1l-Nh-SBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1277" y="-129"/>
+            <point key="canvasLocation" x="-1278" y="-117"/>
         </scene>
     </scenes>
 </document>

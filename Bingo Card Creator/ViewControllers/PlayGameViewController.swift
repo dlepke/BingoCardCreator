@@ -18,10 +18,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     var currentBingoCard: NSManagedObject?
     var contentsOfCurrentCard: [BoxContents]? = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //print(currentBingoCard)
         
         self.title = currentBingoCard!.value(forKey: "title") as? String
         

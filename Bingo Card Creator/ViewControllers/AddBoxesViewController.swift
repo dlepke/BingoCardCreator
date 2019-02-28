@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import os.log
 import CoreData
 
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -17,10 +16,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     var arrayOfPendingBoxes: [BoxContents] = []
     var sizeOfGrid: Int?
     
+    var longPressGesture: UILongPressGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print("received: ", newCard)
         
         self.title = newCard!.value(forKey: "title") as? String
         self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
@@ -57,6 +56,33 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let heightOfCell = CGFloat(Int(totalWidth) / sizeOfGrid!)
         previewBingoCardFlowLayout.itemSize = CGSize(width: widthOfCell, height: heightOfCell)
         
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+        previewBingoCard.addGestureRecognizer(longPressGesture)
+        
+        if newCard != nil {
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", newCard?.value(forKey: "title") as! CVarArg)
+            
+            do {
+                let boxesToLoad = try context.fetch(fetchRequest)
+                
+                for box in boxesToLoad {
+                    arrayOfPendingBoxes.append(box)
+                }
+            } catch {
+                print("Could not load pre-existing boxes.")
+            }
+            print(arrayOfPendingBoxes)
+            previewBingoCard.reloadData()
+            checkIfCardIsDone()
+        }
+        
     }
     
     @IBOutlet weak var contentView: UIView!
@@ -77,7 +103,19 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let boxDetails = boxDetailsCell.detailsTextField.text!
         let proofRequired = proofRequiredCell.selection
         
-        self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        for box in arrayOfPendingBoxes {
+            if boxTitle == box.boxTitle {
+                print("Please give box a unique name.")
+                return
+            }
+        }
+        
+        if boxTitle != "" {
+            self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+        } else {
+            print("Please enter a title for this box.")
+            return
+        }
         
         
         boxTitleCell.titleTextField.text = ""
@@ -94,12 +132,11 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
+        let context = appDelegate.persistentContainer.viewContext
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "BoxContents", in: context)!
         
-        let entity = NSEntityDescription.entity(forEntityName: "BoxContents", in: managedContext)!
-        
-        let boxContents = BoxContents(entity: entity, insertInto: managedContext)
+        let boxContents = BoxContents(entity: entity, insertInto: context)
         
         boxContents.setValue(boxTitle, forKeyPath: "boxTitle")
         boxContents.setValue(boxDetails, forKeyPath: "boxDetails")
@@ -111,10 +148,50 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         arrayOfPendingBoxes.append(boxContents)
         
         do {
-            try managedContext.save()
+            try context.save()
         } catch let error as NSError {
             print("Could not save BoxContents. \(error)")
         }
+        
+    }
+    
+    @objc func deleteBox(_ sender: UIButton) {
+        
+        var boxToDelete: [BoxContents]?
+        let titleOfBoxToDelete: String? = sender.layer.value(forKey: "boxTitle") as? String
+        
+        print("going to delete: ", titleOfBoxToDelete!)
+        
+        let boxToRemoveFromArray = arrayOfPendingBoxes.filter { $0.boxTitle == titleOfBoxToDelete! }
+        print("boxToRemoveFromArray: ", boxToRemoveFromArray)
+        let indexOfBoxToDelete = arrayOfPendingBoxes.firstIndex(of: boxToRemoveFromArray[0])
+        
+        
+        let indexPath: IndexPath = [0, indexOfBoxToDelete!]
+        print(indexPath)
+        
+        do {
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "boxTitle == %@", titleOfBoxToDelete! as CVarArg)
+            boxToDelete = try context.fetch(fetchRequest) as [BoxContents]
+            print(boxToDelete!)
+            for box in boxToDelete! {
+                context.delete(box)
+            }
+        } catch {
+            print("Could not delete box.", error.localizedDescription)
+        }
+        
+        arrayOfPendingBoxes.remove(at: indexPath.row)
+        previewBingoCard.deleteItems(at: [indexPath])
+        
+        checkIfCardIsDone()
         
     }
     
@@ -124,6 +201,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         if arrayOfPendingBoxes.count == sizeOfGrid! * sizeOfGrid! {
             navbarSaveButton.isEnabled = true
             addBoxToCardButton.isEnabled = false
+        } else {
+            navbarSaveButton.isEnabled = false
+            addBoxToCardButton.isEnabled = true
         }
     }
     
@@ -143,9 +223,100 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.layer.borderWidth = 1
         
         let cardArray = arrayOfPendingBoxes
-        cell.previewCardBingoBoxLabel.text = cardArray[indexPath.row].boxTitle
+        
+        let boxTitle = cardArray[indexPath.row].boxTitle
+        
+        let proofForm = cardArray[indexPath.row].proofRequired
+        
+        cell.previewCardBingoBoxLabel.text = boxTitle
+        
+        if proofForm == "signature" {
+            cell.previewCardProofImageView.image = #imageLiteral(resourceName: "QuickActions_Compose")
+        } else if proofForm == "camera" {
+            cell.previewCardProofImageView.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
+        } else {
+            cell.previewCardProofImageView.image = nil
+        }
+        
+        cell.previewCardDeleteBoxButton.layer.cornerRadius = 7.5
+        cell.previewCardDeleteBoxButton?.layer.setValue(cardArray[indexPath.row].boxTitle, forKey: "boxTitle")
+        cell.previewCardDeleteBoxButton?.addTarget(self, action: #selector(deleteBox), for: .touchUpInside)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        print("moving from ", sourceIndexPath.row, " to ", destinationIndexPath.row)
+        let temp = arrayOfPendingBoxes.remove(at: sourceIndexPath.item)
+        
+        arrayOfPendingBoxes.insert(temp, at: destinationIndexPath.item)
+        
+        let titleOfCardToReorder = newCard?.value(forKey: "title")
+//        var orderedBoxesToRearrange: NSMutableOrderedSet?
+    
+
+        let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", (titleOfCardToReorder! as? CVarArg)!)
+        
+        do {
+            let cardToRearrange = try context.fetch(fetchRequest)
+            
+            for card in cardToRearrange {
+                
+                let mutableBoxes = card.mutableOrderedSetValue(forKey: "contents")
+                
+                mutableBoxes.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
+                
+                print(newCard!)
+                
+                do {
+                    try context.save()
+                    print("saved context(inner)")
+                } catch {
+                    print("Could not save moved item's new location.")
+                }
+            }
+        } catch {
+            print("Unable to fetch card to rearrange.")
+        }
+        
+        
+        do {
+            try context.save()
+            print("saved context(outer)")
+            
+        } catch {
+            print("Could not save moved item's new location.")
+        }
+        
+        
+    }
+    
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch(gesture.state) {
+            
+        case .began:
+            guard let selectedIndexPath = previewBingoCard.indexPathForItem(at: gesture.location(in: previewBingoCard)) else {
+                break
+            }
+            previewBingoCard.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            previewBingoCard.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            previewBingoCard.endInteractiveMovement()
+        default:
+            previewBingoCard.cancelInteractiveMovement()
+        }
     }
     
     
@@ -212,55 +383,53 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func saveCardBarButton(_ sender: Any) {
         
-        
-        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
+        //print(newCard!.value(forKey: "contents")!)
+        self.performSegue(withIdentifier: "AddBoxesToHomePage", sender: self)
         
     }
     
     @IBAction func cancelCardBarButton(_ sender: Any) {
-        
-        let titleToDelete = newCard?.value(forKey: "title")
-        
-        var boxesToDelete: [BoxContents]?
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        // delete boxes belonging to card
-        do {
-            let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+        self.performSegue(withIdentifier: "addBoxesPageToCardDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addBoxesPageToCardDetails" {
             
-            boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
+            let titleToDelete = newCard?.value(forKey: "title")
+            print("removing contents of ", titleToDelete!)
             
-            for box in boxesToDelete! {
-                context.delete(box)
+//            var boxesToDelete: [BoxContents]?
+//
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            // delete boxes belonging to card
+//            do {
+//                let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
+//                fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleToDelete as! CVarArg)
+//
+//                boxesToDelete = try context.fetch(fetchRequest) as [BoxContents]
+//
+//                for box in boxesToDelete! {
+//                    context.delete(box)
+//                }
+//            } catch {
+//                print("Could not delete card contents.", error.localizedDescription)
+//            }
+            
+            let destinationVC = segue.destination as! CardDetailsViewController
+            destinationVC.newCard = newCard!
+        } else if segue.identifier == "AddBoxesToHomePage" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
             }
-        } catch {
-            print("Could not delete card contents.", error.localizedDescription)
-        }
-        
-        // delete actual card
-        
-        do {
-            let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "title == %@", titleToDelete as! CVarArg)
+            let context = appDelegate.persistentContainer.viewContext
             
-            let cardToDelete = try context.fetch(fetchRequest) as [BingoCard]
-            
-            print("deleting: ", cardToDelete)
-            
-            context.delete(cardToDelete[0])
-        } catch {
-            print("Could not delete card.", error.localizedDescription)
+            do {
+                try context.save()
+            } catch {
+                print("Failed to save context while preparing for save segue.")
+            }
         }
-        
-        do {
-            try context.save()
-        } catch {
-            print("Could not save context on cancel.")
-        }
-     
-        self.performSegue(withIdentifier: "createCardToHomePage", sender: self)
     }
     
     
