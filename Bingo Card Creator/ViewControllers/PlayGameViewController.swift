@@ -60,7 +60,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         fetchRequest.predicate = NSPredicate(format: "ownerCard.title == %@", titleOfCurrentCard!)
         
         do {
-            contentsOfCurrentCard = try context.fetch(fetchRequest) as [BoxContents]
+            contentsOfCurrentCard = try context.fetch(fetchRequest) as [BoxContents] 
         } catch {
             print("Could not fetch card contents.", error.localizedDescription)
         }
@@ -74,11 +74,19 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         if selectedBingoBox?.complete == true {
             selectedCell.backgroundColor = boxNotCompleteColor
             selectedCell.bingoBoxTitle.tintColor = boxNotCompleteFontColor
-            contentsOfCurrentCard?[indexPath.row].complete = false
+            selectedBingoBox?.complete = false
         } else {
             selectedCell.backgroundColor = boxCompleteColor
             selectedCell.bingoBoxTitle.tintColor = boxCompleteFontColor
-            contentsOfCurrentCard?[indexPath.row].complete = true
+            selectedBingoBox?.complete = true
+        }
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            try context.save()
+        } catch {
+            print("Could not save context on bingobox click.")
         }
     }
     
@@ -105,10 +113,14 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         let currentBingoBox = contentsOfCurrentCard![indexPath.row]
         
         let cell = bingoCardCollectionView.dequeueReusableCell(withReuseIdentifier: "BingoBox", for: indexPath as IndexPath) as! BingoBox
-        let cellColor = boxNotCompleteColor
-        cell.backgroundColor = cellColor
+        if currentBingoBox.complete {
+            cell.backgroundColor = boxCompleteColor
+            cell.bingoBoxTitle.tintColor = boxCompleteFontColor
+        } else {
+            cell.backgroundColor = boxNotCompleteColor
+            cell.bingoBoxTitle.tintColor = boxNotCompleteFontColor
+        }
         cell.bingoBoxTitle.text = currentBingoBox.boxTitle
-        cell.bingoBoxTitle.tintColor = boxNotCompleteFontColor
         cell.bingoBoxTitle.textAlignment = .center
         
         cell.layer.borderWidth = 1
