@@ -21,6 +21,7 @@
 		6937497A21E6F6C5000924C9 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */; };
 		6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */; };
 		6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */; };
+		694D96382230A3800036754D /* BingoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694D96372230A3800036754D /* BingoCard.swift */; };
 		698D82BF22276A1500A6E6CC /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698D82BE22276A1500A6E6CC /* ColorScheme.swift */; };
 		69B78FC321F14CCF00797AB6 /* BingoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B78FC221F14CCF00797AB6 /* BingoBox.swift */; };
 		69BECCD9221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69BECCD7221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld */; };
@@ -44,6 +45,7 @@
 		6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBoxesViewController.swift; sourceTree = "<group>"; };
 		6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameViewController.swift; sourceTree = "<group>"; };
+		694D96372230A3800036754D /* BingoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCard.swift; sourceTree = "<group>"; };
 		698D82BE22276A1500A6E6CC /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		69B78FC221F14CCF00797AB6 /* BingoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoBox.swift; sourceTree = "<group>"; };
 		69BECCD8221259CE009BA6E4 /* BingoCardCreator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BingoCardCreator.xcdatamodel; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */,
 				690EF43A22029E5C005222CB /* BingoBoxTextFieldTableViewCell.swift */,
 				69B78FC221F14CCF00797AB6 /* BingoBox.swift */,
+				694D96372230A3800036754D /* BingoCard.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				698D82BF22276A1500A6E6CC /* ColorScheme.swift in Sources */,
 				690EF43722028EA8005222CB /* SegmentedControlTableViewCell.swift in Sources */,
 				6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */,
+				694D96382230A3800036754D /* BingoCard.swift in Sources */,
 				691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */,
 				69EE71582205171A0049DFD8 /* SketchShadow.swift in Sources */,
 				6921A5C12202ADA700B3824F /* PreviewCardBingoBoxCell.swift in Sources */,
@@ -365,7 +369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Bingo-Card-Creator";
+				PRODUCT_BUNDLE_IDENTIFIER = com.urbanmythapps.BingoCardCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -383,7 +387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Bingo-Card-Creator";
+				PRODUCT_BUNDLE_IDENTIFIER = com.urbanmythapps.BingoCardCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

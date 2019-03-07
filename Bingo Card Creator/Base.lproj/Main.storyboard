@@ -606,7 +606,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="My Game Card" id="e4M-8A-wp9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="m56-VW-6IW"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="m56-VW-6IW">
+                            <connections>
+                                <action selector="shareBingoCard:" destination="yXM-Bh-lbl" id="O9F-aY-1ih"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
