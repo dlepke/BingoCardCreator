@@ -145,10 +145,6 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
                 return
         }
         
-//        let fakeURL: URL = URL(string: "http://www.google.ca")!
-        
-        print("url: ", url)
-        
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         if let popoverPresentationController = activityViewController.popoverPresentationController {
             popoverPresentationController.barButtonItem = (sender as! UIBarButtonItem)

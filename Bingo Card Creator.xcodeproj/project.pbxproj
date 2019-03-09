@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69056D202233655F0087E278 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69056D1F2233655F0087E278 /* QuickLook.framework */; };
+		69056D232233655F0087E278 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69056D222233655F0087E278 /* PreviewViewController.swift */; };
+		69056D262233655F0087E278 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69056D242233655F0087E278 /* MainInterface.storyboard */; };
+		69056D2A2233655F0087E278 /* BingoCardPreviewExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 69056D1D2233655F0087E278 /* BingoCardPreviewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		690EF43522027A30005222CB /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43422027A30005222CB /* TextInputTableViewCell.swift */; };
 		690EF43722028EA8005222CB /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */; };
 		690EF43922029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */; };
@@ -28,7 +32,36 @@
 		69EE71582205171A0049DFD8 /* SketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EE71572205171A0049DFD8 /* SketchShadow.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		69056D282233655F0087E278 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 691A684921E5892B0036062E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69056D1C2233655F0087E278;
+			remoteInfo = BingoCardPreviewExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		69056D2E2233655F0087E278 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				69056D2A2233655F0087E278 /* BingoCardPreviewExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		69056D1D2233655F0087E278 /* BingoCardPreviewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BingoCardPreviewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		69056D1F2233655F0087E278 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		69056D222233655F0087E278 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		69056D252233655F0087E278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		69056D272233655F0087E278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		690EF43422027A30005222CB /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionPointSegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
@@ -53,6 +86,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		69056D1A2233655F0087E278 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69056D202233655F0087E278 /* QuickLook.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		691A684E21E5892B0036062E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,6 +104,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69056D1E2233655F0087E278 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69056D1F2233655F0087E278 /* QuickLook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		69056D212233655F0087E278 /* BingoCardPreviewExtension */ = {
+			isa = PBXGroup;
+			children = (
+				69056D222233655F0087E278 /* PreviewViewController.swift */,
+				69056D242233655F0087E278 /* MainInterface.storyboard */,
+				69056D272233655F0087E278 /* Info.plist */,
+			);
+			path = BingoCardPreviewExtension;
+			sourceTree = "<group>";
+		};
 		690EF43C2202A258005222CB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				691A685321E5892B0036062E /* Bingo Card Creator */,
+				69056D212233655F0087E278 /* BingoCardPreviewExtension */,
+				69056D1E2233655F0087E278 /* Frameworks */,
 				691A685221E5892B0036062E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				691A685121E5892B0036062E /* Bingo Card Creator.app */,
+				69056D1D2233655F0087E278 /* BingoCardPreviewExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +195,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		69056D1C2233655F0087E278 /* BingoCardPreviewExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69056D2D2233655F0087E278 /* Build configuration list for PBXNativeTarget "BingoCardPreviewExtension" */;
+			buildPhases = (
+				69056D192233655F0087E278 /* Sources */,
+				69056D1A2233655F0087E278 /* Frameworks */,
+				69056D1B2233655F0087E278 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BingoCardPreviewExtension;
+			productName = BingoCardPreviewExtension;
+			productReference = 69056D1D2233655F0087E278 /* BingoCardPreviewExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		691A685021E5892B0036062E /* Bingo Card Creator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 691A686321E5892D0036062E /* Build configuration list for PBXNativeTarget "Bingo Card Creator" */;
@@ -140,10 +219,12 @@
 				691A684D21E5892B0036062E /* Sources */,
 				691A684E21E5892B0036062E /* Frameworks */,
 				691A684F21E5892B0036062E /* Resources */,
+				69056D2E2233655F0087E278 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				69056D292233655F0087E278 /* PBXTargetDependency */,
 			);
 			name = "Bingo Card Creator";
 			productName = "Bingo Card Creator";
@@ -160,6 +241,9 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Deanna Lepke";
 				TargetAttributes = {
+					69056D1C2233655F0087E278 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					691A685021E5892B0036062E = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -179,11 +263,20 @@
 			projectRoot = "";
 			targets = (
 				691A685021E5892B0036062E /* Bingo Card Creator */,
+				69056D1C2233655F0087E278 /* BingoCardPreviewExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		69056D1B2233655F0087E278 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69056D262233655F0087E278 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		691A684F21E5892B0036062E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,6 +290,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		69056D192233655F0087E278 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69056D232233655F0087E278 /* PreviewViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		691A684D21E5892B0036062E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,7 +323,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		69056D292233655F0087E278 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69056D1C2233655F0087E278 /* BingoCardPreviewExtension */;
+			targetProxy = 69056D282233655F0087E278 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		69056D242233655F0087E278 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69056D252233655F0087E278 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		691A685821E5892B0036062E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -242,6 +359,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		69056D2B2233655F0087E278 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N4DY893L76;
+				INFOPLIST_FILE = BingoCardPreviewExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.urbanmythapps.BingoCardCreator.BingoCardPreviewExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		69056D2C2233655F0087E278 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N4DY893L76;
+				INFOPLIST_FILE = BingoCardPreviewExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.urbanmythapps.BingoCardCreator.BingoCardPreviewExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		691A686121E5892D0036062E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -361,6 +516,7 @@
 		691A686421E5892D0036062E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4DY893L76;
@@ -379,6 +535,7 @@
 		691A686521E5892D0036062E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4DY893L76;
@@ -397,6 +554,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		69056D2D2233655F0087E278 /* Build configuration list for PBXNativeTarget "BingoCardPreviewExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69056D2B2233655F0087E278 /* Debug */,
+				69056D2C2233655F0087E278 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		691A684C21E5892B0036062E /* Build configuration list for PBXProject "Bingo Card Creator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

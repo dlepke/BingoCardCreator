@@ -21,6 +21,21 @@ extension BingoCard {
     
     static func importData(from url: URL) {
         
+        
+        do {
+            let urlData = try Data(contentsOf: url)
+            
+            do {
+                let unarchivedURLData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(urlData)
+                print(unarchivedURLData!)
+            } catch {
+                print("Unable to unarchive data from url.")
+            }
+            
+        } catch {
+            print("Unable to get data from url.")
+        }
+        
         guard let dictionary = NSDictionary(contentsOf: url),
             let bingoCard = dictionary as? [String: AnyObject],
             let title = bingoCard[Keys.Title.rawValue] as? String,
