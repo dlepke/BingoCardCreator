@@ -61,17 +61,24 @@ extension BingoCard {
         
         let urlContents: [String : Any] = ["title": self.title!, "cardSize": self.cardSize, "completionPoint": self.completionPoint!, "contents": self.contents as Any]
         
+        var saveFileURL: URL = URL(string: "www.google.ca")!
+        
         guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
         
-        let urlTitle = self.title!
-        
-        let saveFileURL = path.appendingPathComponent("\(urlTitle).bingocard")
-        (urlContents as NSDictionary).write(to: saveFileURL, atomically: true)
-        
+        do {
+            let contentsAsData: Data = try NSKeyedArchiver.archivedData(withRootObject: urlContents, requiringSecureCoding: false)
+            
+            let urlTitle = self.title!
+            saveFileURL = path.appendingPathComponent("\(urlTitle).bingocard")
+            
+            FileManager.default.createFile(atPath: saveFileURL.path, contents: contentsAsData, attributes: nil)
+            
+            return saveFileURL
+        } catch {
+            print("Failed to convert contents to data.")
+        }
         return saveFileURL
-        
     }
-
 }

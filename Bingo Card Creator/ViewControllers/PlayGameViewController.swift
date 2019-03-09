@@ -149,11 +149,11 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         
         print("url: ", url)
         
-        let activityViewController = UIActivityViewController(activityItems: ["I made a bingo card!", url], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         if let popoverPresentationController = activityViewController.popoverPresentationController {
             popoverPresentationController.barButtonItem = (sender as! UIBarButtonItem)
         }
-        present(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
     
