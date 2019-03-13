@@ -47,7 +47,7 @@
 		690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43822029C76005222CB /* CompletionPointSegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionPointSegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43A22029E5C005222CB /* BingoBoxTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoBoxTextFieldTableViewCell.swift; sourceTree = "<group>"; };
-		691A685121E5892B0036062E /* Bingo Card Creator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bingo Card Creator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		691A685121E5892B0036062E /* BingoCardCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoCardCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		691A685421E5892B0036062E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		691A685621E5892B0036062E /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
 		691A685921E5892B0036062E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		691A685221E5892B0036062E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				691A685121E5892B0036062E /* Bingo Card Creator.app */,
+				691A685121E5892B0036062E /* BingoCardCreator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,9 +156,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		691A685021E5892B0036062E /* Bingo Card Creator */ = {
+		691A685021E5892B0036062E /* BingoCardCreator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 691A686321E5892D0036062E /* Build configuration list for PBXNativeTarget "Bingo Card Creator" */;
+			buildConfigurationList = 691A686321E5892D0036062E /* Build configuration list for PBXNativeTarget "BingoCardCreator" */;
 			buildPhases = (
 				691A684D21E5892B0036062E /* Sources */,
 				691A684E21E5892B0036062E /* Frameworks */,
@@ -169,9 +169,9 @@
 			);
 			dependencies = (
 			);
-			name = "Bingo Card Creator";
+			name = BingoCardCreator;
 			productName = "Bingo Card Creator";
-			productReference = 691A685121E5892B0036062E /* Bingo Card Creator.app */;
+			productReference = 691A685121E5892B0036062E /* BingoCardCreator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -189,7 +189,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 691A684C21E5892B0036062E /* Build configuration list for PBXProject "Bingo Card Creator" */;
+			buildConfigurationList = 691A684C21E5892B0036062E /* Build configuration list for PBXProject "BingoCardCreator" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -202,7 +202,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				691A685021E5892B0036062E /* Bingo Card Creator */,
+				691A685021E5892B0036062E /* BingoCardCreator */,
 			);
 		};
 /* End PBXProject section */
@@ -423,7 +423,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		691A684C21E5892B0036062E /* Build configuration list for PBXProject "Bingo Card Creator" */ = {
+		691A684C21E5892B0036062E /* Build configuration list for PBXProject "BingoCardCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				691A686121E5892D0036062E /* Debug */,
@@ -432,7 +432,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		691A686321E5892D0036062E /* Build configuration list for PBXNativeTarget "Bingo Card Creator" */ = {
+		691A686321E5892D0036062E /* Build configuration list for PBXNativeTarget "BingoCardCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				691A686421E5892D0036062E /* Debug */,
