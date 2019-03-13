@@ -22,6 +22,7 @@
 		6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */; };
 		6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */; };
 		694D96382230A3800036754D /* BingoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694D96372230A3800036754D /* BingoCard.swift */; };
+		6956115D22389C3B00DCE31C /* bingo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6956115C22389C3B00DCE31C /* bingo.png */; };
 		698D82BF22276A1500A6E6CC /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698D82BE22276A1500A6E6CC /* ColorScheme.swift */; };
 		69B78FC321F14CCF00797AB6 /* BingoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B78FC221F14CCF00797AB6 /* BingoBox.swift */; };
 		69BECCD9221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69BECCD7221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld */; };
@@ -60,6 +61,7 @@
 		6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBoxesViewController.swift; sourceTree = "<group>"; };
 		6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameViewController.swift; sourceTree = "<group>"; };
 		694D96372230A3800036754D /* BingoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCard.swift; sourceTree = "<group>"; };
+		6956115C22389C3B00DCE31C /* bingo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bingo.png; path = ../../../Downloads/bingo.png; sourceTree = "<group>"; };
 		698D82BE22276A1500A6E6CC /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		69B78FC221F14CCF00797AB6 /* BingoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoBox.swift; sourceTree = "<group>"; };
 		69BECCD8221259CE009BA6E4 /* BingoCardCreator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BingoCardCreator.xcdatamodel; sourceTree = "<group>"; };
@@ -113,7 +115,7 @@
 		691A684821E5892B0036062E = {
 			isa = PBXGroup;
 			children = (
-				691A685321E5892B0036062E /* Bingo Card Creator */,
+				691A685321E5892B0036062E /* BingoCardCreator */,
 				69056D1E2233655F0087E278 /* Frameworks */,
 				691A685221E5892B0036062E /* Products */,
 			);
@@ -127,7 +129,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		691A685321E5892B0036062E /* Bingo Card Creator */ = {
+		691A685321E5892B0036062E /* BingoCardCreator */ = {
 			isa = PBXGroup;
 			children = (
 				690EF43C2202A258005222CB /* ViewControllers */,
@@ -136,11 +138,12 @@
 				691A685421E5892B0036062E /* AppDelegate.swift */,
 				69BECCD7221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld */,
 				691A685B21E5892D0036062E /* Assets.xcassets */,
+				6956115C22389C3B00DCE31C /* bingo.png */,
 				691A685821E5892B0036062E /* Main.storyboard */,
 				691A685D21E5892D0036062E /* LaunchScreen.storyboard */,
 				691A686021E5892D0036062E /* Info.plist */,
 			);
-			path = "Bingo Card Creator";
+			path = BingoCardCreator;
 			sourceTree = "<group>";
 		};
 		69EE7159220517410049DFD8 /* Display */ = {
@@ -215,6 +218,7 @@
 				691A685F21E5892D0036062E /* LaunchScreen.storyboard in Resources */,
 				691A685C21E5892D0036062E /* Assets.xcassets in Resources */,
 				691A685A21E5892B0036062E /* Main.storyboard in Resources */,
+				6956115D22389C3B00DCE31C /* bingo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4DY893L76;
-				INFOPLIST_FILE = "Bingo Card Creator/Info.plist";
+				INFOPLIST_FILE = BingoCardCreator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,7 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4DY893L76;
-				INFOPLIST_FILE = "Bingo Card Creator/Info.plist";
+				INFOPLIST_FILE = BingoCardCreator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

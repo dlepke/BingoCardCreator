@@ -24,9 +24,14 @@ extension BingoCard {
         
         do {
             let urlData = try Data(contentsOf: url)
+            print(urlData)
             
             do {
-                let unarchivedURLData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(urlData)
+                print("about to unarchive url data")
+//                let unarchivedURLData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(urlData)
+                
+//                let unarchivedURLData = NSKeyedUnarchiver.
+                
                 print(unarchivedURLData!)
             } catch {
                 print("Unable to unarchive data from url.")
@@ -74,7 +79,11 @@ extension BingoCard {
     
     func exportToFileURL() -> URL? {
         
-        let urlContents: [String : Any] = ["title": self.title!, "cardSize": self.cardSize, "completionPoint": self.completionPoint!, "contents": self.contents as Any]
+        //let urlContents: [String : Any] = ["title": self.title!, "cardSize": self.cardSize, "completionPoint": self.completionPoint!, "contents": self.contents as Any]
+        
+        
+        
+        let urlContentsToEncode = bingoCardContents(title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: self.contents)
         
         var saveFileURL: URL = URL(string: "www.google.ca")!
         
@@ -83,7 +92,10 @@ extension BingoCard {
         }
         
         do {
-            let contentsAsData: Data = try NSKeyedArchiver.archivedData(withRootObject: urlContents, requiringSecureCoding: false)
+            //let contentsAsData: Data = try NSKeyedArchiver.archivedData(withRootObject: urlContents, requiringSecureCoding: false)
+            
+            let encoder = JSONEncoder()
+            let contentsAsData: Data = try encoder.encode(urlContentsToEncode)
             
             let urlTitle = self.title!
             saveFileURL = path.appendingPathComponent("\(urlTitle).bingocard")
@@ -95,5 +107,37 @@ extension BingoCard {
             print("Failed to convert contents to data.")
         }
         return saveFileURL
+    }
+}
+
+struct bingoCardContents: Codable {
+    let title: String
+    let cardSize: Float
+    let completionPoint: String
+    let contents: [BoxContents]
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case cardSize
+        case completionPoint
+        case contents
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(title, forKey: .title)
+        try container.encode(cardSize, forKey: .cardSize)
+        try container.encode(completionPoint, forKey: .completionPoint)
+        try container.encode(contents, forKey: .contents)
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let title = try values.decode(String.self, forKey: .title)
+        let cardSize = try values.decode(Float.self, forKey: .cardSize)
+        let completionPoint = try values.decode(String.self, forKey: .completionPoint)
+        let contents = try values.decode([BoxContents].self, forKey: .contents)
+        
+        
     }
 }
