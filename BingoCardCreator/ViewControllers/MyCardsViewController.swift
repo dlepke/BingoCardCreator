@@ -19,6 +19,7 @@ class MyCardsViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +121,10 @@ class MyCardsViewController: UITableViewController {
             tableView.endUpdates()
         } else {
             self.tableView.reloadData()
+        }
+        print(cardsInStorage)
+        for card in cardsInStorage {
+            print(card.objectID)
         }
     }
     

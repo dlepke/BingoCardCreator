@@ -28,10 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let navigationController = window?.rootViewController as? UINavigationController,
             let myCardsViewController = navigationController.viewControllers.first as? MyCardsViewController else {
+                print("whoopsie in app delegate")
                 return true
         }
         
-        myCardsViewController.tableView.reloadData()
+        myCardsViewController.updateTableViewFromStorage()
         return true
     }
 

@@ -12,43 +12,7 @@ import UIKit
 
 extension BingoCard {
     
-    enum Keys: String {
-        case Title = "title"
-        case CardSize = "cardSize"
-        case CompletionPoint = "completionPoint"
-        case Contents = "contents"
-    }
-    
     static func importData(from url: URL) {
-        
-        
-        do {
-            let urlData = try Data(contentsOf: url)
-            print(urlData)
-            
-            do {
-                print("about to unarchive url data")
-//                let unarchivedURLData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(urlData)
-                
-//                let unarchivedURLData = NSKeyedUnarchiver.
-                
-                print(unarchivedURLData!)
-            } catch {
-                print("Unable to unarchive data from url.")
-            }
-            
-        } catch {
-            print("Unable to get data from url.")
-        }
-        
-        guard let dictionary = NSDictionary(contentsOf: url),
-            let bingoCard = dictionary as? [String: AnyObject],
-            let title = bingoCard[Keys.Title.rawValue] as? String,
-            let cardSize = bingoCard[Keys.CardSize.rawValue] as? Float,
-            let completionPoint = bingoCard[Keys.CompletionPoint.rawValue] as? String,
-            let contents = bingoCard[Keys.Contents.rawValue] as? [BoxContents] else {
-                return
-        }
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -59,10 +23,33 @@ extension BingoCard {
         let entity = NSEntityDescription.entity(forEntityName: "BingoCard", in: managedContext)!
         let newBingoCard = BingoCard(entity: entity, insertInto: managedContext)
         
-        newBingoCard.setValue(title, forKey: "title")
-        newBingoCard.setValue(cardSize, forKey: "cardSize")
-        newBingoCard.setValue(completionPoint, forKey: "completionPoint")
-        newBingoCard.setValue(contents, forKey: "contents")
+        
+        do {
+            let urlData = try Data(contentsOf: url)
+            
+            let decodedURLData = try JSONDecoder().decode(BingoCardCodable.self, from: urlData)
+            
+            newBingoCard.title = decodedURLData.title
+            newBingoCard.cardSize = decodedURLData.cardSize
+            newBingoCard.completionPoint = decodedURLData.completionPoint
+            
+            for bingoBox in decodedURLData.contents {
+                let boxContentsEntity = NSEntityDescription.entity(forEntityName: "BoxContents", in: managedContext)!
+                let newBingoBox = BoxContents(entity: boxContentsEntity, insertInto: managedContext)
+                
+                newBingoBox.setValue(bingoBox.boxTitle, forKey: "boxTitle")
+                newBingoBox.setValue(bingoBox.boxDetails, forKey: "boxDetails")
+                newBingoBox.setValue(bingoBox.proofRequired, forKey: "proofRequired")
+                newBingoBox.setValue(bingoBox.complete, forKey: "complete")
+                newBingoBox.setValue(newBingoCard, forKey: "ownerCard")
+                
+                try managedContext.save()
+            }
+            
+            //print(newBingoCard)
+        } catch {
+            print("Unable to get data from url.")
+        }
         
         do {
             try managedContext.save()
@@ -79,11 +66,18 @@ extension BingoCard {
     
     func exportToFileURL() -> URL? {
         
-        //let urlContents: [String : Any] = ["title": self.title!, "cardSize": self.cardSize, "completionPoint": self.completionPoint!, "contents": self.contents as Any]
+        var boxContentsToEncode: [BoxContentsCodable] = []
         
+        for bingoBoxRaw in self.contents! {
+            
+//            print(bingoBoxRaw)
+            let bingoBox = (bingoBoxRaw as? BoxContents)!
+            print(bingoBox)
+            let codableBingoBox = BoxContentsCodable(boxTitle: bingoBox.boxTitle!, boxDetails: bingoBox.boxDetails!, proofRequired: bingoBox.proofRequired!, positionInCard: bingoBox.positionInCard, complete: false)
+            boxContentsToEncode.append(codableBingoBox)
+        }
         
-        
-        let urlContentsToEncode = bingoCardContents(title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: self.contents)
+        let bingoCardToEncode = BingoCardCodable(title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: boxContentsToEncode)
         
         var saveFileURL: URL = URL(string: "www.google.ca")!
         
@@ -92,10 +86,8 @@ extension BingoCard {
         }
         
         do {
-            //let contentsAsData: Data = try NSKeyedArchiver.archivedData(withRootObject: urlContents, requiringSecureCoding: false)
-            
             let encoder = JSONEncoder()
-            let contentsAsData: Data = try encoder.encode(urlContentsToEncode)
+            let contentsAsData: Data = try encoder.encode(bingoCardToEncode)
             
             let urlTitle = self.title!
             saveFileURL = path.appendingPathComponent("\(urlTitle).bingocard")
@@ -110,11 +102,18 @@ extension BingoCard {
     }
 }
 
-struct bingoCardContents: Codable {
+struct BingoCardCodable: Codable {
     let title: String
     let cardSize: Float
     let completionPoint: String
-    let contents: [BoxContents]
+    let contents: [BoxContentsCodable]
+    
+    init(title: String, cardSize: Float, completionPoint: String, contents: [BoxContentsCodable]) {
+        self.title = title
+        self.cardSize = cardSize
+        self.completionPoint = completionPoint
+        self.contents = contents
+    }
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -133,10 +132,59 @@ struct bingoCardContents: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        let title = try values.decode(String.self, forKey: .title)
-        let cardSize = try values.decode(Float.self, forKey: .cardSize)
-        let completionPoint = try values.decode(String.self, forKey: .completionPoint)
-        let contents = try values.decode([BoxContents].self, forKey: .contents)
+        title = try values.decode(String.self, forKey: .title)
+        cardSize = try values.decode(Float.self, forKey: .cardSize)
+        completionPoint = try values.decode(String.self, forKey: .completionPoint)
+        contents = try values.decode([BoxContentsCodable].self, forKey: .contents)
+    }
+}
+
+struct BoxContentsCodable: Codable {
+    let boxTitle: String
+    let boxDetails: String
+    let proofRequired: String
+    let positionInCard: Int16
+    let complete: Bool
+    //let proof: Data
+    
+    init(boxTitle: String, boxDetails: String, proofRequired: String, positionInCard: Int16, complete: Bool) {
+        self.boxTitle = boxTitle
+        self.boxDetails = boxDetails
+        self.proofRequired = proofRequired
+        self.positionInCard = positionInCard
+        self.complete = complete
+        //self.proof = proof
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case boxTitle
+        case boxDetails
+        case proofRequired
+        case positionInCard
+        case complete
+        //case proof
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(boxTitle, forKey: .boxTitle)
+        try container.encode(boxDetails, forKey: .boxDetails)
+        try container.encode(proofRequired, forKey: .proofRequired)
+        try container.encode(positionInCard, forKey: .positionInCard)
+        try container.encode(complete, forKey: .complete)
+        //try container.encode(proof, forKey: .proof)
+        
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        boxTitle = try values.decode(String.self, forKey: .boxTitle)
+        boxDetails = try values.decode(String.self, forKey: .boxDetails)
+        proofRequired = try values.decode(String.self, forKey: .proofRequired)
+        positionInCard = try values.decode(Int16.self, forKey: .positionInCard)
+        complete = try values.decode(Bool.self, forKey: .complete)
+        //proof = try values.decode(Data.self, forKey: .proof)
         
         
     }
