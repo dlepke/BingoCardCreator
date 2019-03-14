@@ -27,6 +27,8 @@ extension BingoCard {
         do {
             let urlData = try Data(contentsOf: url)
             
+            
+            
             let decodedURLData = try JSONDecoder().decode(BingoCardCodable.self, from: urlData)
             
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
