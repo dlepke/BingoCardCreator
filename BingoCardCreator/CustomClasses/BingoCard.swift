@@ -29,7 +29,28 @@ extension BingoCard {
             
             let decodedURLData = try JSONDecoder().decode(BingoCardCodable.self, from: urlData)
             
-            newBingoCard.title = decodedURLData.title
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
+            
+            var titleIsUnique = true
+            
+            do {
+                let cardsInStorage = try managedContext.fetch(fetchRequest)
+                
+                for card in cardsInStorage {
+                    if decodedURLData.title == card.value(forKeyPath: "title") as? String {
+                        print("title already exists")
+                        titleIsUnique = false
+                    }
+                }
+            } catch {
+                print("\(error)")
+            }
+            
+            if titleIsUnique {
+                newBingoCard.title = decodedURLData.title
+            } else {
+                newBingoCard.title = decodedURLData.title + " (new)"
+            }
             newBingoCard.cardSize = decodedURLData.cardSize
             newBingoCard.completionPoint = decodedURLData.completionPoint
             
