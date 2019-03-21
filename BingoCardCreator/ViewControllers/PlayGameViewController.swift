@@ -69,16 +69,20 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
-        let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
+        //let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
+        let selectedBingoBox = contentsOfCurrentCard!.first(where: { Int($0.positionInCard) == indexPath.row })!
+        print(selectedCell.bingoBoxTitle.text!)
         
-        if selectedBingoBox?.complete == true {
+        if selectedBingoBox.complete == true {
+            print(selectedCell.bingoBoxTitle.text! + " is going from complete to incomplete")
             selectedCell.backgroundColor = boxNotCompleteColor
             selectedCell.bingoBoxTitle.tintColor = boxNotCompleteFontColor
-            selectedBingoBox?.complete = false
+            selectedBingoBox.complete = false
         } else {
+            print(selectedCell.bingoBoxTitle.text! + " is going from incomplete to complete")
             selectedCell.backgroundColor = boxCompleteColor
             selectedCell.bingoBoxTitle.tintColor = boxCompleteFontColor
-            selectedBingoBox?.complete = true
+            selectedBingoBox.complete = true
         }
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -93,9 +97,10 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         let cellToDeselect = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
-        let deselectedBingoBox = contentsOfCurrentCard?[indexPath.row]
+        //let deselectedBingoBox = contentsOfCurrentCard?[indexPath.row]
+        let deselectedBingoBox = contentsOfCurrentCard!.first(where: { Int($0.positionInCard) == indexPath.row })!
         
-        if deselectedBingoBox?.complete != true {
+        if deselectedBingoBox.complete != true {
             cellToDeselect.backgroundColor = boxNotCompleteColor
             cellToDeselect.bingoBoxTitle.tintColor = boxNotCompleteFontColor
         }
