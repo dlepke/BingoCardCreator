@@ -122,10 +122,10 @@ class MyCardsViewController: UITableViewController {
         } else {
             self.tableView.reloadData()
         }
-        print(cardsInStorage)
-        for card in cardsInStorage {
-            print(card.objectID)
-        }
+        //print(cardsInStorage)
+        //for card in cardsInStorage {
+            //print(card.objectID)
+        //}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -32,22 +32,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         cardDetailsTableViewHeightConstraint.constant = cardDetailsTableView.contentSize.height + 5
         cardDetailsTableView.needsUpdateConstraints()
         
-        
-        // if editing card, prefills table with existing values (not currently working)
-//        if newCard != nil {
-//            let textFieldCell = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
-//            
-//            textFieldCell.textField.text = newCard?.value(forKey: "title") as? String
-//
-//            let segmentedControlCell1 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! SegmentedControlTableViewCell
-//
-//            segmentedControlCell1.segmentedControl1.selectedSegmentIndex = completionPoint.firstIndex(of: newCard?.value(forKey: "completionPoint") as! String)!
-//
-//            let segmentedControlCell2 = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! SegmentedControlTableViewCell
-//
-//            segmentedControlCell2.segmentedControl2.selectedSegmentIndex = cardSize.firstIndex(of: newCard?.value(forKey: "cardSize") as! Int)!
-//        }
-        
     }
     
     @IBOutlet weak var cardDetailsTableViewHeightConstraint: NSLayoutConstraint!

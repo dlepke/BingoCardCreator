@@ -106,20 +106,48 @@ extension BingoCard {
         
         var saveFileURL: URL = URL(string: "www.google.ca")!
         
-        guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
-        }
-        
         do {
             let encoder = JSONEncoder()
             let contentsAsData: Data = try encoder.encode(bingoCardToEncode)
             
+            let url = URL(string: "https://www.urbanmythapps.com/bingocards")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let task = URLSession.shared.uploadTask(with: request, from: contentsAsData) {
+                data, response, error in
+                
+                if let error = error {
+                    print("error: \(error)")
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    print("server error")
+                    return
+                }
+                
+                if let mimeType = response.mimeType,
+                    mimeType == "application/json",
+                    let data = data,
+                    let dataString = String(data: data, encoding: .utf8) {
+                    print("got data: \(dataString)")
+                }
+            }
+        
+            task.resume()
+            
+            /*
+             guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+             return nil
+             }
+             
             let urlTitle = self.title!
             saveFileURL = path.appendingPathComponent("\(urlTitle).bingocard")
             
-            FileManager.default.createFile(atPath: saveFileURL.path, contents: contentsAsData, attributes: nil)
+            FileManager.default.createFile(atPath: saveFileURL.path, contents: contentsAsData, attributes: nil) */
             
-            return saveFileURL
         } catch {
             print("Failed to convert contents to data.")
         }

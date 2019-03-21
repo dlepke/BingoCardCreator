@@ -13,7 +13,7 @@
         <!--My Cards-->
         <scene sceneID="ouz-En-uQ8">
             <objects>
-                <tableViewController title="My Cards" id="x9l-lS-k8H" customClass="MyCardsViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="My Cards" id="x9l-lS-k8H" customClass="MyCardsViewController" customModule="BingoCardCreator" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K0B-JT-ijc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
         <!--Card Details-->
         <scene sceneID="Sws-nr-6Yn">
             <objects>
-                <viewController title="Card Details" automaticallyAdjustsScrollViewInsets="NO" id="zS5-V9-TCL" customClass="CardDetailsViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Card Details" automaticallyAdjustsScrollViewInsets="NO" id="zS5-V9-TCL" customClass="CardDetailsViewController" customModule="BingoCardCreator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SJk-Wg-cWj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="textFieldTableCell" id="zQ3-bO-ItM" customClass="TextInputTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="textFieldTableCell" id="zQ3-bO-ItM" customClass="TextInputTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ3-bO-ItM" id="nJg-7S-Ayr">
@@ -109,6 +109,9 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="zQ3-bO-ItM" eventType="editingChanged" id="5dV-iq-kqF"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -123,7 +126,7 @@
                                             <outlet property="textField" destination="Nn0-wJ-bKV" id="5jp-xJ-395"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
@@ -156,7 +159,7 @@
                                             <outlet property="segmentedControl1" destination="xVD-Rj-WmM" id="0P6-tg-pHW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbj-he-Zrb" id="Es7-Yt-uDq">
@@ -241,7 +244,7 @@
         <!--Add Boxes-->
         <scene sceneID="IOq-JO-KsP">
             <objects>
-                <viewController title="Add Boxes" id="FsG-zO-mUi" customClass="AddBoxesViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Boxes" id="FsG-zO-mUi" customClass="AddBoxesViewController" customModule="BingoCardCreator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JtJ-jY-nfj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -265,7 +268,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F" customClass="PreviewCardBingoBoxCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F" customClass="PreviewCardBingoBoxCell" customModule="BingoCardCreator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="146" height="93"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -351,7 +354,7 @@
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO" customClass="BingoBoxTextFieldTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO" customClass="BingoBoxTextFieldTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5Y-G8-YTO" id="WXm-Rv-NoX">
@@ -380,7 +383,7 @@
                                                             <outlet property="titleTextField" destination="P2y-NQ-Pk8" id="b1A-lB-omb"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailsTableCell" id="hvL-Ip-8UL" customClass="BingoBoxTextFieldTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailsTableCell" id="hvL-Ip-8UL" customClass="BingoBoxTextFieldTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hvL-Ip-8UL" id="cTx-Ek-ory">
@@ -409,7 +412,7 @@
                                                             <outlet property="detailsTextField" destination="uQA-ms-Yll" id="sVt-HY-S3W"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="proofRequiredTableCell" id="RSG-Vh-v8c" customClass="CompletionPointSegmentedControlTableViewCell" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="proofRequiredTableCell" id="RSG-Vh-v8c" customClass="CompletionPointSegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSG-Vh-v8c" id="HWU-On-fLx">
@@ -541,7 +544,7 @@
         <!--My Game Card-->
         <scene sceneID="MHk-ag-Sj6">
             <objects>
-                <viewController title="My Game Card" id="yXM-Bh-lbl" customClass="PlayGameViewController" customModule="Bingo_Card_Creator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Game Card" id="yXM-Bh-lbl" customClass="PlayGameViewController" customModule="BingoCardCreator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Azp-TU-VIi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -555,7 +558,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BingoBox" id="JO8-Lg-RaW" customClass="BingoBox" customModule="Bingo_Card_Creator" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BingoBox" id="JO8-Lg-RaW" customClass="BingoBox" customModule="BingoCardCreator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="151" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
