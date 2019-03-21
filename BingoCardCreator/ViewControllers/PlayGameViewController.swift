@@ -110,7 +110,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let currentBingoBox = contentsOfCurrentCard![indexPath.row]
+        //let currentBingoBox = contentsOfCurrentCard![indexPath.row]
+        
+        let currentBingoBox = contentsOfCurrentCard!.first(where: { Int($0.positionInCard) == indexPath.row })!
         
         let cell = bingoCardCollectionView.dequeueReusableCell(withReuseIdentifier: "BingoBox", for: indexPath as IndexPath) as! BingoBox
         if currentBingoBox.complete {

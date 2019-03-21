@@ -102,7 +102,7 @@ extension BingoCard {
             boxContentsToEncode.append(codableBingoBox)
         }
         
-        let bingoCardToEncode = BingoCardCodable(title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: boxContentsToEncode)
+        let bingoCardToEncode = BingoCardCodable(uuid: self.uuid!, title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: boxContentsToEncode)
         
         var saveFileURL: URL = URL(string: "www.google.ca")!
         
@@ -132,12 +132,14 @@ struct BingoCardCodable: Codable {
     let cardSize: Float
     let completionPoint: String
     let contents: [BoxContentsCodable]
+    let uuid: UUID
     
-    init(title: String, cardSize: Float, completionPoint: String, contents: [BoxContentsCodable]) {
+    init(uuid: UUID, title: String, cardSize: Float, completionPoint: String, contents: [BoxContentsCodable]) {
         self.title = title
         self.cardSize = cardSize
         self.completionPoint = completionPoint
         self.contents = contents
+        self.uuid = uuid
     }
     
     enum CodingKeys: String, CodingKey {
@@ -145,6 +147,7 @@ struct BingoCardCodable: Codable {
         case cardSize
         case completionPoint
         case contents
+        case uuid
     }
     
     func encode(to encoder: Encoder) throws {
@@ -153,6 +156,7 @@ struct BingoCardCodable: Codable {
         try container.encode(cardSize, forKey: .cardSize)
         try container.encode(completionPoint, forKey: .completionPoint)
         try container.encode(contents, forKey: .contents)
+        try container.encode(uuid, forKey: .uuid)
     }
     
     init(from decoder: Decoder) throws {
@@ -161,6 +165,7 @@ struct BingoCardCodable: Codable {
         cardSize = try values.decode(Float.self, forKey: .cardSize)
         completionPoint = try values.decode(String.self, forKey: .completionPoint)
         contents = try values.decode([BoxContentsCodable].self, forKey: .contents)
+        uuid = try values.decode(UUID.self, forKey: .uuid)
     }
 }
 
@@ -168,11 +173,11 @@ struct BoxContentsCodable: Codable {
     let boxTitle: String
     let boxDetails: String
     let proofRequired: String
-    let positionInCard: Int16
+    let positionInCard: Float
     let complete: Bool
     //let proof: Data
     
-    init(boxTitle: String, boxDetails: String, proofRequired: String, positionInCard: Int16, complete: Bool) {
+    init(boxTitle: String, boxDetails: String, proofRequired: String, positionInCard: Float, complete: Bool) {
         self.boxTitle = boxTitle
         self.boxDetails = boxDetails
         self.proofRequired = proofRequired
@@ -207,7 +212,7 @@ struct BoxContentsCodable: Codable {
         boxTitle = try values.decode(String.self, forKey: .boxTitle)
         boxDetails = try values.decode(String.self, forKey: .boxDetails)
         proofRequired = try values.decode(String.self, forKey: .proofRequired)
-        positionInCard = try values.decode(Int16.self, forKey: .positionInCard)
+        positionInCard = try values.decode(Float.self, forKey: .positionInCard)
         complete = try values.decode(Bool.self, forKey: .complete)
         //proof = try values.decode(Data.self, forKey: .proof)
         

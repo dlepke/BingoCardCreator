@@ -207,6 +207,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func assignPositionsToBoxes() {
+        for box in arrayOfPendingBoxes {
+            box.positionInCard = Float(arrayOfPendingBoxes.firstIndex(of: box)!)
+        }
+    }
+    
     // begin collectionview stuff
     @IBOutlet weak var previewBingoCard: UICollectionView!
     @IBOutlet weak var previewBingoCardFlowLayout: UICollectionViewFlowLayout!
@@ -260,35 +266,9 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let temp = arrayOfPendingBoxes.remove(at: sourceIndexPath.item)
         
         arrayOfPendingBoxes.insert(temp, at: destinationIndexPath.item)
+        print(arrayOfPendingBoxes)
         
-        let titleOfCardToReorder = newCard?.value(forKey: "title")
-//        var orderedBoxesToRearrange: NSMutableOrderedSet?
-    
-
-        let fetchRequest: NSFetchRequest<BingoCard> = BingoCard.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "title == %@", (titleOfCardToReorder! as? CVarArg)!)
-        
-        do {
-            let cardToRearrange = try context.fetch(fetchRequest)
-            
-            for card in cardToRearrange {
-                
-                let mutableBoxes = card.mutableOrderedSetValue(forKey: "contents")
-                
-                mutableBoxes.moveObjects(at: [sourceIndexPath.row], to: destinationIndexPath.row)
-                
-                print(newCard!)
-                
-                do {
-                    try context.save()
-                    print("saved context(inner)")
-                } catch {
-                    print("Could not save moved item's new location.")
-                }
-            }
-        } catch {
-            print("Unable to fetch card to rearrange.")
-        }
+        assignPositionsToBoxes()
         
         
         do {

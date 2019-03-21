@@ -252,6 +252,9 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         newCard!.setValue(completionPoint, forKey: "completionPoint")
         newCard!.setValue(cardSize, forKey: "cardSize")
         
+        let uuid = UUID()
+        newCard!.setValue(uuid, forKey: "uuid")
+        
         do {
             try managedContext.save()
         } catch let error as NSError {

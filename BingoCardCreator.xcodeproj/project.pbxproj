@@ -60,6 +60,7 @@
 		6937497921E6F6C5000924C9 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		6937497B21E6F6E3000924C9 /* AddBoxesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBoxesViewController.swift; sourceTree = "<group>"; };
 		6937497D21E6F6FB000924C9 /* PlayGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameViewController.swift; sourceTree = "<group>"; };
+		694439C62243005400FB35A3 /* BingoCardCreator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoCardCreator.entitlements; sourceTree = "<group>"; };
 		694D96372230A3800036754D /* BingoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCard.swift; sourceTree = "<group>"; };
 		6956115C22389C3B00DCE31C /* bingo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bingo.png; path = ../../../Downloads/bingo.png; sourceTree = "<group>"; };
 		698D82BE22276A1500A6E6CC /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		691A685321E5892B0036062E /* BingoCardCreator */ = {
 			isa = PBXGroup;
 			children = (
+				694439C62243005400FB35A3 /* BingoCardCreator.entitlements */,
 				690EF43C2202A258005222CB /* ViewControllers */,
 				690EF43D2202A281005222CB /* CustomClasses */,
 				69EE7159220517410049DFD8 /* Display */,
@@ -189,6 +191,11 @@
 				TargetAttributes = {
 					691A685021E5892B0036062E = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -391,6 +398,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BingoCardCreator/BingoCardCreator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4DY893L76;
 				INFOPLIST_FILE = BingoCardCreator/Info.plist;
@@ -410,6 +418,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BingoCardCreator/BingoCardCreator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4DY893L76;
 				INFOPLIST_FILE = BingoCardCreator/Info.plist;
