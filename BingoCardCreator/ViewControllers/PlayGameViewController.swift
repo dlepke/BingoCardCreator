@@ -18,10 +18,12 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     var currentBingoCard: NSManagedObject?
     var contentsOfCurrentCard: [BoxContents]? = []
     
-    let boxCompleteColor = #colorLiteral(red: 0.2784313725, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
-    let boxCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6000000238)
-    let boxNotCompleteColor = #colorLiteral(red: 0.3254901961, green: 0.4784313725, blue: 0.3529411765, alpha: 1)
-    let boxNotCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    let boxCompleteColor = #colorLiteral(red: 0.3254901961, green: 0.4784313725, blue: 0.3529411765, alpha: 1)
+    let boxCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    let boxNotCompleteColor = #colorLiteral(red: 0.2784313725, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
+    let boxNotCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6)
+    
+    let hapticSelection = UISelectionFeedbackGenerator()
     
     
     override func viewDidLoad() {
@@ -72,6 +74,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         //let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
         let selectedBingoBox = contentsOfCurrentCard!.first(where: { Int($0.positionInCard) == indexPath.row })!
         print(selectedCell.bingoBoxTitle.text!)
+        
+        // this is the haptic feedback on the bingo card
+        hapticSelection.selectionChanged()
         
         if selectedBingoBox.complete == true {
             print(selectedCell.bingoBoxTitle.text! + " is going from complete to incomplete")

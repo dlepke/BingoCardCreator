@@ -191,6 +191,7 @@
 				TargetAttributes = {
 					691A685021E5892B0036062E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -408,7 +409,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.urbanmythapps.BingoCardCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -428,7 +429,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.urbanmythapps.BingoCardCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -104,7 +104,7 @@ extension BingoCard {
         
         let bingoCardToEncode = BingoCardCodable(uuid: self.uuid!, title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: boxContentsToEncode)
         
-        var saveFileURL: URL = URL(string: "www.google.ca")!
+        let saveFileURL: URL = URL(string: "www.google.ca")!
         
         do {
             let encoder = JSONEncoder()
