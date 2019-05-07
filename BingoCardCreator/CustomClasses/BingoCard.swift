@@ -210,7 +210,7 @@ struct BoxContentsCodable: Codable {
         self.boxDetails = boxDetails
         self.proofRequired = proofRequired
         self.positionInCard = positionInCard
-        self.complete = complete
+        self.complete = false
         //self.proof = proof
     }
     
