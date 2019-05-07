@@ -104,13 +104,15 @@ extension BingoCard {
         
         let bingoCardToEncode = BingoCardCodable(uuid: self.uuid!, title: self.title!, cardSize: self.cardSize, completionPoint: self.completionPoint!, contents: boxContentsToEncode)
         
-        let saveFileURL: URL = URL(string: "www.google.ca")!
+        let saveFileURL: URL = URL(string: "https://www.google.ca")!
         
         do {
             let encoder = JSONEncoder()
+            //let contentsAsData: Data = try encoder.encode(bingoCardToEncode)
+            
             let contentsAsData: Data = try encoder.encode(bingoCardToEncode)
             
-            let url = URL(string: "https://www.urbanmythapps.com/bingocards")!
+            let url = URL(string: "http://localhost:3000/bingocard")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -210,7 +212,7 @@ struct BoxContentsCodable: Codable {
         self.boxDetails = boxDetails
         self.proofRequired = proofRequired
         self.positionInCard = positionInCard
-        self.complete = false
+        self.complete = complete
         //self.proof = proof
     }
     
