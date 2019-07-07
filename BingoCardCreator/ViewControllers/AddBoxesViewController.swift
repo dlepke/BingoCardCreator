@@ -147,6 +147,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         arrayOfPendingBoxes.append(boxContents)
         
+        assignPositionsToBoxes()
+        
         do {
             try context.save()
         } catch let error as NSError {
