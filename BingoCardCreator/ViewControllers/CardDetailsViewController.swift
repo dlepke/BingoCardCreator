@@ -34,6 +34,10 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     @IBOutlet weak var cardDetailsTableViewHeightConstraint: NSLayoutConstraint!
     
     

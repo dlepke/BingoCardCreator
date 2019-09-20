@@ -40,10 +40,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height + 5
         self.addBoxesTableView.needsUpdateConstraints()
         
-//        self.contentViewWidthConstraint.constant = self.view.frame.width
-//        self.contentViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
-//        
-//        self.contentView.needsUpdateConstraints()
+        self.mainStackViewWidthConstraint.constant = self.view.frame.width
+        self.mainStackViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
+        
+        self.mainStackView.needsUpdateConstraints()
         
         //collectionview stuff
         previewBingoCard.delegate = self
@@ -88,6 +88,14 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var mainStackViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainStackViewWidthConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var addBoxesTableView: UITableView!

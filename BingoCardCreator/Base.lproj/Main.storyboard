@@ -108,7 +108,7 @@
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="editingChanged:" destination="zQ3-bO-ItM" eventType="editingChanged" id="5dV-iq-kqF"/>
                                                     </connections>
@@ -119,10 +119,7 @@
                                                 <constraint firstItem="Nn0-wJ-bKV" firstAttribute="leading" secondItem="nJg-7S-Ayr" secondAttribute="leading" constant="30" id="Iml-xs-lY1"/>
                                                 <constraint firstItem="Nn0-wJ-bKV" firstAttribute="top" secondItem="nJg-7S-Ayr" secondAttribute="top" id="QMJ-gO-oek"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Nn0-wJ-bKV" secondAttribute="trailing" constant="10" id="j9Z-lC-cGF"/>
-                                                <constraint firstItem="Nn0-wJ-bKV" firstAttribute="top" secondItem="nJg-7S-Ayr" secondAttribute="topMargin" constant="15" id="jz7-wh-Czd"/>
-                                                <constraint firstItem="Nn0-wJ-bKV" firstAttribute="leading" secondItem="nJg-7S-Ayr" secondAttribute="leadingMargin" constant="10" id="n0W-de-Gkj"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Nn0-wJ-bKV" secondAttribute="bottom" constant="15" id="nUX-wb-oHS"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nn0-wJ-bKV" secondAttribute="trailing" constant="30" id="tXq-Tk-iA7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -242,8 +239,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Vqn-j3-d7A">
-                                <rect key="frame" x="0.0" y="88" width="414" height="764"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Vqn-j3-d7A">
+                                <rect key="frame" x="0.0" y="66" width="414" height="764"/>
                                 <subviews>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="xzv-wR-ml2">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -291,7 +288,7 @@
                                                             </constraints>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                            <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             <connections>
                                                                 <action selector="editingChanged:" destination="x5Y-G8-YTO" eventType="editingChanged" id="kkV-vN-ITy"/>
                                                             </connections>
@@ -311,7 +308,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-Zh-geU">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-Zh-geU">
                                         <rect key="frame" x="0.0" y="300" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="fF5-Lj-Kmu"/>
@@ -344,7 +341,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="153"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="413"/>
                                                             <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -384,6 +381,7 @@
                                 <constraints>
                                     <constraint firstItem="xzv-wR-ml2" firstAttribute="top" secondItem="Vqn-j3-d7A" secondAttribute="top" id="5Ke-ib-oOt"/>
                                     <constraint firstItem="xzv-wR-ml2" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="LNc-Ik-3hR"/>
+                                    <constraint firstAttribute="height" constant="764" id="PeY-d5-TJA"/>
                                     <constraint firstItem="6lG-4U-yXC" firstAttribute="top" secondItem="vlg-Zh-geU" secondAttribute="bottom" id="U0J-su-5wN"/>
                                     <constraint firstItem="vlg-Zh-geU" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="Zaw-jb-BIN"/>
                                     <constraint firstAttribute="trailing" secondItem="xzv-wR-ml2" secondAttribute="trailing" id="ZeY-xy-DLC"/>
@@ -391,17 +389,13 @@
                                     <constraint firstItem="vlg-Zh-geU" firstAttribute="top" secondItem="xzv-wR-ml2" secondAttribute="bottom" id="cIc-dW-x0H"/>
                                     <constraint firstItem="6lG-4U-yXC" firstAttribute="top" secondItem="vlg-Zh-geU" secondAttribute="bottom" id="mBJ-MP-szn"/>
                                     <constraint firstAttribute="trailing" secondItem="vlg-Zh-geU" secondAttribute="trailing" id="mOp-rN-5gI"/>
+                                    <constraint firstAttribute="width" constant="414" id="v4n-Zo-1f2"/>
                                     <constraint firstItem="vlg-Zh-geU" firstAttribute="top" secondItem="xzv-wR-ml2" secondAttribute="bottom" id="v7b-m3-oab"/>
                                     <constraint firstAttribute="trailing" secondItem="6lG-4U-yXC" secondAttribute="trailing" id="vUm-lj-WRG"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Vqn-j3-d7A" firstAttribute="top" secondItem="K0d-84-bZ7" secondAttribute="top" id="0Nw-RN-XMs"/>
-                            <constraint firstItem="K0d-84-bZ7" firstAttribute="trailing" secondItem="Vqn-j3-d7A" secondAttribute="trailing" id="9Za-Ji-XM9"/>
-                            <constraint firstItem="Vqn-j3-d7A" firstAttribute="leading" secondItem="JtJ-jY-nfj" secondAttribute="leading" id="ZQh-0B-oaS"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="K0d-84-bZ7"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Card" id="G61-zr-AX8">
@@ -422,6 +416,9 @@
                     <connections>
                         <outlet property="addBoxToCardButton" destination="vlg-Zh-geU" id="r3p-fM-AZt"/>
                         <outlet property="addBoxesTableView" destination="xzv-wR-ml2" id="Yw4-QB-nX0"/>
+                        <outlet property="mainStackView" destination="Vqn-j3-d7A" id="FIN-O0-HXm"/>
+                        <outlet property="mainStackViewHeightConstraint" destination="PeY-d5-TJA" id="aAx-z9-uo7"/>
+                        <outlet property="mainStackViewWidthConstraint" destination="v4n-Zo-1f2" id="0Lc-pq-00O"/>
                         <outlet property="navbarSaveButton" destination="Ixh-oy-0Vj" id="CEE-Uz-bnf"/>
                         <outlet property="previewBingoCard" destination="6lG-4U-yXC" id="ew0-XQ-VOi"/>
                         <outlet property="previewBingoCardFlowLayout" destination="V9J-GY-EGa" id="Env-5s-5J4"/>
