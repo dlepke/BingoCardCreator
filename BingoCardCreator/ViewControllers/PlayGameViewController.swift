@@ -42,7 +42,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let totalWidth = view.frame.width
         
-        let window = UIApplication.shared.keyWindow
+        let window = self.view
         let topPadding = window?.safeAreaInsets.top
         let bottomPadding = window?.safeAreaInsets.bottom
         let totalHeight = view.frame.height - topPadding! - bottomPadding! - (self.navigationController?.navigationBar.frame.height)!

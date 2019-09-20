@@ -58,9 +58,9 @@ class MyCardsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     }
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, success) in
             //handle delete
             
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -88,18 +88,8 @@ class MyCardsViewController: UITableViewController {
             }
             
             self.updateTableViewFromStorage(indexPath: indexPath)
-        }
-        
-//        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-//            //handle edit
-//            print("editing me!", self.cardsInStorage[indexPath.row].value(forKey: "title")!)
-//            self.performSegue(withIdentifier: "HomePageToCardDetails", sender: self)
-//        }
-//
-//        editAction.backgroundColor = .lightGray
-        
-//        return [deleteAction, editAction]
-        return [deleteAction]
+        })
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     func updateTableViewFromStorage(indexPath: IndexPath? = nil) {
