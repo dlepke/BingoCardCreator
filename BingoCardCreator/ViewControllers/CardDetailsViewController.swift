@@ -160,6 +160,8 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 for card in cardsInStorage {
                     if cardTitle == card.value(forKeyPath: "title") as? String {
                         print("title already exists")
+                        let alertCell = cardDetailsTableView.dequeueReusableCell(withIdentifier: "uniqueTitleReminderAlertTableCell")
+                        alertCell?.isHidden = false
                         return false
                     }
                 }

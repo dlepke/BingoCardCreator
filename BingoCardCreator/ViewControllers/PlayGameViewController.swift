@@ -122,13 +122,6 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         //let currentBingoBox = contentsOfCurrentCard![indexPath.row]
-        print(indexPath.row)
-        print("hello")
-        print(contentsOfCurrentCard?.first(where: {Int($0.positionInCard) == indexPath.row}) as Any)
-        
-        for box in contentsOfCurrentCard! {
-            print(box.positionInCard)
-        }
         
         let currentBingoBox = contentsOfCurrentCard!.first(where: { Int($0.positionInCard) == indexPath.row })!
         
