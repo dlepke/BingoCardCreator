@@ -68,7 +68,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
 
         switch section {
         case 1:
-            return "Card Title*".uppercased()
+            return "Card Title".uppercased()
         case 2:
             return "Winning Condition".uppercased()
         case 3:

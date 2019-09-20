@@ -12,7 +12,7 @@ class BingoBox: UICollectionViewCell {
     
     @IBOutlet weak var bingoBoxTitle: UILabel!
     
-    @IBOutlet weak var bingoBoxActionIcon: UIImageView!
+    //attach bingobox object to collectionview cell here sometime
     
 }
 

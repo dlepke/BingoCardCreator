@@ -11,7 +11,6 @@ import UIKit
 class BingoBoxTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var detailsTextField: UITextField!
     
     @IBAction func editingChanged(_ sender: Any) {
         titleTextField.delegate = self

@@ -63,8 +63,6 @@ extension BingoCard {
                 let newBingoBox = BoxContents(entity: boxContentsEntity, insertInto: managedContext)
                 
                 newBingoBox.setValue(bingoBox.boxTitle, forKey: "boxTitle")
-                newBingoBox.setValue(bingoBox.boxDetails, forKey: "boxDetails")
-                newBingoBox.setValue(bingoBox.proofRequired, forKey: "proofRequired")
                 newBingoBox.setValue(bingoBox.complete, forKey: "complete")
                 newBingoBox.setValue(newBingoCard, forKey: "ownerCard")
                 
@@ -98,7 +96,7 @@ extension BingoCard {
 //            print(bingoBoxRaw)
             let bingoBox = (bingoBoxRaw as? BoxContents)!
             print(bingoBox)
-            let codableBingoBox = BoxContentsCodable(boxTitle: bingoBox.boxTitle!, boxDetails: bingoBox.boxDetails!, proofRequired: bingoBox.proofRequired!, positionInCard: bingoBox.positionInCard, complete: false)
+            let codableBingoBox = BoxContentsCodable(boxTitle: bingoBox.boxTitle!, positionInCard: bingoBox.positionInCard, complete: false)
             boxContentsToEncode.append(codableBingoBox)
         }
         
@@ -201,38 +199,26 @@ struct BingoCardCodable: Codable {
 
 struct BoxContentsCodable: Codable {
     let boxTitle: String
-    let boxDetails: String
-    let proofRequired: String
     let positionInCard: Float
     let complete: Bool
-    //let proof: Data
     
-    init(boxTitle: String, boxDetails: String, proofRequired: String, positionInCard: Float, complete: Bool) {
+    init(boxTitle: String, positionInCard: Float, complete: Bool) {
         self.boxTitle = boxTitle
-        self.boxDetails = boxDetails
-        self.proofRequired = proofRequired
         self.positionInCard = positionInCard
         self.complete = complete
-        //self.proof = proof
     }
     
     enum CodingKeys: String, CodingKey {
         case boxTitle
-        case boxDetails
-        case proofRequired
         case positionInCard
         case complete
-        //case proof
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(boxTitle, forKey: .boxTitle)
-        try container.encode(boxDetails, forKey: .boxDetails)
-        try container.encode(proofRequired, forKey: .proofRequired)
         try container.encode(positionInCard, forKey: .positionInCard)
         try container.encode(complete, forKey: .complete)
-        //try container.encode(proof, forKey: .proof)
         
         
     }
@@ -240,12 +226,7 @@ struct BoxContentsCodable: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         boxTitle = try values.decode(String.self, forKey: .boxTitle)
-        boxDetails = try values.decode(String.self, forKey: .boxDetails)
-        proofRequired = try values.decode(String.self, forKey: .proofRequired)
         positionInCard = try values.decode(Float.self, forKey: .positionInCard)
         complete = try values.decode(Bool.self, forKey: .complete)
-        //proof = try values.decode(Data.self, forKey: .proof)
-        
-        
     }
 }

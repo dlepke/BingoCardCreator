@@ -33,13 +33,17 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         addBoxesTableView.tableFooterView = UIView()
         
+        print(self.tableViewHeightConstraint as Any)
+        
+        
+        
         self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height + 5
         self.addBoxesTableView.needsUpdateConstraints()
         
-        self.contentViewWidthConstraint.constant = self.view.frame.width
-        self.contentViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
-        
-        self.contentView.needsUpdateConstraints()
+//        self.contentViewWidthConstraint.constant = self.view.frame.width
+//        self.contentViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
+//        
+//        self.contentView.needsUpdateConstraints()
         
         //collectionview stuff
         previewBingoCard.delegate = self
@@ -85,9 +89,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var addBoxesTableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -96,12 +97,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addBoxToCard(_ sender: Any) {
         
         let boxTitleCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! BingoBoxTextFieldTableViewCell
-        let boxDetailsCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! BingoBoxTextFieldTableViewCell
-        let proofRequiredCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as! CompletionPointSegmentedControlTableViewCell
         
         let boxTitle = boxTitleCell.titleTextField.text!
-        let boxDetails = boxDetailsCell.detailsTextField.text!
-        let proofRequired = proofRequiredCell.selection
         
         for box in arrayOfPendingBoxes {
             if boxTitle == box.boxTitle {
@@ -111,7 +108,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         if boxTitle != "" {
-            self.save(ownerCard: newCard!, boxTitle: boxTitle, boxDetails: boxDetails, proofRequired: proofRequired, complete: false, proof: nil)
+            self.save(ownerCard: newCard!, boxTitle: boxTitle, complete: false)
         } else {
             print("Please enter a title for this box.")
             return
@@ -119,7 +116,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         boxTitleCell.titleTextField.text = ""
-        boxDetailsCell.detailsTextField.text = ""
         
         previewBingoCard.reloadData()
         
@@ -127,7 +123,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    func save(ownerCard: NSManagedObject, boxTitle: String, boxDetails: String, proofRequired: String, complete: Bool, proof: UIImage?) {
+    func save(ownerCard: NSManagedObject, boxTitle: String, complete: Bool) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -139,10 +135,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let boxContents = BoxContents(entity: entity, insertInto: context)
         
         boxContents.setValue(boxTitle, forKeyPath: "boxTitle")
-        boxContents.setValue(boxDetails, forKeyPath: "boxDetails")
-        boxContents.setValue(proofRequired, forKeyPath: "proofRequired")
         boxContents.setValue(complete, forKey: "complete")
-        boxContents.setValue(proof, forKey: "proof")
         boxContents.setValue(ownerCard, forKey: "ownerCard")
         
         arrayOfPendingBoxes.append(boxContents)
@@ -234,17 +227,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         let boxTitle = cardArray[indexPath.row].boxTitle
         
-        let proofForm = cardArray[indexPath.row].proofRequired
-        
         cell.previewCardBingoBoxLabel.text = boxTitle
-        
-        if proofForm == "signature" {
-            cell.previewCardProofImageView.image = #imageLiteral(resourceName: "QuickActions_Compose")
-        } else if proofForm == "camera" {
-            cell.previewCardProofImageView.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
-        } else {
-            cell.previewCardProofImageView.image = nil
-        }
         
         cell.previewCardDeleteBoxButton.layer.cornerRadius = 7.5
         cell.previewCardDeleteBoxButton?.layer.setValue(cardArray[indexPath.row].boxTitle, forKey: "boxTitle")
@@ -305,7 +288,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     // begin tableview stuff
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
@@ -314,7 +297,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellPrototypes = ["labelTableCell", "titleTableCell", "detailsTableCell", "proofRequiredTableCell"]
+        let cellPrototypes = ["labelTableCell", "titleTableCell"]
         
         let cell = addBoxesTableView.dequeueReusableCell(withIdentifier: cellPrototypes[indexPath.section], for: indexPath)
         
@@ -326,11 +309,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch section {
         case 1:
-            return "Box Title*".uppercased()
-        case 2:
-            return "Box Details".uppercased()
-        case 3:
-            return "Proof of Completion".uppercased()
+            return "Box Title".uppercased()
         default:
             return ""
         }

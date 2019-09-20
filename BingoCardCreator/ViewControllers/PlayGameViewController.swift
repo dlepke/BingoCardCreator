@@ -139,14 +139,6 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         cell.layer.borderWidth = 1
         cell.layer.borderColor = #colorLiteral(red: 0.6039215686, green: 0.8823529412, blue: 0.6156862745, alpha: 1)
         
-        if currentBingoBox.value(forKeyPath: "proofRequired") as? String == "camera" {
-            cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_CapturePhoto")
-        } else if currentBingoBox.value(forKeyPath: "proofRequired") as? String == "signature" {
-            cell.bingoBoxActionIcon.image = #imageLiteral(resourceName: "QuickActions_Compose")
-        } else {
-            cell.bingoBoxActionIcon.image = nil
-        }
-        
         return cell
     }
     
