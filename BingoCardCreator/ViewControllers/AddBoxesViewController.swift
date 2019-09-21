@@ -85,7 +85,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             } catch {
                 print("Could not load pre-existing boxes.")
             }
-            print(arrayOfPendingBoxes)
+            //print(arrayOfPendingBoxes)
             previewBingoCard.reloadData()
             checkIfCardIsDone()
         }
@@ -169,12 +169,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         print("going to delete: ", titleOfBoxToDelete!)
         
         let boxToRemoveFromArray = arrayOfPendingBoxes.filter { $0.boxTitle == titleOfBoxToDelete! }
-        print("boxToRemoveFromArray: ", boxToRemoveFromArray)
+        //print("boxToRemoveFromArray: ", boxToRemoveFromArray)
         let indexOfBoxToDelete = arrayOfPendingBoxes.firstIndex(of: boxToRemoveFromArray[0])
         
         
         let indexPath: IndexPath = [0, indexOfBoxToDelete!]
-        print(indexPath)
+        //print(indexPath)
         
         do {
             
@@ -186,7 +186,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             let fetchRequest: NSFetchRequest<BoxContents> = BoxContents.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "boxTitle == %@", titleOfBoxToDelete! as CVarArg)
             boxToDelete = try context.fetch(fetchRequest) as [BoxContents]
-            print(boxToDelete!)
+            //print(boxToDelete!)
             for box in boxToDelete! {
                 context.delete(box)
             }
@@ -262,7 +262,7 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         let temp = arrayOfPendingBoxes.remove(at: sourceIndexPath.item)
         
         arrayOfPendingBoxes.insert(temp, at: destinationIndexPath.item)
-        print(arrayOfPendingBoxes)
+        //print(arrayOfPendingBoxes)
         
         assignPositionsToBoxes()
         

@@ -68,42 +68,37 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell alpha="0.5" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plainTableCell" id="q9m-ZA-SgK">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q9m-ZA-SgK" id="FtZ-s9-l5V">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Create Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxQ-sa-F9C">
-                                                    <rect key="frame" x="20" y="0.0" width="394" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="J4C-Q2-8JX"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="20" y="11" width="394" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="cxQ-sa-F9C" secondAttribute="bottom" id="QfM-Qb-46a"/>
                                                 <constraint firstAttribute="trailing" secondItem="cxQ-sa-F9C" secondAttribute="trailing" id="VZy-sE-KZq"/>
                                                 <constraint firstItem="cxQ-sa-F9C" firstAttribute="leading" secondItem="FtZ-s9-l5V" secondAttribute="leading" constant="20" symbolic="YES" id="W34-c0-hv9"/>
-                                                <constraint firstItem="cxQ-sa-F9C" firstAttribute="top" secondItem="FtZ-s9-l5V" secondAttribute="top" id="vnd-1h-G3k"/>
+                                                <constraint firstItem="cxQ-sa-F9C" firstAttribute="top" secondItem="FtZ-s9-l5V" secondAttribute="topMargin" id="vnd-1h-G3k"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="textFieldTableCell" id="zQ3-bO-ItM" customClass="TextInputTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="100.5" width="414" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ3-bO-ItM" id="nJg-7S-Ayr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nn0-wJ-bKV">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="If9-SK-AHl"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="20" y="11" width="374" height="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -113,9 +108,9 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Nn0-wJ-bKV" secondAttribute="bottom" id="AhX-s7-rDM"/>
                                                 <constraint firstItem="Nn0-wJ-bKV" firstAttribute="leading" secondItem="nJg-7S-Ayr" secondAttribute="leadingMargin" id="Iml-xs-lY1"/>
-                                                <constraint firstItem="Nn0-wJ-bKV" firstAttribute="top" secondItem="nJg-7S-Ayr" secondAttribute="top" id="QMJ-gO-oek"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Nn0-wJ-bKV" secondAttribute="bottom" id="Nft-Ep-4q5"/>
+                                                <constraint firstItem="Nn0-wJ-bKV" firstAttribute="top" secondItem="nJg-7S-Ayr" secondAttribute="topMargin" id="QMJ-gO-oek"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Nn0-wJ-bKV" secondAttribute="trailing" id="j9Z-lC-cGF"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -126,18 +121,15 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="141.5" width="414" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xVD-Rj-WmM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                    <rect key="frame" x="0.0" y="11" width="414" height="32"/>
                                                     <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="MRI-Uh-vng"/>
-                                                    </constraints>
                                                     <segments>
                                                         <segment title="Single Line"/>
                                                         <segment title="Whole Card"/>
@@ -151,8 +143,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="xVD-Rj-WmM" secondAttribute="trailing" id="i7f-7a-7W0"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xVD-Rj-WmM" secondAttribute="bottom" id="kWx-oR-O6k"/>
                                                 <constraint firstItem="xVD-Rj-WmM" firstAttribute="leading" secondItem="A9q-dJ-vbc" secondAttribute="leading" id="qSI-GR-O89"/>
-                                                <constraint firstItem="xVD-Rj-WmM" firstAttribute="top" secondItem="A9q-dJ-vbc" secondAttribute="top" id="xK4-56-mMq"/>
+                                                <constraint firstItem="xVD-Rj-WmM" firstAttribute="top" secondItem="A9q-dJ-vbc" secondAttribute="topMargin" id="xK4-56-mMq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -161,18 +154,15 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="194.5" width="414" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbj-he-Zrb" id="Es7-Yt-uDq">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V64-MY-2GC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                    <rect key="frame" x="0.0" y="11" width="414" height="32"/>
                                                     <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="zh8-hJ-XJ0"/>
-                                                    </constraints>
                                                     <segments>
                                                         <segment title="3x3"/>
                                                         <segment title="4x4"/>
@@ -187,7 +177,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="V64-MY-2GC" firstAttribute="leading" secondItem="Es7-Yt-uDq" secondAttribute="leading" id="Tre-ic-4G0"/>
-                                                <constraint firstItem="V64-MY-2GC" firstAttribute="top" secondItem="Es7-Yt-uDq" secondAttribute="top" id="Zgr-gN-gQd"/>
+                                                <constraint firstItem="V64-MY-2GC" firstAttribute="top" secondItem="Es7-Yt-uDq" secondAttribute="topMargin" id="Zgr-gN-gQd"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="V64-MY-2GC" secondAttribute="bottom" id="hbE-cn-shK"/>
                                                 <constraint firstAttribute="trailing" secondItem="V64-MY-2GC" secondAttribute="trailing" id="uNP-op-y4z"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -241,7 +232,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Vqn-j3-d7A">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="744"/>
                                 <subviews>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="xzv-wR-ml2">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -304,7 +295,7 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-Zh-geU">
-                                        <rect key="frame" x="0.0" y="300" width="414" height="11"/>
+                                        <rect key="frame" x="0.0" y="300" width="414" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Add to Card"/>
@@ -313,7 +304,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lG-4U-yXC">
-                                        <rect key="frame" x="0.0" y="311" width="414" height="414"/>
+                                        <rect key="frame" x="0.0" y="330" width="414" height="414"/>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6lG-4U-yXC" secondAttribute="height" multiplier="1:1" id="yeA-Iy-2ik"/>
@@ -332,10 +323,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
+                                                            <rect key="frame" x="8" y="8" width="77" height="77"/>
                                                             <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -353,12 +344,12 @@
                                                         </button>
                                                     </subviews>
                                                 </view>
-                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="GgG-oA-2p9" secondAttribute="bottom" id="DrA-Jp-P9Q"/>
-                                                    <constraint firstItem="GgG-oA-2p9" firstAttribute="leading" secondItem="9cG-cM-c2F" secondAttribute="leading" id="HYl-nX-avw"/>
-                                                    <constraint firstAttribute="trailing" secondItem="GgG-oA-2p9" secondAttribute="trailing" id="bvs-g8-SJO"/>
-                                                    <constraint firstItem="GgG-oA-2p9" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" id="r3o-mC-kgQ"/>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="GgG-oA-2p9" secondAttribute="bottom" id="DrA-Jp-P9Q"/>
+                                                    <constraint firstItem="GgG-oA-2p9" firstAttribute="leading" secondItem="9cG-cM-c2F" secondAttribute="leadingMargin" id="HYl-nX-avw"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="GgG-oA-2p9" secondAttribute="trailing" id="bvs-g8-SJO"/>
+                                                    <constraint firstItem="GgG-oA-2p9" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="topMargin" id="r3o-mC-kgQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="zeT-Yv-mcW" secondAttribute="trailing" constant="5" id="tuS-cE-48F"/>
                                                     <constraint firstItem="zeT-Yv-mcW" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" constant="5" id="y0U-Bp-Vl2"/>
                                                 </constraints>
@@ -376,11 +367,8 @@
                                     <constraint firstItem="vlg-Zh-geU" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="Zaw-jb-BIN"/>
                                     <constraint firstAttribute="trailing" secondItem="xzv-wR-ml2" secondAttribute="trailing" id="ZeY-xy-DLC"/>
                                     <constraint firstItem="6lG-4U-yXC" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="Zxd-Zo-7OF"/>
-                                    <constraint firstItem="vlg-Zh-geU" firstAttribute="top" secondItem="xzv-wR-ml2" secondAttribute="bottom" id="cIc-dW-x0H"/>
-                                    <constraint firstItem="6lG-4U-yXC" firstAttribute="top" secondItem="vlg-Zh-geU" secondAttribute="bottom" id="mBJ-MP-szn"/>
                                     <constraint firstAttribute="trailing" secondItem="vlg-Zh-geU" secondAttribute="trailing" id="mOp-rN-5gI"/>
                                     <constraint firstAttribute="width" constant="414" id="v4n-Zo-1f2"/>
-                                    <constraint firstItem="vlg-Zh-geU" firstAttribute="top" secondItem="xzv-wR-ml2" secondAttribute="bottom" id="v7b-m3-oab"/>
                                     <constraint firstAttribute="trailing" secondItem="6lG-4U-yXC" secondAttribute="trailing" id="vUm-lj-WRG"/>
                                 </constraints>
                             </stackView>
@@ -390,7 +378,6 @@
                             <constraint firstItem="Vqn-j3-d7A" firstAttribute="leading" secondItem="K0d-84-bZ7" secondAttribute="leading" id="6YZ-b5-o3b"/>
                             <constraint firstItem="Vqn-j3-d7A" firstAttribute="top" secondItem="JtJ-jY-nfj" secondAttribute="topMargin" id="6mf-5x-lxf"/>
                             <constraint firstItem="Vqn-j3-d7A" firstAttribute="trailing" secondItem="K0d-84-bZ7" secondAttribute="trailing" id="JWm-XW-KF5"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Vqn-j3-d7A" secondAttribute="bottom" id="mzf-4Y-e1a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K0d-84-bZ7"/>
                     </view>
