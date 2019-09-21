@@ -37,7 +37,8 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         
-        self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height + 5
+        self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height
+        print(self.tableViewHeightConstraint.constant)
         self.addBoxesTableView.needsUpdateConstraints()
         
         self.mainStackViewWidthConstraint.constant = self.view.frame.width

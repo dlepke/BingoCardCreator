@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sha-Dj-lG4">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sha-Dj-lG4">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kr9-Za-WSu" id="vbT-br-XkJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="121.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="382.5" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                 </tableViewCellContentView>
@@ -69,7 +67,7 @@
                                     <constraint firstAttribute="height" constant="300" id="4Xl-am-E2E"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" alpha="0.5" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plainTableCell" id="q9m-ZA-SgK">
+                                    <tableViewCell alpha="0.5" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plainTableCell" id="q9m-ZA-SgK">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q9m-ZA-SgK" id="FtZ-s9-l5V">
@@ -94,15 +92,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="textFieldTableCell" rowHeight="93" id="zQ3-bO-ItM" customClass="TextInputTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99.5" width="414" height="93"/>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="textFieldTableCell" id="zQ3-bO-ItM" customClass="TextInputTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ3-bO-ItM" id="nJg-7S-Ayr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ3-bO-ItM" id="nJg-7S-Ayr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nn0-wJ-bKV">
-                                                    <rect key="frame" x="30" y="0.0" width="354" height="44"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="If9-SK-AHl"/>
                                                     </constraints>
@@ -116,10 +114,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Nn0-wJ-bKV" secondAttribute="bottom" id="AhX-s7-rDM"/>
-                                                <constraint firstItem="Nn0-wJ-bKV" firstAttribute="leading" secondItem="nJg-7S-Ayr" secondAttribute="leading" constant="30" id="Iml-xs-lY1"/>
+                                                <constraint firstItem="Nn0-wJ-bKV" firstAttribute="leading" secondItem="nJg-7S-Ayr" secondAttribute="leadingMargin" id="Iml-xs-lY1"/>
                                                 <constraint firstItem="Nn0-wJ-bKV" firstAttribute="top" secondItem="nJg-7S-Ayr" secondAttribute="top" id="QMJ-gO-oek"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Nn0-wJ-bKV" secondAttribute="trailing" constant="10" id="j9Z-lC-cGF"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Nn0-wJ-bKV" secondAttribute="bottom" constant="15" id="nUX-wb-oHS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Nn0-wJ-bKV" secondAttribute="trailing" id="j9Z-lC-cGF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -129,7 +126,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="192.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -146,6 +143,7 @@
                                                         <segment title="Whole Card"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="selectedSegmentTintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="selection1Changed:" destination="3WL-Rt-AK1" eventType="valueChanged" id="e7c-Fw-wQV"/>
                                                     </connections>
@@ -157,12 +155,13 @@
                                                 <constraint firstItem="xVD-Rj-WmM" firstAttribute="top" secondItem="A9q-dJ-vbc" secondAttribute="top" id="xK4-56-mMq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="segmentedControl1" destination="xVD-Rj-WmM" id="0P6-tg-pHW"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="236.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbj-he-Zrb" id="Es7-Yt-uDq">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -180,6 +179,7 @@
                                                         <segment title="5x5"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="selectedSegmentTintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="selection2Changed:" destination="dbj-he-Zrb" eventType="valueChanged" id="MPy-9L-7Lc"/>
                                                     </connections>
@@ -191,6 +191,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="V64-MY-2GC" secondAttribute="trailing" id="uNP-op-y4z"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="segmentedControl2" destination="V64-MY-2GC" id="msR-2h-3ci"/>
                                         </connections>
@@ -257,10 +258,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Boxes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTE-CW-Cqb">
-                                                            <rect key="frame" x="20" y="0.0" width="394" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="r9u-f6-8vT"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="20" y="0.0" width="394" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -275,17 +273,14 @@
                                                 <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tableViewCell>
                                             <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO" customClass="BingoBoxTextFieldTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="99.5" width="414" height="19"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5Y-G8-YTO" id="WXm-Rv-NoX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P2y-NQ-Pk8">
-                                                            <rect key="frame" x="20" y="0.0" width="394" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="ZdU-Su-CBE"/>
-                                                            </constraints>
+                                                        <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title here..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P2y-NQ-Pk8">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="19"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -295,9 +290,10 @@
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="P2y-NQ-Pk8" firstAttribute="leading" secondItem="WXm-Rv-NoX" secondAttribute="leading" constant="20" id="0Ho-Ut-rjd"/>
-                                                        <constraint firstAttribute="trailing" secondItem="P2y-NQ-Pk8" secondAttribute="trailing" id="BhW-mW-GHu"/>
-                                                        <constraint firstItem="P2y-NQ-Pk8" firstAttribute="top" secondItem="WXm-Rv-NoX" secondAttribute="top" id="UGt-Zq-kkT"/>
+                                                        <constraint firstAttribute="bottom" secondItem="P2y-NQ-Pk8" secondAttribute="bottom" id="31F-x7-QGS"/>
+                                                        <constraint firstItem="P2y-NQ-Pk8" firstAttribute="top" secondItem="WXm-Rv-NoX" secondAttribute="top" id="FXk-gw-4vq"/>
+                                                        <constraint firstAttribute="trailing" secondItem="P2y-NQ-Pk8" secondAttribute="trailing" id="JiL-uz-UWt"/>
+                                                        <constraint firstItem="P2y-NQ-Pk8" firstAttribute="leading" secondItem="WXm-Rv-NoX" secondAttribute="leading" id="SiM-oh-paQ"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -310,9 +306,6 @@
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-Zh-geU">
                                         <rect key="frame" x="0.0" y="300" width="414" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="fF5-Lj-Kmu"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Add to Card"/>
@@ -333,7 +326,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F" customClass="PreviewCardBingoBoxCell" customModule="BingoCardCreator" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="previewBingoBox" id="9cG-cM-c2F" customClass="PreviewCardBingoBoxCell" customModule="BingoCardCreator" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -341,14 +334,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="413"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
                                                             <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="tailTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeT-Yv-mcW">
-                                                            <rect key="frame" x="-20" y="5" width="15" height="15"/>
+                                                            <rect key="frame" x="73" y="5" width="15" height="15"/>
                                                             <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="3dO-2F-QoY"/>
@@ -382,7 +375,6 @@
                                     <constraint firstItem="xzv-wR-ml2" firstAttribute="top" secondItem="Vqn-j3-d7A" secondAttribute="top" id="5Ke-ib-oOt"/>
                                     <constraint firstItem="xzv-wR-ml2" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="LNc-Ik-3hR"/>
                                     <constraint firstAttribute="height" constant="764" id="PeY-d5-TJA"/>
-                                    <constraint firstItem="6lG-4U-yXC" firstAttribute="top" secondItem="vlg-Zh-geU" secondAttribute="bottom" id="U0J-su-5wN"/>
                                     <constraint firstItem="vlg-Zh-geU" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="Zaw-jb-BIN"/>
                                     <constraint firstAttribute="trailing" secondItem="xzv-wR-ml2" secondAttribute="trailing" id="ZeY-xy-DLC"/>
                                     <constraint firstItem="6lG-4U-yXC" firstAttribute="leading" secondItem="Vqn-j3-d7A" secondAttribute="leading" id="Zxd-Zo-7OF"/>

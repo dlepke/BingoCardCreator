@@ -9,7 +9,6 @@
 import UIKit
 
 class BingoBoxTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
-    
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBAction func editingChanged(_ sender: Any) {
