@@ -33,16 +33,18 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         
         addBoxesTableView.tableFooterView = UIView()
         
-        print(self.tableViewHeightConstraint as Any)
+//        print(self.tableViewHeightConstraint as Any)
         
         
         
         self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height
-        print(self.tableViewHeightConstraint.constant)
+//        print(self.tableViewHeightConstraint.constant)
         self.addBoxesTableView.needsUpdateConstraints()
         
+//        print(self.tableViewHeightConstraint as Any)
+        
         self.mainStackViewWidthConstraint.constant = self.view.frame.width
-        self.mainStackViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
+//        self.mainStackViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
         
         self.mainStackView.needsUpdateConstraints()
         
