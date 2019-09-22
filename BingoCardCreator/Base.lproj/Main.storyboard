@@ -259,7 +259,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tableViewCell>
-                                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO" customClass="BingoBoxTextFieldTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
+                                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleTableCell" id="x5Y-G8-YTO" customClass="TextInputTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5Y-G8-YTO" id="WXm-Rv-NoX">
@@ -275,6 +275,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             <connections>
+                                                                <action selector="editingChanged:" destination="x5Y-G8-YTO" eventType="editingDidEnd" id="SnQ-lo-IpI"/>
                                                                 <action selector="editingChanged:" destination="x5Y-G8-YTO" eventType="editingChanged" id="kkV-vN-ITy"/>
                                                             </connections>
                                                         </textField>
@@ -289,18 +290,19 @@
                                                 <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <outlet property="titleTextField" destination="P2y-NQ-Pk8" id="b1A-lB-omb"/>
+                                                    <outlet property="textField" destination="P2y-NQ-Pk8" id="kA3-5a-XB7"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <sections/>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-Zh-geU">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-Zh-geU">
                                         <rect key="frame" x="0.0" y="300" width="414" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="0.60392156860000001" green="0.88235294119999996" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Add to Card"/>
                                         <connections>
-                                            <action selector="addBoxToCard:" destination="FsG-zO-mUi" eventType="touchUpInside" id="qcG-jB-Ml8"/>
+                                            <action selector="addBoxToCardButtonPressed:" destination="FsG-zO-mUi" eventType="touchUpInside" id="u1k-xw-035"/>
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lG-4U-yXC">
@@ -323,7 +325,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-oA-2p9">
                                                             <rect key="frame" x="8" y="8" width="77" height="77"/>
                                                             <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -331,7 +333,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="tailTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeT-Yv-mcW">
-                                                            <rect key="frame" x="73" y="5" width="15" height="15"/>
+                                                            <rect key="frame" x="78" y="0.0" width="15" height="15"/>
                                                             <color key="backgroundColor" red="0.2784313725" green="0.2901960784" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="3dO-2F-QoY"/>
@@ -350,8 +352,8 @@
                                                     <constraint firstItem="GgG-oA-2p9" firstAttribute="leading" secondItem="9cG-cM-c2F" secondAttribute="leadingMargin" id="HYl-nX-avw"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="GgG-oA-2p9" secondAttribute="trailing" id="bvs-g8-SJO"/>
                                                     <constraint firstItem="GgG-oA-2p9" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="topMargin" id="r3o-mC-kgQ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="zeT-Yv-mcW" secondAttribute="trailing" constant="5" id="tuS-cE-48F"/>
-                                                    <constraint firstItem="zeT-Yv-mcW" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" constant="5" id="y0U-Bp-Vl2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zeT-Yv-mcW" secondAttribute="trailing" id="tuS-cE-48F"/>
+                                                    <constraint firstItem="zeT-Yv-mcW" firstAttribute="top" secondItem="9cG-cM-c2F" secondAttribute="top" id="y0U-Bp-Vl2"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="previewCardBingoBoxLabel" destination="GgG-oA-2p9" id="QUw-5f-X9L"/>
@@ -397,7 +399,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBoxToCardButton" destination="vlg-Zh-geU" id="r3p-fM-AZt"/>
+                        <outlet property="addBoxToCardButton" destination="vlg-Zh-geU" id="WIg-BE-ASd"/>
                         <outlet property="addBoxesTableView" destination="xzv-wR-ml2" id="Yw4-QB-nX0"/>
                         <outlet property="mainStackView" destination="Vqn-j3-d7A" id="FIN-O0-HXm"/>
                         <outlet property="mainStackViewWidthConstraint" destination="v4n-Zo-1f2" id="0Lc-pq-00O"/>
@@ -420,7 +422,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-1j-S3K">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-1j-S3K">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="caw-gl-t2G">
                                     <size key="itemSize" width="151" height="128"/>
@@ -436,9 +438,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="151" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jko-vR-n1q">
-                                                    <rect key="frame" x="5" y="54" width="141" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello hi how long can i make this what happens if its too long" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="31" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jko-vR-n1q">
+                                                    <rect key="frame" x="5" y="0.0" width="141" height="128"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -448,7 +450,9 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Jko-vR-n1q" secondAttribute="trailing" constant="5" id="CzG-wf-7nT"/>
                                             <constraint firstItem="Jko-vR-n1q" firstAttribute="leading" secondItem="JO8-Lg-RaW" secondAttribute="leading" constant="5" id="DAG-PZ-YY5"/>
+                                            <constraint firstItem="Jko-vR-n1q" firstAttribute="top" secondItem="JO8-Lg-RaW" secondAttribute="top" id="S4o-Ay-2Kv"/>
                                             <constraint firstItem="Jko-vR-n1q" firstAttribute="centerY" secondItem="JO8-Lg-RaW" secondAttribute="centerY" id="WPC-HF-VH0"/>
+                                            <constraint firstAttribute="bottom" secondItem="Jko-vR-n1q" secondAttribute="bottom" id="k0z-KS-oCE"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="bingoBoxTitle" destination="Jko-vR-n1q" id="dQr-ZC-sk4"/>

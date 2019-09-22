@@ -105,11 +105,19 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var addBoxToCardButton: UIButton!
-    @IBAction func addBoxToCard(_ sender: Any) {
+    @IBAction func addBoxToCardButtonPressed(_ sender: Any) {
         
-        let boxTitleCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! BingoBoxTextFieldTableViewCell
+        addBoxToCard()
         
-        let boxTitle = boxTitleCell.titleTextField.text!
+    }
+    
+    func addBoxToCard() {
+        let testprint = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1))
+        print(testprint)
+        
+        let boxTitleCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
+        
+        let boxTitle = boxTitleCell.textField.text!
         
         for box in arrayOfPendingBoxes {
             if boxTitle == box.boxTitle {
@@ -126,13 +134,13 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         
-        boxTitleCell.titleTextField.text = ""
+        boxTitleCell.textField.text = ""
         
         previewBingoCard.reloadData()
         
         checkIfCardIsDone()
-        
     }
+    
     
     func save(ownerCard: NSManagedObject, boxTitle: String, complete: Bool) {
         

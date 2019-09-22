@@ -30,6 +30,21 @@ class TextInputTableViewCell: UITableViewCell, UITextFieldDelegate {
         return (textField?.text)!
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let viewController = self.window?.rootViewController?.children.last
+        
+//        print(viewController as Any)
+        
+        if viewController is AddBoxesViewController {
+            print(true)
+            AddBoxesViewController().addBoxToCard()
+        } else {
+            print("not on add boxes page")
+        }
+        return true
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //print("running shouldchangecharactersin")
         

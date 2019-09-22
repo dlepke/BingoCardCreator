@@ -42,10 +42,11 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let totalWidth = view.frame.width
         
-        let window = self.view
-        let topPadding = window?.safeAreaInsets.top
-        let bottomPadding = window?.safeAreaInsets.bottom
-        let totalHeight = view.frame.height - topPadding! - bottomPadding! - (self.navigationController?.navigationBar.frame.height)!
+        let window = UIApplication.shared.windows[0].safeAreaInsets
+        let topPadding = window.top
+        let bottomPadding = window.bottom
+        let totalHeight = self.view.frame.height - topPadding - bottomPadding - (self.navigationController?.navigationBar.frame.height)!
+        
         let sizeOfGrid = currentBingoCard?.value(forKey: "cardSize") as? Int
         let widthOfCell = CGFloat(Int(totalWidth) / sizeOfGrid!)
         let heightOfCell = CGFloat(Int(totalHeight) / sizeOfGrid!)
