@@ -112,8 +112,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func addBoxToCard() {
-        let testprint = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1))
-        print(testprint)
         
         let boxTitleCell = addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
         

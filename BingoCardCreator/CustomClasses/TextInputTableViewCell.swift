@@ -31,16 +31,15 @@ class TextInputTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let identifier = self.reuseIdentifier
+        let mainView = self.superview?.superview!
         
-        let viewController = self.window?.rootViewController?.children.last
-        
-//        print(viewController as Any)
-        
-        if viewController is AddBoxesViewController {
-            print(true)
-            AddBoxesViewController().addBoxToCard()
-        } else {
-            print("not on add boxes page")
+        if identifier == "titleTableCell" {
+            let buttonToPress = mainView?.subviews[1] as! UIButton
+            buttonToPress.sendActions(for: .touchUpInside)
+            textField.text = ""
+        } else if identifier == "textFieldTableCell" {
+            self.endEditing(true)
         }
         return true
     }
