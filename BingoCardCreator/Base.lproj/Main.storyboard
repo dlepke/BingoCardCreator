@@ -120,7 +120,7 @@
                                             <outlet property="textField" destination="Nn0-wJ-bKV" id="5jp-xJ-395"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="segmentedControlTableCell" id="3WL-Rt-AK1" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="141.5" width="414" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3WL-Rt-AK1" id="A9q-dJ-vbc">
@@ -153,7 +153,7 @@
                                             <outlet property="segmentedControl1" destination="xVD-Rj-WmM" id="0P6-tg-pHW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="segmentedControlTableCell2" id="dbj-he-Zrb" customClass="SegmentedControlTableViewCell" customModule="BingoCardCreator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="194.5" width="414" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbj-he-Zrb" id="Es7-Yt-uDq">

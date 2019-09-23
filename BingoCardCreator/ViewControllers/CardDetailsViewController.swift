@@ -21,6 +21,7 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
         

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		690EF43522027A30005222CB /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43422027A30005222CB /* TextInputTableViewCell.swift */; };
 		690EF43722028EA8005222CB /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */; };
+		691567EC23386FC200E9C0A9 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691567EB23386FC200E9C0A9 /* SAConfettiView.swift */; };
 		691A685521E5892B0036062E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691A685421E5892B0036062E /* AppDelegate.swift */; };
 		691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691A685621E5892B0036062E /* MyCardsViewController.swift */; };
 		691A685A21E5892B0036062E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 691A685821E5892B0036062E /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		69056D1F2233655F0087E278 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		690EF43422027A30005222CB /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		690EF43622028EA8005222CB /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		691567EB23386FC200E9C0A9 /* SAConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		691A685121E5892B0036062E /* BingoCardCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoCardCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		691A685421E5892B0036062E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		691A685621E5892B0036062E /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				690EF43D2202A281005222CB /* CustomClasses */,
 				69EE7159220517410049DFD8 /* Display */,
 				691A685421E5892B0036062E /* AppDelegate.swift */,
+				691567EB23386FC200E9C0A9 /* SAConfettiView.swift */,
 				69BECCD7221259CE009BA6E4 /* BingoCardCreator.xcdatamodeld */,
 				691A685B21E5892D0036062E /* Assets.xcassets */,
 				6956115C22389C3B00DCE31C /* bingo.png */,
@@ -234,6 +237,7 @@
 				6937497C21E6F6E3000924C9 /* AddBoxesViewController.swift in Sources */,
 				698D82BF22276A1500A6E6CC /* ColorScheme.swift in Sources */,
 				690EF43722028EA8005222CB /* SegmentedControlTableViewCell.swift in Sources */,
+				691567EC23386FC200E9C0A9 /* SAConfettiView.swift in Sources */,
 				6937497E21E6F6FB000924C9 /* PlayGameViewController.swift in Sources */,
 				694D96382230A3800036754D /* BingoCard.swift in Sources */,
 				691A685721E5892B0036062E /* MyCardsViewController.swift in Sources */,

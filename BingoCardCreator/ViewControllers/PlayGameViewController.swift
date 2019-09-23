@@ -18,16 +18,27 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     var currentBingoCard: NSManagedObject?
     var contentsOfCurrentCard: [BoxContents]? = []
     
-    let boxCompleteColor = #colorLiteral(red: 0.3254901961, green: 0.4784313725, blue: 0.3529411765, alpha: 1)
+    let normalBoxCompleteColor = #colorLiteral(red: 0.3254901961, green: 0.4784313725, blue: 0.3529411765, alpha: 1)
+    var boxCompleteColor = #colorLiteral(red: 0.3254901961, green: 0.4784313725, blue: 0.3529411765, alpha: 1)
     let boxCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     let boxNotCompleteColor = #colorLiteral(red: 0.2784313725, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
     let boxNotCompleteFontColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6)
+    let partyColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
     
     let hapticSelection = UISelectionFeedbackGenerator()
+    
+    var confettiView: SAConfettiView = SAConfettiView()
+    var celebrationTime: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        confettiView = SAConfettiView(frame: self.view.bounds)
+        self.view.addSubview(confettiView)
+        confettiView.isUserInteractionEnabled = false
+        
+        determineCelebration()
         
         self.title = currentBingoCard!.value(forKey: "title") as? String
         
@@ -98,6 +109,47 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
             try context.save()
         } catch {
             print("Could not save context on bingobox click.")
+        }
+        
+        determineCelebration()
+        
+    }
+    
+    func cardCompleted() -> Bool {
+        var complete = true
+        
+        for box in contentsOfCurrentCard! {
+            if box.complete {
+                continue
+            } else {
+                complete = false
+                return complete
+            }
+        }
+        return complete
+    }
+    
+    func cardCompleteCelebration() {
+        boxCompleteColor = partyColor
+        bingoCardCollectionView.reloadData()
+        
+        self.confettiView.startConfetti()
+        //self.view.confettiView.startConfetti()
+    }
+    
+    func endCelebration() {
+        boxCompleteColor = normalBoxCompleteColor
+        self.confettiView.stopConfetti()
+        bingoCardCollectionView.reloadData()
+    }
+    
+    func determineCelebration() {
+        celebrationTime = cardCompleted()
+        
+        if celebrationTime {
+            cardCompleteCelebration()
+        } else {
+            endCelebration()
         }
     }
     

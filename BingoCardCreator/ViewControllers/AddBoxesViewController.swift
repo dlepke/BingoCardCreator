@@ -10,6 +10,18 @@ import Foundation
 import UIKit
 import CoreData
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var newCard: NSManagedObject?
@@ -18,8 +30,12 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var longPressGesture: UILongPressGestureRecognizer!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        
         
         self.title = newCard!.value(forKey: "title") as? String
         //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
