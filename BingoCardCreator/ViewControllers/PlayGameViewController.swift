@@ -192,6 +192,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         if firstRowComplete || secondRowComplete || thirdRowComplete || fourthRowComplete || fifthRowComplete {
+            print("row complete!")
             return true
         }
         return false
@@ -269,63 +270,71 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         if firstColumnComplete || secondColumnComplete || thirdColumnComplete || fourthColumnComplete || fifthColumnComplete {
+            print("column complete!")
             return true
         }
         return false
     }
     
     func checkCardDiagonals(size: Float) -> Bool {
-        let size3Check1: [Float] = [0, 4, 8]
-        let size3Check2: [Float] = [2, 4, 6]
-        
-        let size4Check1: [Float] = [0, 5, 10, 15]
-        let size4Check2: [Float] = [3, 6, 9, 12]
-        
-        let size5Check1: [Float] = [0, 6, 12, 18, 24]
-        let size5Check2: [Float] = [4, 8, 12, 16, 20]
-        
-        var diagonal1Complete = true
-        var diagonal2Complete = true
-        
-        for box in contentsOfCurrentCard! {
-            switch(box.positionInCard) {
-            case _ where size == 3:
-                if size3Check1.contains(box.positionInCard) {
-                    if !box.complete {
-                        diagonal1Complete = false
-                    }
-                } else if size3Check2.contains(box.positionInCard) {
-                    if !box.complete {
-                        diagonal2Complete = false
-                    }
-                }
-            case _ where size == 4:
-                if size4Check1.contains(box.positionInCard) {
-                    if !box.complete {
-                        diagonal1Complete = false
-                    }
-                } else if size4Check2.contains(box.positionInCard) {
-                    if !box.complete {
-                        diagonal2Complete = false
-                    }
-                }
-            case _ where size == 5:
-                if size5Check1.contains(box.positionInCard) {
-                    if !box.complete {
-                        diagonal1Complete = false
-                    }
-                } else if size5Check2.contains(box.positionInCard) {
-                    if !box.complete {
-                        diagonal2Complete = false
-                    }
-                }
-            default:
-                print("something went wrong in diagonal check")
+        switch(size) {
+        case 3:
+            let box0Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 0})?.complete
+            let box4Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 4})?.complete
+            let box8Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 8})?.complete
+            
+            if box0Complete! && box4Complete! && box8Complete! {
+                return true
             }
+            
+            let box2Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 2})?.complete
+            let box6Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 6})?.complete
+            
+            if box2Complete! && box4Complete! && box6Complete! {
+                return true
+            }
+            
+        case 4:
+            let box0Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 0})?.complete
+            let box5Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 5})?.complete
+            let box10Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 10})?.complete
+            let box15Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 15})?.complete
+            
+            if box0Complete! && box5Complete! && box10Complete! && box15Complete! {
+                return true
+            }
+            
+            let box3Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 3})?.complete
+            let box6Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 6})?.complete
+            let box9Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 9})?.complete
+            let box12Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 12})?.complete
+            
+            if box3Complete! && box6Complete! && box9Complete! && box12Complete! {
+                return true
+            }
+        case 5:
+            let box0Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 0})?.complete
+            let box6Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 6})?.complete
+            let box12Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 12})?.complete
+            let box18Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 18})?.complete
+            let box24Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 24})?.complete
+            
+            if box0Complete! && box6Complete! && box12Complete! && box18Complete! && box24Complete! {
+                return true
+            }
+            
+            let box4Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 4})?.complete
+            let box8Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 8})?.complete
+            let box16Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 16})?.complete
+            let box20Complete = contentsOfCurrentCard?.first(where: {$0.positionInCard == 20})?.complete
+            
+            if box4Complete! && box8Complete! && box12Complete! && box16Complete! && box20Complete! {
+                return true
+            }
+        default:
+            print("something went wrong in diagonal check")
         }
-        if diagonal1Complete || diagonal2Complete {
-            return true
-        }
+        
         return false
     }
     
