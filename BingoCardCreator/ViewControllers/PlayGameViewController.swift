@@ -28,17 +28,10 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     let hapticSelection = UISelectionFeedbackGenerator()
     
     var confettiView: SAConfettiView = SAConfettiView()
-    var celebrationTime: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        confettiView = SAConfettiView(frame: self.view.bounds)
-        self.view.addSubview(confettiView)
-        confettiView.isUserInteractionEnabled = false
-        
-        determineCelebration()
         
         self.title = currentBingoCard!.value(forKey: "title") as? String
         
@@ -79,6 +72,13 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         } catch {
             print("Could not fetch card contents.", error.localizedDescription)
         }
+        
+        confettiView = SAConfettiView(frame: self.view.bounds)
+        self.view.addSubview(confettiView)
+        confettiView.isUserInteractionEnabled = false
+        confettiView.intensity = 0.9
+        
+        determineCelebration()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -86,7 +86,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         let selectedCell = bingoCardCollectionView.cellForItem(at: indexPath) as! BingoBox
         //let selectedBingoBox = contentsOfCurrentCard?[indexPath.row]
         let selectedBingoBox = contentsOfCurrentCard!.first(where: { Int($0.positionInCard) == indexPath.row })!
-        print(selectedCell.bingoBoxTitle.text!)
+        //print(selectedCell.bingoBoxTitle.text!)
         
         // this is the haptic feedback on the bingo card
         hapticSelection.selectionChanged()
@@ -115,18 +115,218 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         
     }
     
-    func cardCompleted() -> Bool {
-        var complete = true
+    func cardIsCompleted() -> Bool {
+        let completionPoint = currentBingoCard!.value(forKey: "completionPoint") as? String
+        let sizeOfCard = currentBingoCard!.value(forKey: "cardSize") as? Float
+        
+        if completionPoint == "Single Line" {
+            //print(contentsOfCurrentCard!, sizeOfCard!)
+            if checkCardRows(size: sizeOfCard!)
+            || checkCardColumns(size: sizeOfCard!)
+                || checkCardDiagonals(size: sizeOfCard!) {
+                return true
+            }
+            return false
+        } else {
+            for box in contentsOfCurrentCard! {
+                if box.complete == false {
+                    return false
+                }
+            }
+            return true
+        }
+        
+    }
+    
+    func checkCardRows(size: Float) -> Bool {
+        
+        var firstRowComplete = true
+        var secondRowComplete = true
+        var thirdRowComplete = true
+        var fourthRowComplete = true
+        var fifthRowComplete = true
+        
+        if size == 3 {
+            fourthRowComplete = false
+            fifthRowComplete = false
+        } else if size == 4 {
+            fifthRowComplete = false
+        }
         
         for box in contentsOfCurrentCard! {
-            if box.complete {
-                continue
-            } else {
-                complete = false
-                return complete
+            let position = box.positionInCard
+            
+            switch(position) {
+            case _ where position < size:
+                //print("first row")
+                if !box.complete {
+                    //print("box ",  position, " is not complete!")
+                    firstRowComplete = false
+                }
+            case _ where position < size * 2:
+                //print("second row")
+                if !box.complete {
+                    //print("box ",  position, " is not complete!")
+                    secondRowComplete = false
+                }
+            case _ where position < size * 3:
+                //print("third row")
+                if !box.complete {
+                    //print("box ",  position, " is not complete!")
+                    thirdRowComplete = false
+                }
+            case _ where position < size * 4:
+                //print("fourth row")
+                if !box.complete {
+                    //print("box ",  position, " is not complete!")
+                    fourthRowComplete = false
+                }
+            case _ where position < size * 5:
+                //print("fifth row")
+                if !box.complete {
+                    //print("box ",  position, " is not complete!")
+                    fifthRowComplete = false
+                }
+            default:
+                print("while checking card rows, position was higher than size*5 which should not happen")
             }
         }
-        return complete
+        if firstRowComplete || secondRowComplete || thirdRowComplete || fourthRowComplete || fifthRowComplete {
+            return true
+        }
+        return false
+    }
+    
+    func checkCardColumns(size: Float) -> Bool {
+        var firstColumnComplete = true
+        var secondColumnComplete = true
+        var thirdColumnComplete = true
+        var fourthColumnComplete = true
+        var fifthColumnComplete = true
+        
+        var firstColumn: [Float] = [0, size, size * 2, size * 3, size * 4]
+        var secondColumn: [Float] = [0 + 1, size + 1, size * 2 + 1, size * 3 + 1, size * 4 + 1]
+        var thirdColumn: [Float] = [0 + 2, size + 2, size * 2 + 2, size * 3 + 2, size * 4 + 2]
+        var fourthColumn: [Float] = [0 + 3, size + 3, size * 2 + 3, size * 3 + 3, size * 4 + 3]
+        var fifthColumn: [Float] = [0 + 4, size + 4, size * 2 + 4, size * 3 + 4, size * 4 + 4]
+        
+        switch(size) {
+        case 3:
+            firstColumn = [0, size, size * 2]
+            secondColumn = [1, size + 1, size * 2 + 1]
+            thirdColumn = [2, size + 2, size * 2 + 2]
+        case 4:
+            firstColumn = [0, size, size * 2, size * 3]
+            secondColumn = [1, size + 1, size * 2 + 1, size * 3 + 1]
+            thirdColumn = [2, size + 2, size * 2 + 2, size * 3 + 2]
+            fourthColumn = [3, size + 3, size * 2 + 3, size * 3 + 3]
+        case 5:
+            firstColumn = [0, size, size * 2, size * 3, size * 4]
+            secondColumn = [1, size + 1, size * 2 + 1, size * 3 + 1, size * 4 + 1]
+            thirdColumn = [2, size + 2, size * 2 + 2, size * 3 + 2, size * 4 + 2]
+            fourthColumn = [3, size + 3, size * 2 + 3, size * 3 + 3, size * 4 + 3]
+            fifthColumn = [4, size + 4, size * 2 + 4, size * 3 + 4, size * 4 + 4]
+        default:
+            print("invalid size!")
+        }
+        
+        if size == 3 {
+            fourthColumnComplete = false
+            fifthColumnComplete = false
+        } else if size == 4 {
+            fifthColumnComplete = false
+        }
+        
+        for box in contentsOfCurrentCard! {
+            switch(box.positionInCard) {
+            case _ where firstColumn.contains(box.positionInCard):
+                if !box.complete {
+                    //print("I'm in the first column!")
+                    firstColumnComplete = false
+                }
+            case _ where secondColumn.contains(box.positionInCard):
+                if !box.complete {
+                    //print("I'm in the second column!")
+                    secondColumnComplete = false
+                }
+            case _ where thirdColumn.contains(box.positionInCard):
+                if !box.complete {
+                    //print("I'm in the third column!")
+                    thirdColumnComplete = false
+                }
+            case _ where fourthColumn.contains(box.positionInCard):
+                if !box.complete {
+                    //print("I'm in the fourth column!")
+                    fourthColumnComplete = false
+                }
+            case _ where fifthColumn.contains(box.positionInCard):
+                if !box.complete {
+                    //print("I'm in the fifth column!")
+                    fifthColumnComplete = false
+                }
+            default:
+                print("I'm not in a valid column!")
+            }
+        }
+        if firstColumnComplete || secondColumnComplete || thirdColumnComplete || fourthColumnComplete || fifthColumnComplete {
+            return true
+        }
+        return false
+    }
+    
+    func checkCardDiagonals(size: Float) -> Bool {
+        let size3Check1: [Float] = [0, 4, 8]
+        let size3Check2: [Float] = [2, 4, 6]
+        
+        let size4Check1: [Float] = [0, 5, 10, 15]
+        let size4Check2: [Float] = [3, 6, 9, 12]
+        
+        let size5Check1: [Float] = [0, 6, 12, 18, 24]
+        let size5Check2: [Float] = [4, 8, 12, 16, 20]
+        
+        var diagonal1Complete = true
+        var diagonal2Complete = true
+        
+        for box in contentsOfCurrentCard! {
+            switch(box.positionInCard) {
+            case _ where size == 3:
+                if size3Check1.contains(box.positionInCard) {
+                    if !box.complete {
+                        diagonal1Complete = false
+                    }
+                } else if size3Check2.contains(box.positionInCard) {
+                    if !box.complete {
+                        diagonal2Complete = false
+                    }
+                }
+            case _ where size == 4:
+                if size4Check1.contains(box.positionInCard) {
+                    if !box.complete {
+                        diagonal1Complete = false
+                    }
+                } else if size4Check2.contains(box.positionInCard) {
+                    if !box.complete {
+                        diagonal2Complete = false
+                    }
+                }
+            case _ where size == 5:
+                if size5Check1.contains(box.positionInCard) {
+                    if !box.complete {
+                        diagonal1Complete = false
+                    }
+                } else if size5Check2.contains(box.positionInCard) {
+                    if !box.complete {
+                        diagonal2Complete = false
+                    }
+                }
+            default:
+                print("something went wrong in diagonal check")
+            }
+        }
+        if diagonal1Complete || diagonal2Complete {
+            return true
+        }
+        return false
     }
     
     func cardCompleteCelebration() {
@@ -134,7 +334,6 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         bingoCardCollectionView.reloadData()
         
         self.confettiView.startConfetti()
-        //self.view.confettiView.startConfetti()
     }
     
     func endCelebration() {
@@ -144,9 +343,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func determineCelebration() {
-        celebrationTime = cardCompleted()
-        
-        if celebrationTime {
+        if cardIsCompleted() {
             cardCompleteCelebration()
         } else {
             endCelebration()
