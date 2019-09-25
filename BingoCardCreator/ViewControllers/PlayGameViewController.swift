@@ -342,7 +342,9 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         boxCompleteColor = partyColor
         bingoCardCollectionView.reloadData()
         
-        self.confettiView.startConfetti()
+        if !confettiView.isActive() {
+            self.confettiView.startConfetti()
+        }
     }
     
     func endCelebration() {
