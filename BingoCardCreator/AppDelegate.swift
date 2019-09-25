@@ -20,22 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        guard url.pathExtension == "bingocard" else { return false }
-        
-        BingoCard.importData(from: url)
-        
-        guard let navigationController = window?.rootViewController as? UINavigationController,
-            let myCardsViewController = navigationController.viewControllers.first as? MyCardsViewController else {
-                print("whoopsie in app delegate")
-                return true
-        }
-        
-        myCardsViewController.updateTableViewFromStorage()
-        return true
-    }
-    
     func presentDetailViewController(_ bingoCard: BingoCard) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         

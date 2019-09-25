@@ -403,18 +403,6 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
     
     @IBAction func shareBingoCard(_ sender: Any) {
         
-        guard let currentBingoCard = currentBingoCard as? BingoCard,
-            let url = currentBingoCard.exportToFileURL() else {
-                print("URL failed.")
-                return
-        }
-        
-        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        if let popoverPresentationController = activityViewController.popoverPresentationController {
-            popoverPresentationController.barButtonItem = (sender as! UIBarButtonItem)
-        }
-        self.present(activityViewController, animated: true, completion: nil)
-        
     }
     
 }
