@@ -76,7 +76,7 @@ class PlayGameViewController: UIViewController, UICollectionViewDataSource, UICo
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
         confettiView.isUserInteractionEnabled = false
-        confettiView.intensity = 0.9
+        confettiView.intensity = 1
         
         determineCelebration()
     }

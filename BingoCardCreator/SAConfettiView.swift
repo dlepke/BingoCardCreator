@@ -91,7 +91,7 @@ public class SAConfettiView: UIView {
 
     func confettiWithColor(color: UIColor) -> CAEmitterCell {
         let confetti = CAEmitterCell()
-        confetti.birthRate = 6.0 * intensity
+        confetti.birthRate = 20.0 * intensity
         confetti.lifetime = 14.0 * intensity
         confetti.lifetimeRange = 0
         confetti.color = color.cgColor

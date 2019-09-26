@@ -11,13 +11,16 @@ import UIKit
 import CoreData
 
 extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+    func hideKeyboardWhenSwipedDown() {
+        let swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        swipe.direction = UISwipeGestureRecognizer.Direction.down
+        
+        swipe.cancelsTouchesInView = false
+        view.addGestureRecognizer(swipe)
     }
 
-    @objc func dismissKeyboard() {
+    @objc func dismissKeyboard(_ sender: UISwipeGestureRecognizer) {
+
         view.endEditing(true)
     }
 }
@@ -31,36 +34,22 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     var longPressGesture: UILongPressGestureRecognizer!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
-        
+        self.hideKeyboardWhenSwipedDown()
         
         self.title = newCard!.value(forKey: "title") as? String
-        //self.view.backgroundColor = UIColor(patternImage: backgroundGradientImage(bounds: view.bounds))
-        
-//        addBoxToCardButton.layer.cornerRadius = 10
-//        addBoxToCardButton.layer.applySketchShadow()
         
         //tableview stuff
         addBoxesTableView.delegate = self
         addBoxesTableView.dataSource = self
         
         addBoxesTableView.tableFooterView = UIView()
-        
-//        print(self.tableViewHeightConstraint as Any)
-        
-        
-        
+
         self.tableViewHeightConstraint.constant = addBoxesTableView.contentSize.height
-//        print(self.tableViewHeightConstraint.constant)
         self.addBoxesTableView.needsUpdateConstraints()
         
-//        print(self.tableViewHeightConstraint as Any)
-        
         self.mainStackViewWidthConstraint.constant = self.view.frame.width
-//        self.mainStackViewHeightConstraint.constant = previewBingoCard.frame.height + addBoxesTableView.contentSize.height + addBoxToCardButton.frame.height
         
         self.mainStackView.needsUpdateConstraints()
         
@@ -101,15 +90,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             } catch {
                 print("Could not load pre-existing boxes.")
             }
-            //print(arrayOfPendingBoxes)
             previewBingoCard.reloadData()
             checkIfCardIsDone()
         }
         
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
     
     @IBOutlet weak var mainStackView: UIStackView!
@@ -122,10 +106,10 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var addBoxToCardButton: UIButton!
     @IBAction func addBoxToCardButtonPressed(_ sender: Any) {
-        
         addBoxToCard()
-        
     }
+    
+    
     
     func addBoxToCard() {
         
@@ -229,9 +213,21 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         if arrayOfPendingBoxes.count == sizeOfGrid! * sizeOfGrid! {
             navbarSaveButton.isEnabled = true
             addBoxToCardButton.isEnabled = false
+            view.endEditing(true)
+            self.addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1))?.isUserInteractionEnabled = false
+            
+            
+            let alert = UIAlertController(title: "Did you bring your towel?", message: "It's recommended you bring your towel before continuing.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+            self.present(alert, animated: true)
+            
         } else {
             navbarSaveButton.isEnabled = false
             addBoxToCardButton.isEnabled = true
+            self.addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1))?.isUserInteractionEnabled = true
         }
     }
     

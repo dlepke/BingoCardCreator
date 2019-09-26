@@ -273,7 +273,7 @@
                                                             </constraints>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                            <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next"/>
                                                             <connections>
                                                                 <action selector="editingChanged:" destination="x5Y-G8-YTO" eventType="editingDidEnd" id="SnQ-lo-IpI"/>
                                                                 <action selector="editingChanged:" destination="x5Y-G8-YTO" eventType="editingChanged" id="kkV-vN-ITy"/>
