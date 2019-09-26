@@ -132,14 +132,20 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 if cardTitle == "" {
                     print("title is empty")
+                    let alert = UIAlertController(title: "Title Required", message: "Please give your card a title.", preferredStyle: .alert)
+
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                     return false
                 }
                 
                 for card in cardsInStorage {
                     if cardTitle == card.value(forKeyPath: "title") as? String {
                         print("title already exists")
-                        let alertCell = cardDetailsTableView.dequeueReusableCell(withIdentifier: "uniqueTitleReminderAlertTableCell")
-                        alertCell?.isHidden = false
+                        let alert = UIAlertController(title: "Card Title Already Exists", message: "Please give card a unique name.", preferredStyle: .alert)
+
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                        self.present(alert, animated: true)
                         return false
                     }
                 }

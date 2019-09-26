@@ -120,6 +120,11 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
         for box in arrayOfPendingBoxes {
             if boxTitle == box.boxTitle {
                 print("Please give box a unique name.")
+                let alert = UIAlertController(title: "Title Already Exists", message: "Please give each box a unique name.", preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+
+                self.present(alert, animated: true)
                 return
             }
         }
@@ -128,6 +133,11 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             self.save(ownerCard: newCard!, boxTitle: boxTitle, complete: false)
         } else {
             print("Please enter a title for this box.")
+            let alert = UIAlertController(title: "Title Required", message: "Please enter a title.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+
+            self.present(alert, animated: true)
             return
         }
         
@@ -215,14 +225,6 @@ class AddBoxesViewController: UIViewController, UITableViewDelegate, UITableView
             addBoxToCardButton.isEnabled = false
             view.endEditing(true)
             self.addBoxesTableView.cellForRow(at: IndexPath(row: 0, section: 1))?.isUserInteractionEnabled = false
-            
-            
-            let alert = UIAlertController(title: "Did you bring your towel?", message: "It's recommended you bring your towel before continuing.", preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-
-            self.present(alert, animated: true)
             
         } else {
             navbarSaveButton.isEnabled = false
