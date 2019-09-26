@@ -113,6 +113,8 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 return false
             }
             
+            print("checking if segue to addboxes page should run")
+            
             let textFieldCell = cardDetailsTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! TextInputTableViewCell
             
             let cardTitle = textFieldCell.sendText()
@@ -122,11 +124,6 @@ class CardDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "BingoCard")
             
             do {
-                
-                //this checks if card is in edit mode, basically
-                if newCard != nil {
-                    return true
-                }
                 
                 let cardsInStorage = try managedContext.fetch(fetchRequest)
                 

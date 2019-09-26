@@ -27,7 +27,10 @@ class TextInputTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func sendText() -> String {
-        return (textField?.text)!
+        
+        let trimmedText = textField?.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return trimmedText!
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
